@@ -3,7 +3,7 @@ import * as React from 'react';
 const ProfileScreen = () => {
     return (
         <View>
-            <Text>Profile Screen</Text>
+            <Text>Profile Screen, v2~</Text>
         </View>
     );
 };
