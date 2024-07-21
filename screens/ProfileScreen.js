@@ -3,7 +3,7 @@ import * as React from 'react';
 const ProfileScreen = () => {
     return (
         <View>
-            <Text>Profile Screen</Text>
+            <Text>Profile Screen, cyrus is a smart cookie</Text>
         </View>
     );
 };
