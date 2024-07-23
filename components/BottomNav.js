@@ -4,13 +4,15 @@ import HomeIcon from "../assets/icons/HomeIcon";
 import CalendarIcon from "../assets/icons/CalendarIcon";
 import SearchIcon from "../assets/icons/SearchIcon"; 
 import ProfileIcon from "../assets/icons/ProfileIcon";
+import PlusIcon from "../assets/icons/PlusIcon";
+
 import { Color, Border, Padding } from "../GlobalStyles";
 
 const BottomNav = () => {
   return (
     <View style={styles.tabbar}>
       <View style={styles.iconContainer}>
-        <HomeIcon size={28} style={styles.icon} />
+        <PlusIcon size={28} style={styles.icon} />
         <CalendarIcon size={28} style={styles.icon} />
         <SearchIcon size={28} style={styles.icon} />
         <ProfileIcon size={28} style={styles.icon} />
