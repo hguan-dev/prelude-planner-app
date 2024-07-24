@@ -12,9 +12,11 @@ const BottomNav = () => {
   return (
     <View style={styles.tabbar}>
       <View style={styles.iconContainer}>
-        <PlusIcon size={70}  />
         <HomeIcon size={28} style={styles.icon} />
         <CalendarIcon size={28} style={styles.icon} />
+        <View style={styles.plusIcon}>
+          <PlusIcon size={115} />
+        </View>
         <SearchIcon size={28} style={styles.icon} />
         <ProfileIcon size={28} style={styles.icon} />
       </View>
@@ -38,6 +40,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    borderColor: "#27153D",
+    borderWidth: 1.5,
   },
   iconContainer: {
     flexDirection: 'row',
@@ -47,6 +51,12 @@ const styles = StyleSheet.create({
   icon: {
     marginHorizontal: 20
   },
+  plusIcon: {
+    position: "absolute",
+    bottom: 10,
+    marginHorizontal: 100,
+    zIndex: 1
+  }
 });
 
 export default BottomNav;
