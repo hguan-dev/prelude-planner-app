@@ -12,7 +12,8 @@ const BottomNav = () => {
   return (
     <View style={styles.tabbar}>
       <View style={styles.iconContainer}>
-        <PlusIcon size={28} style={styles.icon} />
+        <PlusIcon size={70}  />
+        <HomeIcon size={28} style={styles.icon} />
         <CalendarIcon size={28} style={styles.icon} />
         <SearchIcon size={28} style={styles.icon} />
         <ProfileIcon size={28} style={styles.icon} />
