@@ -5,7 +5,7 @@ import EventItem from "../components/EventItem";
 import BottomNav from "../components/BottomNav";
 import FilterIcon from "../assets/icons/FilterIcon";
 import { Color, FontFamily, FontSize, Padding, Image } from "../GlobalStyles";
-import BackgroundGradient from "../assets/images/BackgroundGradient";
+import RadialGradientCircle from "../assets/images/BackgroundGradient";
 
 const HomeScreen = () => {
   return (
@@ -62,9 +62,7 @@ const HomeScreen = () => {
             confirmation="Confirmed"
           />
         </View>
-        <BackgroundGradient
-          style={{ width: "215px", height: "215px", flexShrink: 0 }}
-        />
+        <RadialGradientCircle />
       </ScrollView>
       <BottomNav />
     </View>
