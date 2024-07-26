@@ -4,7 +4,8 @@ import Header from "../components/Header";
 import EventItem from "../components/EventItem";
 import BottomNav from "../components/BottomNav";
 import FilterIcon from "../assets/icons/FilterIcon";
-import { Color, FontFamily, FontSize, Padding } from "../GlobalStyles";
+import { Color, FontFamily, FontSize, Padding, Image } from "../GlobalStyles";
+import BackgroundGradient from "../assets/images/BackgroundGradient";
 
 const HomeScreen = () => {
   return (
@@ -61,6 +62,9 @@ const HomeScreen = () => {
             confirmation="Confirmed"
           />
         </View>
+        <BackgroundGradient
+          style={{ width: "215px", height: "215px", flexShrink: 0 }}
+        />
       </ScrollView>
       <BottomNav />
     </View>
@@ -71,19 +75,19 @@ const styles = StyleSheet.create({
   home: {
     flex: 1,
     backgroundColor: "#211134",
-    justifyContent: 'space-between',
-    paddingTop: 40, 
+    justifyContent: "space-between",
+    paddingTop: 40,
   },
   content: {
     paddingHorizontal: Padding.p_5xs,
-    alignItems: 'center', 
+    alignItems: "center",
   },
   filterIconContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginVertical: Padding.p_5xs,
-    width: '100%', 
+    width: "100%",
   },
   filterIcon: {
     width: 31,
@@ -95,16 +99,18 @@ const styles = StyleSheet.create({
     color: Color.labelColorDarkPrimary,
   },
   eventList: {
-    width: '100%', 
-    alignItems: 'center', 
+    width: "100%",
+    alignItems: "center",
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
+    borderRadius: 20,
   },
   date: {
     fontSize: FontSize.size_xl,
     fontFamily: FontFamily.alataRegular,
     color: Color.labelColorDarkPrimary,
-    textAlign: 'center',
+    textAlign: "center",
     marginVertical: Padding.p_5xs,
-    width: '100%',
+    width: "100%",
   },
 });
 
