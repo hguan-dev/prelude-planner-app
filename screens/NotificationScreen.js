@@ -2,7 +2,6 @@ import * as React from "react";
 import { StyleSheet, View, Text, ScrollView } from "react-native";
 import Header from "../components/Header";
 import NotificationItem from "../components/NotificationItem";
-import BottomNav from "../components/BottomNav";
 import { Color, FontFamily, FontSize, Padding } from "../GlobalStyles";
 
 const NotificationScreen = () => {
@@ -16,7 +15,6 @@ const NotificationScreen = () => {
           {/* Add more NotificationItem components as needed */}
         </View>
       </ScrollView>
-      <BottomNav />
     </View>
   );
 };
