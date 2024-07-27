@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import HomeScreen from "./screens/HomeScreen";
 import ProfileScreen from "./screens/ProfileScreen";
+import NotificationScreen from "./screens/NotificationScreen";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View, Text, Pressable, TouchableOpacity } from "react-native";
@@ -32,6 +33,11 @@ const App = () => {
             <Stack.Screen
               name="ProfileScreen"
               component={ProfileScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="NotificationScreen"
+              component={NotificationScreen}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>
