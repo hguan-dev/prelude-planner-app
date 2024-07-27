@@ -1,12 +1,23 @@
-import * as React from "react";
+import React, { useMemo } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { Color, FontFamily, FontSize } from "../GlobalStyles";
+import { Color, FontFamily, FontSize, Border, Padding } from "../GlobalStyles";
 
-const NotificationItem = () => {
+const getStyleValue = (key, value) => {
+  if (value === undefined) return;
+  return { [key]: value === "unset" ? undefined : value };
+};
+const NotificationItem = ({ title, propTop, propLeft }) => {
+  const notificationItemStyle = useMemo(() => {
+    return {
+      ...getStyleValue("top", propTop),
+      ...getStyleValue("left", propLeft),
+    };
+  }, [propTop, propLeft]);
+
   return (
     <LinearGradient
-      style={styles.NotificationItem}
+      style={[styles.notificationItem, notificationItemStyle]}
       locations={[0, 1]}
       colors={["#311c51", "#4679d1"]}
     >
@@ -19,16 +30,15 @@ const NotificationItem = () => {
           </Text>
         </View>
       </View>
-      <View style={[styles.titleDescPic, styles.metaDataSpaceBlock]}>
-        <View style={styles.titleDesc}>
-          <View style={styles.title}>
-            <Text
-              style={styles.title1}
-            >{`<descriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylong>`}</Text>
+      <View style={styles.metaData}>
+        <View style={styles.titleDescPic}>
+          <View style={styles.titleDesc}>
+            <View style={styles.title}>
+              <Text style={styles.title1}>{title}</Text>
+            </View>
           </View>
         </View>
       </View>
-      <View style={[styles.metaData, styles.metaDataSpaceBlock]} />
     </LinearGradient>
   );
 };
@@ -37,26 +47,22 @@ const styles = StyleSheet.create({
   headerPosition: {
     left: 0,
     top: 0,
-    position: "absolute",
     height: 18,
+    position: "absolute",
   },
   subjectPosition: {
     height: 12,
     top: 2,
     display: "flex",
-    color: Color.colorWhite,
+    color: Color.labelColorDarkPrimary,
     fontFamily: FontFamily.alataRegular,
     fontSize: FontSize.size_xs,
-    position: "absolute",
     alignItems: "center",
-  },
-  metaDataSpaceBlock: {
-    marginTop: 8,
-    overflow: "hidden",
+    position: "absolute",
   },
   headerChild: {
-    borderRadius: 4,
-    backgroundColor: "#00fa0a",
+    borderRadius: Border.br_9xs,
+    backgroundColor: Color.colorLime,
     width: 18,
   },
   subject: {
@@ -77,7 +83,6 @@ const styles = StyleSheet.create({
     width: 339,
     left: 0,
     top: 0,
-    position: "absolute",
   },
   header: {
     height: 18,
@@ -86,7 +91,7 @@ const styles = StyleSheet.create({
   title1: {
     width: 292,
     display: "flex",
-    color: Color.colorWhite,
+    color: Color.labelColorDarkPrimary,
     fontFamily: FontFamily.alataRegular,
     fontSize: FontSize.size_xs,
     textAlign: "left",
@@ -102,21 +107,22 @@ const styles = StyleSheet.create({
   },
   titleDescPic: {
     flexDirection: "row",
+    overflow: "hidden",
     alignItems: "center",
   },
   metaData: {
-    height: 17,
-    width: 292,
+    marginTop: 8,
+    overflow: "hidden",
   },
-  NotificationItem: {
-    borderRadius: 16,
-    flex: 1,
-    width: "100%",
-    height: 283,
-    paddingHorizontal: 8,
-    paddingVertical: 12,
+  notificationItem: {
+    top: 71,
+    left: 22,
+    borderRadius: Border.br_base,
+    paddingHorizontal: Padding.p_5xs,
+    paddingVertical: Padding.p_xs,
     backgroundColor: "transparent",
     alignItems: "center",
+    position: "absolute",
   },
 });
 
