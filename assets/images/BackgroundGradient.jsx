@@ -29,7 +29,7 @@ const RadialGradientCircle = () => {
         <Circle
           cx="207.5"
           cy="307.5"
-          r="107.5"
+          r="200"
           fill="url(#paint0_linear_127_1852)"
         />
       </Svg>

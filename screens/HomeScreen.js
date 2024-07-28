@@ -18,6 +18,9 @@ const HomeScreen = () => {
           <FilterIcon style={styles.filterIcon} />
         </View>
         <View style={styles.eventList}>
+          <View style={styles.circleContainer}>
+            <RadialGradientCircle style={[styles.circle]} />
+          </View>
           <Text style={styles.date}>September 24, 2024</Text>
           <EventItem
             type="lessons"
@@ -64,9 +67,6 @@ const HomeScreen = () => {
           />
         </View>
       </ScrollView>
-      <View style={styles.circleContainer}>
-        <RadialGradientCircle style={styles.circle} />
-        </View>
       <BottomNav />
     </View>
   );
@@ -115,14 +115,14 @@ const styles = StyleSheet.create({
   },
   circleContainer: {
     position: "absolute",
-    top: 125, // Adjust this value to position the circle
+    top: -25, // Adjust this value to position the circle
     left: 0,
     right: 25,
     alignItems: "center",
   },
   circle: {
-    width: 200, 
-    height: 200,
+    width: 300, 
+    height: 300,
   },
 });
 
