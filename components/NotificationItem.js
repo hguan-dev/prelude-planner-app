@@ -12,6 +12,7 @@ const NotificationItem = ({ title, propTop, propLeft }) => {
     return {
       ...getStyleValue("top", propTop),
       ...getStyleValue("left", propLeft),
+      /*implement get color value for red and green notifs, rn every notif item is green box*/
     };
   }, [propTop, propLeft]);
 
@@ -19,7 +20,7 @@ const NotificationItem = ({ title, propTop, propLeft }) => {
     <LinearGradient
       style={[styles.notificationItem, notificationItemStyle]}
       locations={[0, 1]}
-      colors={["#311c51", "#4679d1"]}
+      colors={["#4679d1", "#311c51"]}
     >
       <View style={styles.header}>
         <View style={[styles.header1, styles.headerPosition]}>
@@ -44,14 +45,16 @@ const NotificationItem = ({ title, propTop, propLeft }) => {
 const styles = StyleSheet.create({
   headerPosition: {
     left: 0,
-    top: 0,
+    /*this adjusts both the green box and the header text*/
+    top: 5,
     height: 18,
     position: "absolute",
   },
   /*sizing of Subject and Sender, Xm ago*/
   subjectPosition: {
     height: 21,
-    top: 2,
+    /*this only adjusts all header texts*/
+    top: 5,
     display: "flex",
     color: Color.labelColorDarkPrimary,
     fontFamily: FontFamily.alataRegular,
@@ -80,12 +83,14 @@ const styles = StyleSheet.create({
     top: 2,
   },
   header1: {
+    /*this adjusts the sender, xm ago text*/
     width: 339,
     left: 0,
     top: 0,
   },
   header: {
-    height: 18,
+    /*this adjusts the description text*/
+    height: 28,
     width: 339,
   },
   title1: {
@@ -117,7 +122,7 @@ const styles = StyleSheet.create({
   /*size of the entire notification box*/
   notificationItem: {
     top: 71,
-    height: 60,
+    height: 65,
     left: 22,
     borderRadius: Border.br_base,
     paddingHorizontal: Padding.p_5xs,
