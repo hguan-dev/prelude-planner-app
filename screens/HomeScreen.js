@@ -63,9 +63,10 @@ const HomeScreen = () => {
             confirmation="Confirmed"
           />
         </View>
-        <RadialGradientCircle
-          Color="#2A175D" />
       </ScrollView>
+      <View style={styles.circleContainer}>
+        <RadialGradientCircle style={styles.circle} />
+        </View>
       <BottomNav />
     </View>
   );
@@ -111,6 +112,17 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginVertical: Padding.p_5xs,
     width: "100%",
+  },
+  circleContainer: {
+    position: "absolute",
+    top: 125, // Adjust this value to position the circle
+    left: 0,
+    right: 25,
+    alignItems: "center",
+  },
+  circle: {
+    width: 200, 
+    height: 200,
   },
 });
 
