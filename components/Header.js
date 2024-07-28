@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     fontSize: FontSize.size_9xl,
     fontFamily: FontFamily.alataRegular,
     color: '#FFFFFF',
+    marginHorizontal: 14,
   },
   iconsContainer: {
     flexDirection: 'row',
