@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   filterIcon: {
+    left: -10,
     width: 31,
     height: 31,
   },
