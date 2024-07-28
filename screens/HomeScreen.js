@@ -1,11 +1,12 @@
 import * as React from "react";
-import { StyleSheet, View, Text, ScrollView } from "react-native";
+import { StyleSheet, View, Text, ScrollView, ImageBackground } from "react-native";
 import Header from "../components/Header";
 import EventItem from "../components/EventItem";
 import BottomNav from "../components/BottomNav";
 import FilterIcon from "../assets/icons/FilterIcon";
 import { Color, FontFamily, FontSize, Padding, Image } from "../GlobalStyles";
 import RadialGradientCircle from "../assets/images/BackgroundGradient";
+
 
 const HomeScreen = () => {
   return (
@@ -62,7 +63,8 @@ const HomeScreen = () => {
             confirmation="Confirmed"
           />
         </View>
-        <RadialGradientCircle />
+        <RadialGradientCircle
+          Color="#2A175D" />
       </ScrollView>
       <BottomNav />
     </View>

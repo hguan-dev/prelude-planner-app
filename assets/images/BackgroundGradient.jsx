@@ -1,5 +1,5 @@
 import React from "react";
-import Svg, { Defs, LinearGradient, Stop, Circle } from "react-native-svg";
+import Svg, { Defs, RadialGradient, Stop, Circle } from "react-native-svg";
 import { StyleSheet, View } from "react-native";
 
 const RadialGradientCircle = () => {
@@ -13,17 +13,18 @@ const RadialGradientCircle = () => {
         fill="none"
       >
         <Defs>
-          <LinearGradient
+          <RadialGradient
             id="paint0_linear_127_1852"
-            x1="207.5"
-            y1="200"
-            x2="207.5"
-            y2="415"
-            gradientUnits="userSpaceOnUse"
-          >
-            <Stop stop-color="#0C445B" />
-            <Stop offset="1" stop-color="#1A8FC1" />
-          </LinearGradient>
+            cx="50%"
+            cy="50%"
+            r="50%"
+            fx="50%"
+            fy="50%"
+            gradientUnits="objectBoundingBox"
+          > 
+            <Stop offset="0%" stopColor="#0C445B" />
+            <Stop offset="100%" stopColor="#211134" /> 
+          </RadialGradient>
         </Defs>
         <Circle
           cx="207.5"
@@ -35,6 +36,9 @@ const RadialGradientCircle = () => {
     </View>
   );
 };
+
+
+
 
 const styles = StyleSheet.create({
   container: {
