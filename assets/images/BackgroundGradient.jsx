@@ -23,7 +23,7 @@ const RadialGradientCircle = () => {
             gradientUnits="objectBoundingBox"
           > 
             <Stop offset="0%" stopColor="#0C445B" />
-            <Stop offset="100%" stopColor="#211134" /> 
+            <Stop offset="100%" stopColor="#372a48" /> 
           </RadialGradient>
         </Defs>
         <Circle
