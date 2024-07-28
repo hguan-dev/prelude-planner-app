@@ -1,57 +1,35 @@
 import * as React from "react";
 import { Image } from "expo-image";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, FlatList } from "react-native";
 import NotificationItem from "../components/NotificationItem";
 import { FontFamily, Color, Padding, Border } from "../GlobalStyles";
+
+// Create an array to hold notification data
+const notifications = [
+  { id: '1', title: '<description>' },
+  { id: '2', title: '<description>' },
+  { id: '3', title: '<description>' },
+  { id: '4', title: '<description>' },
+  { id: '5', title: '<description>' },
+  { id: '6', title: '<descriptionthatisverylongdescriptionthatisveryl...>' },
+  { id: '7', title: '<descriptionthatisverylongdescriptionthatisveryl...>' }
+];
 
 const NotificationScreen = () => {
   return (
     <View style={[styles.notificationScreen, styles.listShadowBox]}>
-      <Image
-        style={styles.notificationScreenChild}
-        contentFit="cover"
-        source={require("../assets/images/ellipse-background.png")}
-      />
       <View style={styles.leftAccessory}>
         <Text style={styles.title}>Notifications</Text>
       </View>
-      <View style={[styles.list, styles.listShadowBox]}>
-        <NotificationItem
-          title={`<description>`}
-          propTop={-330}
-          propLeft={22}
-        />
-        <NotificationItem
-          title={`<description>`}
-          propTop={-250}
-          propLeft={22}
-        />
-        <NotificationItem
-          title={`<description>`}
-          propTop={-170}
-          propLeft={22}
-        />
-        <NotificationItem
-          title={`<description>`}
-          propTop={-90}
-          propLeft={22}
-        />
-        <NotificationItem
-          title={`<description>`}
-          propTop={-10}
-          propLeft={23}
-        />
-        <NotificationItem
-          title={`<descriptionthatisverylongdescriptionthatisveryl...>`}
-          propTop={70}
-          propLeft={22}
-        />
-        <NotificationItem
-          title={`<descriptionthatisverylongdescriptionthatisveryl...>`}
-          propTop={150}
-          propLeft={22}
-        />
-      </View>
+      <FlatList
+        contentContainerStyle={styles.listContent}
+        style={[styles.list, styles.listShadowBox]}
+        data={notifications} // Pass the notifications array as data
+        renderItem={({ item }) => (
+          <NotificationItem title={item.title} /> // Render each notification item
+        )}
+        keyExtractor={item => item.id} // Unique key for each item
+      />
       <Image
         style={styles.addIcon}
         contentFit="cover"
@@ -73,13 +51,6 @@ const styles = StyleSheet.create({
       width: 0,
       height: 40,
     },
-  },
-  notificationScreenChild: {
-    top: 344,
-    left: 101,
-    width: 215,
-    height: 215,
-    position: "absolute",
   },
   title: {
     fontSize: 28,
@@ -104,9 +75,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     position: "absolute",
   },
+  listContent: {
+    paddingBottom: 20, // this does nothing
+  },
   list: {
     marginLeft: -195,
-    top: 470,
+    top: 150,
     left: "50%",
     shadowColor: "rgba(0, 0, 0, 0.25)",
     shadowRadius: 4,
@@ -117,14 +91,14 @@ const styles = StyleSheet.create({
   },
   addIcon: {
     top: 83,
-    left: 312,
+    left: 332,
     width: 26,
     height: 26,
     position: "absolute",
   },
   crossIcon: {
     top: 87,
-    left: 350,
+    left: 370,
     width: 18,
     height: 18,
     position: "absolute",
