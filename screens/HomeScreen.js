@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   filterIcon: {
-    left: -10,
+    marginHorizontal: 14,
     width: 31,
     height: 31,
   },
@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
     fontSize: FontSize.size_3xl,
     fontFamily: FontFamily.alataRegular,
     color: Color.labelColorDarkPrimary,
+    marginHorizontal: 16,
   },
   eventList: {
     width: "100%",
