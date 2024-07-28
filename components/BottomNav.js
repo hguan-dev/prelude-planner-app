@@ -4,6 +4,8 @@ import HomeIcon from "../assets/icons/HomeIcon";
 import CalendarIcon from "../assets/icons/CalendarIcon";
 import SearchIcon from "../assets/icons/SearchIcon"; 
 import ProfileIcon from "../assets/icons/ProfileIcon";
+import PlusIcon from "../assets/icons/PlusIcon";
+
 import { Color, Border, Padding } from "../GlobalStyles";
 
 const BottomNav = () => {
@@ -12,6 +14,9 @@ const BottomNav = () => {
       <View style={styles.iconContainer}>
         <HomeIcon size={28} style={styles.icon} />
         <CalendarIcon size={28} style={styles.icon} />
+        <View style={styles.plusIcon}>
+          <PlusIcon size={115} />
+        </View>
         <SearchIcon size={28} style={styles.icon} />
         <ProfileIcon size={28} style={styles.icon} />
       </View>
@@ -35,6 +40,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    borderColor: "#27153D",
+    borderWidth: 1.5,
   },
   iconContainer: {
     flexDirection: 'row',
@@ -44,6 +51,12 @@ const styles = StyleSheet.create({
   icon: {
     marginHorizontal: 20
   },
+  plusIcon: {
+    position: "absolute",
+    bottom: 10,
+    marginHorizontal: 100,
+    zIndex: 1
+  }
 });
 
 export default BottomNav;
