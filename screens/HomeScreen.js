@@ -1,10 +1,12 @@
 import * as React from "react";
-import { StyleSheet, View, Text, ScrollView } from "react-native";
+import { StyleSheet, View, Text, ScrollView, ImageBackground } from "react-native";
 import Header from "../components/Header";
 import EventItem from "../components/EventItem";
 import BottomNav from "../components/BottomNav";
 import FilterIcon from "../assets/icons/FilterIcon";
-import { Color, FontFamily, FontSize, Padding } from "../GlobalStyles";
+import { Color, FontFamily, FontSize, Padding, Image } from "../GlobalStyles";
+import RadialGradientCircle from "../assets/images/BackgroundGradient";
+
 
 const HomeScreen = () => {
   return (
@@ -16,6 +18,9 @@ const HomeScreen = () => {
           <FilterIcon style={styles.filterIcon} />
         </View>
         <View style={styles.eventList}>
+          <View style={styles.circleContainer}>
+            <RadialGradientCircle style={[styles.circle]} />
+          </View>
           <Text style={styles.date}>September 24, 2024</Text>
           <EventItem
             type="lessons"
@@ -71,40 +76,61 @@ const styles = StyleSheet.create({
   home: {
     flex: 1,
     backgroundColor: "#211134",
-    justifyContent: 'space-between',
-    paddingTop: 40, 
+    justifyContent: "space-between",
+    paddingTop: 40,
   },
   content: {
     paddingHorizontal: Padding.p_5xs,
-    alignItems: 'center', 
+    alignItems: "center",
   },
   filterIconContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginVertical: Padding.p_5xs,
-    width: '100%', 
+    width: "100%",
+    position: 'relative'
+    
   },
   filterIcon: {
+    marginHorizontal: 14,
     width: 31,
     height: 31,
+    alignItems: "center",
+    right: 13,
   },
   upcomingEvents: {
     fontSize: FontSize.size_3xl,
     fontFamily: FontFamily.alataRegular,
     color: Color.labelColorDarkPrimary,
+    marginHorizontal: 14,
+    
   },
   eventList: {
-    width: '100%', 
-    alignItems: 'center', 
+    width: "96%",
+    alignItems: "center",
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
+    borderRadius: 20,
+    marginTop: 7.5,
   },
   date: {
     fontSize: FontSize.size_xl,
     fontFamily: FontFamily.alataRegular,
     color: Color.labelColorDarkPrimary,
-    textAlign: 'center',
+    textAlign: "center",
     marginVertical: Padding.p_5xs,
-    width: '100%',
+    width: "100%",
+  },
+  circleContainer: {
+    position: "absolute",
+    top: -25, // Adjust this value to position the circle
+    left: 0,
+    right: 25,
+    alignItems: "center",
+  },
+  circle: {
+    width: 300, 
+    height: 300,
   },
 });
 
