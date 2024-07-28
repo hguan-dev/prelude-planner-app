@@ -89,10 +89,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: Padding.p_5xs,
     width: "100%",
+    position: 'relative'
+    
   },
   filterIcon: {
     width: 31,
     height: 31,
+    alignItems: "center",
+    right: 13,
   },
   upcomingEvents: {
     fontSize: FontSize.size_3xl,
