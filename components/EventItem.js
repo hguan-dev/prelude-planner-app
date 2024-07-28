@@ -53,7 +53,7 @@ const EventItem = ({ type, title, details, time, confirmation, propWidth, propAl
 
 const styles = StyleSheet.create({
   tablerow: {
-    width: '100%',
+    width: '95%',
     marginBottom: Padding.p_base,
     backgroundColor: Color.colorWhite,
     borderRadius: Border.br_sm,
