@@ -8,7 +8,7 @@ const getStyleValue = (key, value) => {
   return { [key]: value === "unset" ? undefined : value };
 };
 
-const NotificationItem = ({ title, propLeft }) => {
+const NotificationItem = ({ desc, propLeft }) => {
   const notificationItemStyle = useMemo(() => {
     return {
       ...getStyleValue("left", propLeft),
@@ -26,7 +26,7 @@ const NotificationItem = ({ title, propLeft }) => {
           <Text style={[styles.subject, styles.headerPosition]}>Subject</Text>
           <Text style={[styles.senderXmAgo, styles.headerPosition]}>Sender, Xm ago</Text>
       </View>
-      <Text style={styles.description}>{title}</Text>
+      <Text style={styles.description}>{desc}</Text>
     </LinearGradient>
   );
 };
