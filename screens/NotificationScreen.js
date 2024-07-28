@@ -6,13 +6,13 @@ import { FontFamily, Color, Padding, Border } from "../GlobalStyles";
 
 // Create an array to hold notification data
 const notifications = [
-  { id: '1', title: '<description>' },
-  { id: '2', title: '<description>' },
-  { id: '3', title: '<description>' },
-  { id: '4', title: '<description>' },
-  { id: '5', title: '<description>' },
-  { id: '6', title: '<descriptionthatisverylongdescriptionthatisveryl...>' },
-  { id: '7', title: '<descriptionthatisverylongdescriptionthatisveryl...>' }
+  { id: '1', desc: '<description>' },
+  { id: '2', desc: '<description>' },
+  { id: '3', desc: '<description>' },
+  { id: '4', desc: '<description>' },
+  { id: '5', desc: '<description>' },
+  { id: '6', desc: '<descriptionthatisverylongdescriptionthatisveryl...>' },
+  { id: '7', desc: '<descriptionthatisverylongdescriptionthatisveryl...>' }
 ];
 
 const NotificationScreen = () => {
@@ -33,7 +33,7 @@ const NotificationScreen = () => {
         style={[styles.list, styles.listShadowBox]}
         data={notifications} // Pass the notifications array as data
         renderItem={({ item }) => (
-          <NotificationItem title={item.title} /> // Render each notification item
+          <NotificationItem desc={item.desc} /> // Render each notification item
         )}
         keyExtractor={item => item.id} // Unique key for each item
       />
