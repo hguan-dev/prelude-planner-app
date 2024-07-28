@@ -34,7 +34,7 @@ const NotificationItem = ({ title, propLeft }) => {
 const styles = StyleSheet.create({
   header: {
     height: 30,
-    width: 339,
+    width: 320,
   },
   headerPosition: {
     height: 18,
