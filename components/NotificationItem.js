@@ -23,11 +23,9 @@ const NotificationItem = ({ title, propTop, propLeft }) => {
     >
       <View style={styles.header}>
         <View style={[styles.header1, styles.headerPosition]}>
-          <View style={[styles.headerChild, styles.headerPosition]} />
+          <View style={[styles.headerChildGreen, styles.headerPosition]} />
           <Text style={[styles.subject, styles.subjectPosition]}>Subject</Text>
-          <Text style={[styles.senderXmAgo, styles.subjectPosition]}>
-            Sender, Xm ago
-          </Text>
+          <Text style={[styles.senderXmAgo, styles.subjectPosition]}>Sender, Xm ago</Text>
         </View>
       </View>
       <View style={styles.metaData}>
@@ -50,8 +48,9 @@ const styles = StyleSheet.create({
     height: 18,
     position: "absolute",
   },
+  /*sizing of Subject and Sender, Xm ago*/
   subjectPosition: {
-    height: 12,
+    height: 21,
     top: 2,
     display: "flex",
     color: Color.labelColorDarkPrimary,
@@ -60,7 +59,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     position: "absolute",
   },
-  headerChild: {
+  /*green square*/
+  headerChildGreen: {
     borderRadius: Border.br_9xs,
     backgroundColor: Color.colorLime,
     width: 18,
@@ -114,8 +114,10 @@ const styles = StyleSheet.create({
     marginTop: 8,
     overflow: "hidden",
   },
+  /*size of the entire notification box*/
   notificationItem: {
     top: 71,
+    height: 60,
     left: 22,
     borderRadius: Border.br_base,
     paddingHorizontal: Padding.p_5xs,

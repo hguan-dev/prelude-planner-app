@@ -26,6 +26,11 @@ const App = () => {
         {hideSplashScreen ? (
           <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen
+              name="NotificationScreen"
+              component={NotificationScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
               name="HomeScreen"
               component={HomeScreen}
               options={{ headerShown: false }}
@@ -35,11 +40,7 @@ const App = () => {
               component={ProfileScreen}
               options={{ headerShown: false }}
             />
-            <Stack.Screen
-              name="NotificationScreen"
-              component={NotificationScreen}
-              options={{ headerShown: false }}
-            />
+            
           </Stack.Navigator>
         ) : null}
       </NavigationContainer>

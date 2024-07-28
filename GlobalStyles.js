@@ -1,7 +1,7 @@
 /* fonts */
 export const FontFamily = {
-  defaultRegularSubheadline: "SF Pro Text",
   alataRegular: "Alata-Regular",
+  alata: "Alata",
 };
 /* font sizes */
 export const FontSize = {
@@ -12,6 +12,7 @@ export const FontSize = {
   defaultBoldHeadline_size: 17,
   size_xl: 20,
   size_9xl: 28,
+  size_xs: 12,
 };
 /* Colors */
 export const Color = {
@@ -22,6 +23,9 @@ export const Color = {
   colorFirebrick: "#c73434",
   colorLightskyblue: "#72ccff",
   defaultSystemBlueDark: "#0a84ff",
+  labelColorDarkPrimary: "#fff",
+  colorLime: "#00fa0a",
+  colorRed: "#fa0000",
 };
 /* Paddings */
 export const Padding = {
@@ -37,4 +41,6 @@ export const Padding = {
 export const Border = {
   br_31xl: 50,
   br_3xs: 10,
+  br_base: 16,
+  br_9xs: 4,
 };
