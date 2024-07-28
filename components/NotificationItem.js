@@ -32,6 +32,10 @@ const NotificationItem = ({ title, propLeft }) => {
 };
 
 const styles = StyleSheet.create({
+  header: {
+    height: 30,
+    width: 339,
+  },
   headerPosition: {
     height: 18,
     top: 10,
@@ -59,10 +63,6 @@ const styles = StyleSheet.create({
     width: 117,
     height: 12,
   },
-  header: {
-    height: 30,
-    width: 339,
-  },
   description: {
     top: 5,
     marginBottom: 15,
@@ -75,7 +75,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     overflow: "hidden",
   },
-
   notificationItem: {
     marginBottom: 20, // Add bottom margin to space items apart
     borderRadius: Border.br_base,

@@ -18,18 +18,7 @@ const notifications = [
 const NotificationScreen = () => {
   return (
     <View style={[styles.notificationScreen, styles.listShadowBox]}>
-      <View style={styles.leftAccessory}>
-        <Text style={styles.title}>Notifications</Text>
-      </View>
-      <FlatList
-        contentContainerStyle={styles.listContent}
-        style={[styles.list, styles.listShadowBox]}
-        data={notifications} // Pass the notifications array as data
-        renderItem={({ item }) => (
-          <NotificationItem title={item.title} /> // Render each notification item
-        )}
-        keyExtractor={item => item.id} // Unique key for each item
-      />
+      <Text style={styles.title}>Notifications</Text>
       <Image
         style={styles.addIcon}
         contentFit="cover"
@@ -40,19 +29,22 @@ const NotificationScreen = () => {
         contentFit="cover"
         source={require("../assets/images/cross.png")}
       />
+      <FlatList
+        style={[styles.list, styles.listShadowBox]}
+        data={notifications} // Pass the notifications array as data
+        renderItem={({ item }) => (
+          <NotificationItem title={item.title} /> // Render each notification item
+        )}
+        keyExtractor={item => item.id} // Unique key for each item
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  listShadowBox: {
-    shadowOpacity: 1,
-    shadowOffset: {
-      width: 0,
-      height: 40,
-    },
-  },
   title: {
+    top: 83,
+    left: 42,
     fontSize: 28,
     letterSpacing: 0,
     lineHeight: 30,
@@ -60,23 +52,25 @@ const styles = StyleSheet.create({
     color: Color.labelColorDarkPrimary,
     textAlign: "left",
     display: "flex",
+    alignItems: "center",
     width: 204,
     height: 36,
-    alignItems: "center",
-  },
-  leftAccessory: {
-    top: 58,
-    left: 34,
-    width: 175,
-    height: 72,
-    flexDirection: "row",
-    paddingHorizontal: Padding.p_5xs,
-    paddingTop: Padding.p_5xs,
-    alignItems: "center",
     position: "absolute",
   },
-  listContent: {
-    paddingBottom: 20, // this does nothing
+  addIcon: {
+    top: 84,
+    left: 332,
+    width: 26,
+    height: 26,
+    position: "absolute",
+  },
+  crossIcon: {
+    top: 89,
+    left: 370,
+    width: 18,
+    height: 18,
+    position: "absolute",
+    overflow: "hidden",
   },
   list: {
     marginLeft: -195,
@@ -89,20 +83,12 @@ const styles = StyleSheet.create({
     height: 790,
     position: "absolute",
   },
-  addIcon: {
-    top: 83,
-    left: 332,
-    width: 26,
-    height: 26,
-    position: "absolute",
-  },
-  crossIcon: {
-    top: 87,
-    left: 370,
-    width: 18,
-    height: 18,
-    position: "absolute",
-    overflow: "hidden",
+  listShadowBox: {
+    shadowOpacity: 1,
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
   },
   notificationScreen: {
     shadowColor: "rgba(0, 0, 0, 0.2)",
