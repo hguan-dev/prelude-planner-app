@@ -31,9 +31,9 @@ const HomeScreen = () => {
               <FilterIcon style={styles.filterIcon} />
             </View>
             <View style={styles.eventList}>
-            <View style={styles.circleContainer}>
-              <RadialGradientCircle style={styles.circle}/>
-            </View>
+              <View style={styles.circleContainer}>
+                <RadialGradientCircle style={styles.circle} />
+              </View>
               <Text style={styles.date}>September 24, 2024</Text>
 
               <EventItem
