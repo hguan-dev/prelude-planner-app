@@ -1,11 +1,14 @@
 import * as React from "react";
 import { Image } from "expo-image";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from "expo-linear-gradient";
 import { FontFamily, Color } from "../GlobalStyles";
 import { BlurView } from 'expo-blur';
 
 const OnboardingScreen = () => {
+    const navigation = useNavigation();
+
   return (
     <LinearGradient
       style={styles.onboardingScreen}
@@ -29,9 +32,11 @@ const OnboardingScreen = () => {
             style={[styles.youGotThe, styles.youGotTheTypo]}
           >{`You got the music, 
           we got the logistics.`}</Text>
-          <View style={[styles.button, styles.cardFlexBox]}>
-            <Text style={styles.logIn}>Log In</Text>
-          </View>
+          <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+            <View style={[styles.button, styles.cardFlexBox]}>
+                <Text style={styles.logIn}>Log In</Text>
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
       <Text style={styles.title}>{`Welcome to Prelude Planner`}</Text>
@@ -98,13 +103,13 @@ const styles = StyleSheet.create({
     marginTop: 27,
   },
   cardContainer: {
-    top: 454,
+    top: 465,
     borderRadius: 27,
     backgroundColor: "rgba(255, 255, 255, 0.01)",
     borderColor: "rgba(255, 255, 255, 0.3)",
     borderWidth: 0.9,
-    padding: 27,
-    left: 42,
+    padding: 10,
+    left: 57,
     justifyContent: "center",
     alignItems: "center",
     borderStyle: "solid",
@@ -122,10 +127,10 @@ const styles = StyleSheet.create({
   },
   title: {
     top: 77,
-    fontSize: 36,
+    fontSize: 37,
     textAlign: "left",
     width: 299,
-    height: 100,
+    height: 150,
     color: Color.labelColorDarkPrimary,
     fontFamily: FontFamily.alataRegular,
     left: 42,
