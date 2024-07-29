@@ -30,8 +30,7 @@ const OnboardingScreen = () => {
           </Text>
           <Text
             style={[styles.youGotThe, styles.youGotTheTypo]}
-          >{`You got the music, 
-          we got the logistics.`}</Text>
+          >{`You got the music, \nwe got the logistics.`}</Text>
           <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
             <View style={[styles.button, styles.cardFlexBox]}>
                 <Text style={styles.logIn}>Log In</Text>
