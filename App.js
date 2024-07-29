@@ -5,6 +5,7 @@ import { useFonts } from "expo-font";
 import HomeScreen from "./screens/HomeScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import NotificationScreen from "./screens/NotificationScreen"; 
+import Onboarding from "./screens/OnboardingScreen";
 
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -26,6 +27,11 @@ const App = () => {
       <NavigationContainer>
         {hideSplashScreen ? (
           <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen
+              name="Onboarding"
+              component={Onboarding}
+              options={{ headerShown: false }}
+            />
             <Stack.Screen
               name="HomeScreen"
               component={HomeScreen}
