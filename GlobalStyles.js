@@ -13,6 +13,7 @@ export const FontSize = {
   size_xl: 20,
   size_9xl: 28,
   size_xs: 12,
+  size_mini: 15,
 };
 /* Colors */
 export const Color = {
@@ -26,6 +27,10 @@ export const Color = {
   labelColorDarkPrimary: "#fff",
   colorLime: "#00fa0a",
   colorRed: "#fa0000",
+  colorWhite: "#fff",
+  darkPurple: "211134",
+  colorOrangered: "#cc0101",
+  defaultSystemBlueDark: "#0a84ff",
 };
 /* Paddings */
 export const Padding = {
@@ -43,4 +48,5 @@ export const Border = {
   br_3xs: 10,
   br_base: 16,
   br_9xs: 4,
+  br_5xs: 5,
 };

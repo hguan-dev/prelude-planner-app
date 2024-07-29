@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, TouchableOpacity} from "react-native";
 import { Color, FontFamily, FontSize, Border, Padding } from "../GlobalStyles";
 
 const getStyleValue = (key, value) => {
@@ -23,7 +23,7 @@ const getEventColor = (type) => {
   }
 };
 
-const EventItem = ({ type, title, details, time, confirmation, propWidth, propAlignSelf }) => {
+const EventItem = ({ onPress, type, title, details, time, confirmation, propWidth, propAlignSelf }) => {
   const tableRowStyle = useMemo(() => {
     return {
       ...getStyleValue("width", propWidth),
@@ -35,19 +35,22 @@ const EventItem = ({ type, title, details, time, confirmation, propWidth, propAl
   const eventColor = getEventColor(type);
 
   return (
-    <View style={[styles.tablerow, tableRowStyle]}>
-      <View style={styles.content}>
-        <View style={styles.leftContent}>
-          <Text style={[styles.title, styles.textCommon]}>{title}</Text>
-          <Text style={[styles.details, styles.textCommon]}>{details}</Text>
+    
+      <View style={[styles.tablerow, tableRowStyle]}>
+        <TouchableOpacity onPress={onPress}>
+        <View style={styles.content}>
+          <View style={styles.leftContent}>
+            <Text style={[styles.title, styles.textCommon]}>{title}</Text>
+            <Text style={[styles.details, styles.textCommon]}>{details}</Text>
+          </View>
+          <View style={styles.rightContent}>
+            <Text style={[styles.time, styles.textCommon]}>{time}</Text>
+            <Text style={[confirmationStyle, styles.textCommon]}>{confirmation}</Text>
+          </View>
         </View>
-        <View style={styles.rightContent}>
-          <Text style={[styles.time, styles.textCommon]}>{time}</Text>
-          <Text style={[confirmationStyle, styles.textCommon]}>{confirmation}</Text>
-        </View>
+        <View style={[styles.eventLine, { backgroundColor: eventColor }]} />
+        </TouchableOpacity>
       </View>
-      <View style={[styles.eventLine, { backgroundColor: eventColor }]} />
-    </View>
   );
 };
 
@@ -55,7 +58,7 @@ const styles = StyleSheet.create({
   tablerow: {
     width: '95%',
     marginBottom: Padding.p_base,
-    backgroundColor: Color.colorWhite,
+    //backgroundColor: Color.colorWhite,
     borderRadius: Border.br_sm,
     shadowColor: "rgba(0, 0, 0, 0.1)",
     shadowOffset: { width: 0, height: 2 },

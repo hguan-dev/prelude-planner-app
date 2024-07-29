@@ -1,73 +1,110 @@
 import * as React from "react";
-import { StyleSheet, View, Text, ScrollView, ImageBackground } from "react-native";
+import { useState } from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  ScrollView,
+  ImageBackground,
+  TouchableOpacity,
+} from "react-native";
 import Header from "../components/Header";
 import EventItem from "../components/EventItem";
 import BottomNav from "../components/BottomNav";
+import OpenedEventPopup from "../components/OpenedEventPopup";
 import FilterIcon from "../assets/icons/FilterIcon";
 import { Color, FontFamily, FontSize, Padding, Image } from "../GlobalStyles";
 import RadialGradientCircle from "../assets/images/BackgroundGradient";
 
-
 const HomeScreen = () => {
+  const [shownEventItem, setShowOpenedEventPopup] = useState(null);
+  const [isPopupVisible, setPopupVisible] = useState(false);
+
   return (
     <View style={styles.home}>
-      <Header />
-      <ScrollView contentContainerStyle={styles.content}>
-        <View style={styles.filterIconContainer}>
-          <Text style={styles.upcomingEvents}>Upcoming Events</Text>
-          <FilterIcon style={styles.filterIcon} />
-        </View>
-        <View style={styles.eventList}>
-          <View style={styles.circleContainer}>
-            <RadialGradientCircle style={[styles.circle]} />
-          </View>
-          <Text style={styles.date}>September 24, 2024</Text>
-          <EventItem
-            type="lessons"
-            title="Prof. X Lesson"
-            details="Student A"
-            time="5:00 pm - 6:00 pm"
-            confirmation="Confirmed"
-          />
-          <EventItem
-            type="lessons"
-            title="Prof. Y Lesson"
-            details="Student B"
-            time="6:00 pm - 7:00 pm"
-            confirmation="Unconfirmed"
-          />
-          <EventItem
-            type="recitals"
-            title="Student Recital"
-            details="Student A"
-            time="5:00 pm - 6:00 pm"
-            confirmation="Confirmed"
-          />
-          <Text style={styles.date}>September 25, 2024</Text>
-          <EventItem
-            type="lessons"
-            title="Prof. X Lesson"
-            details="Student A"
-            time="5:00 pm - 6:00 pm"
-            confirmation="Confirmed"
-          />
-          <EventItem
-            type="masterclasses"
-            title="Masterclass"
-            details="Visiting Lecturer"
-            time="5:00 pm - 6:00 pm"
-            confirmation="Unconfirmed"
-          />
-          <EventItem
-            type="studio class"
-            title="Studio Class"
-            details="Trombone Studio"
-            time="5:00 pm - 6:20 pm"
-            confirmation="Confirmed"
-          />
-        </View>
-      </ScrollView>
-      <BottomNav />
+      {!isPopupVisible ? (
+        <>
+          <Header />
+          <ScrollView contentContainerStyle={styles.content}>
+            <View style={styles.filterIconContainer}>
+              <Text style={styles.upcomingEvents}>Upcoming Events</Text>
+              <FilterIcon style={styles.filterIcon} />
+            </View>
+            <View style={styles.eventList}>
+            <View style={styles.circleContainer}>
+              <RadialGradientCircle style={styles.circle}/>
+            </View>
+              <Text style={styles.date}>September 24, 2024</Text>
+
+              <EventItem
+                onPress={() => {
+                  setShowOpenedEventPopup({
+                    title: "Prof. X Lesson",
+                    time: "5:00 pm - 6:00 pm",
+                    location: "Room 101",
+                    creator: "Prof. X",
+                    participants: "Student A",
+                    description: "This is a lesson with Prof. X",
+                  });
+                  setPopupVisible(true);
+                }}
+                type="lessons"
+                title="Prof. X Lesson"
+                details="Student A"
+                time="5:00 pm - 6:00 pm"
+                confirmation="Confirmed"
+              />
+
+              <EventItem
+                type="lessons"
+                title="Prof. Y Lesson"
+                details="Student B"
+                time="6:00 pm - 7:00 pm"
+                confirmation="Unconfirmed"
+              />
+              <EventItem
+                type="recitals"
+                title="Student Recital"
+                details="Student A"
+                time="5:00 pm - 6:00 pm"
+                confirmation="Confirmed"
+              />
+              <Text style={styles.date}>September 25, 2024</Text>
+              <EventItem
+                type="lessons"
+                title="Prof. X Lesson"
+                details="Student A"
+                time="5:00 pm - 6:00 pm"
+                confirmation="Confirmed"
+              />
+              <EventItem
+                type="masterclasses"
+                title="Masterclass"
+                details="Visiting Lecturer"
+                time="5:00 pm - 6:00 pm"
+                confirmation="Unconfirmed"
+              />
+              <EventItem
+                type="studio class"
+                title="Studio Class"
+                details="Trombone Studio"
+                time="5:00 pm - 6:20 pm"
+                confirmation="Confirmed"
+              />
+            </View>
+          </ScrollView>
+          <BottomNav />
+        </>
+      ) : (
+        <>
+          {shownEventItem && (
+            <OpenedEventPopup
+              setPopupVisible={() => setPopupVisible(false)}
+              event={shownEventItem}
+            />
+          )}
+        </>
+      )}
     </View>
   );
 };
@@ -89,8 +126,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: Padding.p_5xs,
     width: "100%",
-    position: 'relative'
-    
+    position: "relative",
   },
   filterIcon: {
     marginHorizontal: 14,
@@ -104,7 +140,6 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.alataRegular,
     color: Color.labelColorDarkPrimary,
     marginHorizontal: 14,
-    
   },
   eventList: {
     width: "96%",
@@ -129,7 +164,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   circle: {
-    width: 300, 
+    width: 300,
     height: 300,
   },
 });
