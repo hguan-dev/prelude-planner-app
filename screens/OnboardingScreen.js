@@ -3,6 +3,7 @@ import { Image } from "expo-image";
 import { StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { FontFamily, Color } from "../GlobalStyles";
+import { BlurView } from 'expo-blur';
 
 const OnboardingScreen = () => {
   return (
@@ -16,8 +17,9 @@ const OnboardingScreen = () => {
         contentFit="cover"
         source={require("../assets/images/onboardbackground.png")}
       />
-      <View style={[styles.card, styles.cardFlexBox]}>
-        <View>
+      <View style={styles.cardContainer}>
+        <BlurView intensity={50} style={styles.blurBackground} />
+        <View style={[styles.cardContent, styles.cardFlexBox]}>
           <Text
             style={[styles.instrumentalStudioOrganizati, styles.youGotTheTypo]}
           >
@@ -27,9 +29,9 @@ const OnboardingScreen = () => {
             style={[styles.youGotThe, styles.youGotTheTypo]}
           >{`You got the music, 
           we got the logistics.`}</Text>
-        </View>
-        <View style={[styles.button, styles.cardFlexBox]}>
-          <Text style={styles.logIn}>Log In</Text>
+          <View style={[styles.button, styles.cardFlexBox]}>
+            <Text style={styles.logIn}>Log In</Text>
+          </View>
         </View>
       </View>
       <Text style={styles.title}>{`Welcome to Prelude Planner`}</Text>
@@ -41,14 +43,12 @@ const styles = StyleSheet.create({
   cardFlexBox: {
     justifyContent: "center",
     alignItems: "center",
-    borderStyle: "solid",
-    
   },
   youGotTheTypo: {
-    textShadowRadius: 54.06,
+    textShadowRadius: 0,
     textShadowOffset: {
       width: 0,
-      height: 9.009259223937988,
+      height: 0.5,
     },
     textShadowColor: "rgba(0, 0, 0, 0.5)",
     width: 252,
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
     marginTop: 27,
   },
-  card: {
+  cardContainer: {
     top: 454,
     borderRadius: 27,
     backgroundColor: "rgba(255, 255, 255, 0.01)",
@@ -109,6 +109,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderStyle: "solid",
     position: "absolute",
+    overflow: "hidden",
+  },
+  blurBackground: {
+    ...StyleSheet.absoluteFillObject,
+    borderRadius: 27,
+  },
+  cardContent: {
+    padding: 20,
+    justifyContent: "center",
+    alignItems: "center",
   },
   title: {
     top: 77,
