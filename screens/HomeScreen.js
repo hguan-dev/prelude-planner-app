@@ -5,106 +5,160 @@ import {
   View,
   Text,
   ScrollView,
-  ImageBackground,
-  TouchableOpacity,
 } from "react-native";
 import Header from "../components/Header";
 import EventItem from "../components/EventItem";
 import BottomNav from "../components/BottomNav";
 import OpenedEventPopup from "../components/OpenedEventPopup";
 import FilterIcon from "../assets/icons/FilterIcon";
-import { Color, FontFamily, FontSize, Padding, Image } from "../GlobalStyles";
+import { Color, FontFamily, FontSize, Padding } from "../GlobalStyles";
 import RadialGradientCircle from "../assets/images/BackgroundGradient";
 
 const HomeScreen = () => {
+  // used for the opened event popup
   const [shownEventItem, setShowOpenedEventPopup] = useState(null);
   const [isPopupVisible, setPopupVisible] = useState(false);
 
+  // probably will be used later
+  const [loading, setLoading] = useState(true);
+  const [events, setEvents] = useState([]);
+  const [groupedByDate, setGroupedByDate] = useState({});
+
+  React.useEffect(() => {
+    setLoading(true);
+
+    //placeholder data
+    let data = [
+      {
+        title: "Prof. X Lesson",
+        time: "5:00 pm - 6:00 pm",
+        location: "Room 101",
+        creator: "Prof. X",
+        participants: "Student A",
+        description: "This is a lesson with Prof. X",
+        confirmation: "Confirmed",
+        date: new Date(),
+      },
+      {
+        title: "Student Recital",
+        time: "5:00 pm - 6:00 pm",
+        location: "Room 101",
+        creator: "Student A",
+        participants: "Student A",
+        description: "This is a recital with Student A",
+        confirmation: "Confirmed",
+        date: new Date(),
+      },
+      {
+        title: "Prof. X Lesson",
+        time: "5:00 pm - 6:00 pm",
+        location: "Room 101",
+        creator: "Prof. X",
+        participants: "Student A",
+        description: "This is a lesson with Prof. X",
+        confirmation: "Confirmed",
+        date: new Date("2024-09-24"),
+      },
+      {
+        title: "Masterclass",
+        time: "5:00 pm - 6:00 pm",
+        location: "Room 101",
+        creator: "Visiting Lecturer",
+        participants: "Student A",
+        description: "This is a masterclass with Visiting Lecturer",
+        confirmation: "Unconfirmed",
+        date: new Date("2023-03-23"),
+      },
+      {
+        title: "Studio Class",
+        time: "5:00 pm - 6:20 pm",
+        location: "Room 101",
+        creator: "Trombone Studio",
+        participants: "Student A",
+        description: "This is a studio class with Trombone Studio",
+        confirmation: "Confirmed",
+        date: new Date("2024-09-24"),
+      }
+    ];
+     //fetch then
+    //sort data by date
+    data = data.sort((a, b) => a.date - b.date);
+    let sorted = {};
+    data.forEach((e) => {
+      const date = e.date.toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      });
+      if (!sorted[date]) {
+        sorted[date] = [];
+      }
+      sorted[date].push(e);
+    });
+
+    setEvents(data);
+    setGroupedByDate(sorted);
+    setLoading(false);
+  }, []);
+
+  const DefaultHomeView = () => {
+    return (
+      <>
+        <Header />
+        <ScrollView contentContainerStyle={styles.content}>
+          <View style={styles.filterIconContainer}>
+            <Text style={styles.upcomingEvents}>Upcoming Events</Text>
+            <FilterIcon style={styles.filterIcon} />
+          </View>
+          <View style={styles.eventList}>
+            <View style={styles.circleContainer}>
+              <RadialGradientCircle style={styles.circle} />
+            </View>
+
+            {groupedByDate && Object.entries(groupedByDate).map(([date, objs]) => (
+              <>
+              <Text key={date} style={styles.date}>{date}</Text>
+              {objs.map((event, index) => (
+                <EventItem
+                  key={index}
+                  onPress={() => {
+                    setShowOpenedEventPopup(event);
+                    setPopupVisible(true);
+                  }}
+                  title={event.title}
+                  time={event.time}
+                  location={event.location}
+                  creator={event.creator}
+                  participants={event.participants}
+                  description={event.description}
+                  confirmation={event.confirmation}
+                />
+              ))}
+              </>
+            ))}
+          </View>
+        </ScrollView>
+        <BottomNav />
+      </>
+    );
+  };
+
+  const PopupView = () => {
+    return (
+      <>
+        {shownEventItem && (
+          <OpenedEventPopup
+            setPopupVisible={() => setPopupVisible(false)}
+            event={shownEventItem}
+          />
+        )}
+      </>
+    );
+  };
+
   return (
     <View style={styles.home}>
-      {!isPopupVisible ? (
-        <>
-          <Header />
-          <ScrollView contentContainerStyle={styles.content}>
-            <View style={styles.filterIconContainer}>
-              <Text style={styles.upcomingEvents}>Upcoming Events</Text>
-              <FilterIcon style={styles.filterIcon} />
-            </View>
-            <View style={styles.eventList}>
-              <View style={styles.circleContainer}>
-                <RadialGradientCircle style={styles.circle} />
-              </View>
-              <Text style={styles.date}>September 24, 2024</Text>
-
-              <EventItem
-                onPress={() => {
-                  setShowOpenedEventPopup({
-                    title: "Prof. X Lesson",
-                    time: "5:00 pm - 6:00 pm",
-                    location: "Room 101",
-                    creator: "Prof. X",
-                    participants: "Student A",
-                    description: "This is a lesson with Prof. X",
-                  });
-                  setPopupVisible(true);
-                }}
-                type="lessons"
-                title="Prof. X Lesson"
-                details="Student A"
-                time="5:00 pm - 6:00 pm"
-                confirmation="Confirmed"
-              />
-
-              <EventItem
-                type="lessons"
-                title="Prof. Y Lesson"
-                details="Student B"
-                time="6:00 pm - 7:00 pm"
-                confirmation="Unconfirmed"
-              />
-              <EventItem
-                type="recitals"
-                title="Student Recital"
-                details="Student A"
-                time="5:00 pm - 6:00 pm"
-                confirmation="Confirmed"
-              />
-              <Text style={styles.date}>September 25, 2024</Text>
-              <EventItem
-                type="lessons"
-                title="Prof. X Lesson"
-                details="Student A"
-                time="5:00 pm - 6:00 pm"
-                confirmation="Confirmed"
-              />
-              <EventItem
-                type="masterclasses"
-                title="Masterclass"
-                details="Visiting Lecturer"
-                time="5:00 pm - 6:00 pm"
-                confirmation="Unconfirmed"
-              />
-              <EventItem
-                type="studio class"
-                title="Studio Class"
-                details="Trombone Studio"
-                time="5:00 pm - 6:20 pm"
-                confirmation="Confirmed"
-              />
-            </View>
-          </ScrollView>
-          <BottomNav />
-        </>
-      ) : (
-        <>
-          {shownEventItem && (
-            <OpenedEventPopup
-              setPopupVisible={() => setPopupVisible(false)}
-              event={shownEventItem}
-            />
-          )}
-        </>
-      )}
+      {!isPopupVisible ? <DefaultHomeView /> : <PopupView />}
     </View>
   );
 };

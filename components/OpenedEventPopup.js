@@ -7,18 +7,28 @@ import RadialGradientCircle from "../assets/images/BackgroundGradient";
 const OpenedEventPopup = ({ setPopupVisible, event }) => {
   return (
     <View style={styles.openedEventFullScreenPopup}>
-       <View style={styles.circleContainer}>
-                <RadialGradientCircle style={[styles.circle]} />
-              </View>
-      <TouchableOpacity onPress={setPopupVisible}>
-        <View style={styles.exitIcon}>
+      <View style={styles.circleContainer}>
+        <RadialGradientCircle style={[styles.circle]} />
+      </View>
+      <View style={styles.optionButtons}>
+        <View style={styles.meatballIcon}>
           <Image
-            style={styles.exitImage}
+            style={styles.miniIcon}
             contentFit="cover"
-            source={require("../assets/images/OpenedEventPopupImages/frame-4998.png")}
+            source={require("../assets/images/OpenedEventPopupImages/meatballs-menu.png")}
           />
         </View>
-      </TouchableOpacity>
+
+        <TouchableOpacity onPress={setPopupVisible}>
+          <View style={styles.exitIcon}>
+            <Image
+              style={styles.miniIcon}
+              contentFit="cover"
+              source={require("../assets/images/OpenedEventPopupImages/frame-4998.png")}
+            />
+          </View>
+        </TouchableOpacity>
+      </View>
 
       <Text style={styles.titleFont}>{event.title}</Text>
       {/* row*/}
@@ -56,18 +66,6 @@ const OpenedEventPopup = ({ setPopupVisible, event }) => {
         />
         <Text style={styles.labelFont}>{event.description}</Text>
       </View>
-
-      {/* deal with this later */}
-      {/* <View>
-        <Image
-          style={styles.meatballsMenuIcon}
-          contentFit="cover"
-          source={require("../assets/images/OpenedEventPopupImages/meatballs-menu.png")}
-        /> */}
-      {/* </View> */}
-      {/* this is the x button */}
-
-      {/* <Text onPress={setPopupVisible}>EMERGYENCY CLICK BUTTON</Text> */}
     </View>
   );
 };
@@ -105,10 +103,12 @@ const styles = StyleSheet.create({
     width: "75%",
   },
   exitIcon: {
-    left: 300,
-    top: 0,
+
   },
-  exitImage: {
+  meatballIcon: {
+    marginRight: 10,
+  },
+  miniIcon: {
     width: 20,
     height: 20,
   },
@@ -122,6 +122,13 @@ const styles = StyleSheet.create({
   circle: {
     width: 300,
     height: 300,
+  },
+  optionButtons: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    width: "85%",
   },
 });
 
