@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Image } from "expo-image";
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import { StyleSheet, Text, View, FlatList, TouchableOpacity } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 import NotificationItem from "../components/NotificationItem";
 import { FontFamily, Color, Padding, Border } from "../GlobalStyles";
 
@@ -16,6 +17,8 @@ const notifications = [
 ];
 
 const NotificationScreen = () => {
+  const navigation = useNavigation();
+  
   return (
     <View style={[styles.notificationScreen, styles.listShadowBox]}>
       <Text style={styles.title}>Notifications</Text>
@@ -24,11 +27,13 @@ const NotificationScreen = () => {
         contentFit="cover"
         source={require("../assets/images/add.png")}
       />
-      <Image
-        style={styles.crossIcon}
-        contentFit="cover"
-        source={require("../assets/images/cross.png")}
-      />
+      <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+          <Image
+          style={styles.crossIcon}
+          contentFit="cover"
+          source={require("../assets/images/cross.png")}
+          />
+      </TouchableOpacity>
       <FlatList
         style={[styles.list, styles.listShadowBox]}
         data={notifications} // Pass the notifications array as data
