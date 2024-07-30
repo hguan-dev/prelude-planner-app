@@ -31,6 +31,7 @@ const HomeScreen = () => {
     //placeholder data
     let data = [
       {
+        id: 1,
         title: "Prof. X Lesson",
         time: "5:00 pm - 6:00 pm",
         location: "Room 101",
@@ -41,6 +42,7 @@ const HomeScreen = () => {
         date: new Date(),
       },
       {
+        id: 2,
         title: "Student Recital",
         time: "5:00 pm - 6:00 pm",
         location: "Room 101",
@@ -51,6 +53,7 @@ const HomeScreen = () => {
         date: new Date(),
       },
       {
+        id: 3,
         title: "Prof. X Lesson",
         time: "5:00 pm - 6:00 pm",
         location: "Room 101",
@@ -61,6 +64,7 @@ const HomeScreen = () => {
         date: new Date("2024-09-24"),
       },
       {
+        id: 5,
         title: "Masterclass",
         time: "5:00 pm - 6:00 pm",
         location: "Room 101",
@@ -71,6 +75,7 @@ const HomeScreen = () => {
         date: new Date("2023-03-23"),
       },
       {
+        id: 4,
         title: "Studio Class",
         time: "5:00 pm - 6:20 pm",
         location: "Room 101",
@@ -119,11 +124,11 @@ const HomeScreen = () => {
               <NewBackgroundGradient stop1="#2a3648" stop2="#372a48"/>
             </View>
             {groupedByDate && Object.entries(groupedByDate).map(([date, objs]) => (
-              <>
+              <React.Fragment key={date}>
               <Text key={date} style={styles.date}>{date}</Text>
-              {objs.map((event, index) => (
+              {objs.map((event) => (
                 <EventItem
-                  key={[date, index]}
+                  key={event.id}
                   onPress={() => {
                     setShowOpenedEventPopup(event);
                     setPopupVisible(true);
@@ -137,7 +142,7 @@ const HomeScreen = () => {
                   confirmation={event.confirmation}
                 />
               ))}
-              </>
+              </React.Fragment>
             ))}
           </View>
         </ScrollView>
