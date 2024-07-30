@@ -12,7 +12,8 @@ import BottomNav from "../components/BottomNav";
 import OpenedEventPopup from "../components/OpenedEventPopup";
 import FilterIcon from "../assets/icons/FilterIcon";
 import { Color, FontFamily, FontSize, Padding } from "../GlobalStyles";
-import RadialGradientCircle from "../assets/images/BackgroundGradient";
+// import RadialGradientCircle from "../assets/images/BackgroundGradient";
+import NewBackgroundGradient from "../assets/images/NewBackgroundGradient";
 
 const HomeScreen = () => {
   // used for the opened event popup
@@ -78,7 +79,7 @@ const HomeScreen = () => {
         description: "This is a studio class with Trombone Studio",
         confirmation: "Confirmed",
         date: new Date("2024-09-24"),
-      }
+      },
     ];
      //fetch then
     //sort data by date
@@ -111,16 +112,18 @@ const HomeScreen = () => {
             <FilterIcon style={styles.filterIcon} />
           </View>
           <View style={styles.eventList}>
-            <View style={styles.circleContainer}>
+            {/* <View style={styles.circleContainer}>
               <RadialGradientCircle style={styles.circle} />
+            </View> */}
+            <View style={styles.radialBackground}>
+              <NewBackgroundGradient stop1="#2a3648" stop2="#372a48"/>
             </View>
-
             {groupedByDate && Object.entries(groupedByDate).map(([date, objs]) => (
               <>
               <Text key={date} style={styles.date}>{date}</Text>
               {objs.map((event, index) => (
                 <EventItem
-                  key={index}
+                  key={[date, index]}
                   onPress={() => {
                     setShowOpenedEventPopup(event);
                     setPopupVisible(true);
@@ -198,8 +201,9 @@ const styles = StyleSheet.create({
   eventList: {
     width: "96%",
     alignItems: "center",
-    backgroundColor: "rgba(255, 255, 255, 0.1)",
+    backgroundColor: "rgba(255, 255, 0, 0.1)",
     borderRadius: 20,
+    overflow: "hidden",
     marginTop: 7.5,
   },
   date: {
@@ -210,16 +214,22 @@ const styles = StyleSheet.create({
     marginVertical: Padding.p_5xs,
     width: "100%",
   },
-  circleContainer: {
+  //old circle styles
+  // circleContainer: {
+  //   position: "absolute",
+  //   top: -25, // Adjust this value to position the circle
+  //   left: 0,
+  //   right: 25,
+  //   alignItems: "center",
+  // },
+  // circle: {
+  //   width: 300,
+  //   height: 300,
+  // },
+  radialBackground: {
     position: "absolute",
-    top: -25, // Adjust this value to position the circle
-    left: 0,
-    right: 25,
-    alignItems: "center",
-  },
-  circle: {
-    width: 300,
-    height: 300,
+    width: "100%",
+    height: "100%",
   },
 });
 
