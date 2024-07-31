@@ -1,6 +1,7 @@
 import * as React from "react";
 import { StyleSheet, View, Text, ScrollView, ImageBackground } from "react-native";
 import Header from "../components/Header";
+import LessonAvailabilityItem from "../components/LessonAvailabilityItem";
 import EventItem from "../components/EventItem";
 import BottomNav from "../components/BottomNav";
 import FilterIcon from "../assets/icons/FilterIcon";
@@ -13,8 +14,22 @@ const HomeScreen = () => {
     <View style={styles.home}>
       <Header />
       <ScrollView contentContainerStyle={styles.content}>
-        <View style={styles.filterIconContainer}>
-          <Text style={styles.upcomingEvents}>Upcoming Events</Text>
+        <View style={styles.headerContainer}>
+          <Text style={styles.headerTitle}>Lesson Availabilities</Text>
+        </View>
+        <View style={styles.lessonList}>
+          <Text style={styles.date}>Sep. 24 - Sep. 25</Text>
+          <LessonAvailabilityItem 
+            title="MM Lesson"
+            confirmation="Confirm Now!" 
+          />
+          <LessonAvailabilityItem 
+            title="RH Lesson"
+            confirmation="Edit Time" 
+          />
+        </View>
+        <View style={styles.headerContainer}>
+          <Text style={styles.headerTitle}>Upcoming Events</Text>
           <FilterIcon style={styles.filterIcon} />
         </View>
         <View style={styles.eventList}>
@@ -83,7 +98,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: Padding.p_5xs,
     alignItems: "center",
   },
-  filterIconContainer: {
+  headerContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -99,12 +114,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     right: 13,
   },
-  upcomingEvents: {
+  headerTitle: {
     fontSize: FontSize.size_3xl,
     fontFamily: FontFamily.alataRegular,
     color: Color.labelColorDarkPrimary,
     marginHorizontal: 14,
-    
+  },
+  lessonList: {
+    width: "96%",
+    alignItems: "center",
+    backgroundColor: "rgba(255, 50, 150, 0.2)",
+    borderRadius: 20,
+    marginTop: 7.5,
+    marginBottom: 30,
   },
   eventList: {
     width: "96%",
@@ -112,6 +134,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255, 255, 255, 0.1)",
     borderRadius: 20,
     marginTop: 7.5,
+    marginBottom: 30,
   },
   date: {
     fontSize: FontSize.size_xl,
