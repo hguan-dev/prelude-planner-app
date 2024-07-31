@@ -31,14 +31,14 @@ const styles = StyleSheet.create({
       shadowOpacity: 0.8,
       shadowRadius: 4,
       elevation: 2,
-      marginTop: 4,
+      marginTop: 8,
       marginBottom: Padding.p_base,
     },
     content: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: Padding.p_5xs,
+        paddingHorizontal: Padding.p_5xs,
     },
     title: {
       fontFamily: FontFamily.alataRegular,
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     },
     button: {
       paddingHorizontal: 20,
-      paddingVertical: 10,
+      paddingVertical: 8,
       borderRadius: 20,
       backgroundColor: "white",
       alignItems: 'center',
@@ -57,13 +57,13 @@ const styles = StyleSheet.create({
     },
     buttonText: {
       fontFamily: FontFamily.alataRegular,
-      fontSize: FontSize.defaultRegularSubheadline_size,
+      fontSize: FontSize.defaultBoldHeadline_size,
       color: "black",
     },
     lessonLine: {
       height: 1,
       marginHorizontal: Padding.p_5xs,
-      marginTop: 10,
+      marginTop: 15,
       borderBottomLeftRadius: Border.br_sm,
       borderBottomRightRadius: Border.br_sm,
       backgroundColor: "white",

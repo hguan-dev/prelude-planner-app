@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
   lessonList: {
     width: "96%",
     alignItems: "center",
-    backgroundColor: "rgba(255, 50, 150, 0.2)",
+    backgroundColor: "rgba(150, 25, 150, 0.3)",
     borderRadius: 20,
     paddingTop: 7.5,
     marginTop: 7.5,
