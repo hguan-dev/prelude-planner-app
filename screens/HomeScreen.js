@@ -17,6 +17,7 @@ const HomeScreen = () => {
         <View style={styles.headerContainer}>
           <Text style={styles.headerTitle}>Lesson Availabilities</Text>
         </View>
+        {/* LESSON AVAILABILITES SECTION */}
         <View style={styles.lessonList}>
           <Text style={styles.date}>Sep. 24 - Sep. 25</Text>
           <LessonAvailabilityItem 
@@ -28,6 +29,7 @@ const HomeScreen = () => {
             confirmation="Edit Time" 
           />
         </View>
+        {/* EVENTS SECTION */}
         <View style={styles.headerContainer}>
           <Text style={styles.headerTitle}>Upcoming Events</Text>
           <FilterIcon style={styles.filterIcon} />
@@ -125,6 +127,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "rgba(255, 50, 150, 0.2)",
     borderRadius: 20,
+    paddingTop: 7.5,
     marginTop: 7.5,
     marginBottom: 30,
   },
@@ -133,6 +136,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "rgba(255, 255, 255, 0.1)",
     borderRadius: 20,
+    paddingTop: 7.5,
     marginTop: 7.5,
     marginBottom: 30,
   },
