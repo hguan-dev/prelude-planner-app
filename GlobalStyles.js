@@ -36,6 +36,7 @@ export const Padding = {
   p_9xs: 4,
   p_8xs: 5,
   p_5xs: 8,
+  p_xs: 12,
 };
 /* border radiuses */
 export const Border = {
