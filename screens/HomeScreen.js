@@ -85,6 +85,28 @@ const HomeScreen = () => {
         confirmation: "Confirmed",
         date: new Date("2024-09-24"),
       },
+      {
+        id: 6,
+        title: "Studio Class",
+        time: "5:00 pm - 6:20 pm",
+        location: "Room 101",
+        creator: "Trombone Studio",
+        participants: "Student A",
+        description: "This is a studio class with Trombone Studio",
+        confirmation: "Confirmed",
+        date: new Date("2024-09-24"),
+      },
+      {
+        id: 7,
+        title: "Studio Class",
+        time: "5:00 pm - 6:20 pm",
+        location: "Room 101",
+        creator: "Trombone Studio",
+        participants: "Student A",
+        description: "This is a studio class with Trombone Studio",
+        confirmation: "Confirmed",
+        date: new Date("2024-09-24"),
+      },
     ];
      //fetch then
     //sort data by date
@@ -206,7 +228,8 @@ const styles = StyleSheet.create({
   eventList: {
     width: "96%",
     alignItems: "center",
-    backgroundColor: "rgba(255, 255, 0, 0.1)",
+    // backgroundColor: "rgba(255, 255, 0, 0.1)",
+    backgroundColor: "rgba(255, 255, 255, 0.5)",
     borderRadius: 20,
     overflow: "hidden",
     marginTop: 7.5,

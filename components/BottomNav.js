@@ -42,6 +42,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderColor: "#27153D",
     borderWidth: 1.5,
+    //make the area cut off by the border radius transparent
+    
   },
   iconContainer: {
     flexDirection: 'row',
