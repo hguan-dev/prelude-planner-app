@@ -1,12 +1,17 @@
 import * as React from "react";
-import { StyleSheet, View, Text, ScrollView, ImageBackground } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  ScrollView,
+  ImageBackground,
+} from "react-native";
 import Header from "../components/Header";
 import EventItem from "../components/EventItem";
 import BottomNav from "../components/BottomNav";
 import FilterIcon from "../assets/icons/FilterIcon";
 import { Color, FontFamily, FontSize, Padding, Image } from "../GlobalStyles";
 import RadialGradientCircle from "../assets/images/BackgroundGradient";
-
 
 const HomeScreen = () => {
   return (
@@ -15,7 +20,7 @@ const HomeScreen = () => {
       <ScrollView contentContainerStyle={styles.content}>
         <View style={styles.filterIconContainer}>
           <Text style={styles.upcomingEvents}>Upcoming Events</Text>
-          <FilterIcon style={styles.filterIcon} />
+          <FilterIcon size={28} style={styles.filterIcon} />
         </View>
         <View style={styles.eventList}>
           <View style={styles.circleContainer}>
@@ -79,39 +84,30 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingTop: 40,
   },
-  content: {
-    paddingHorizontal: Padding.p_5xs,
-    alignItems: "center",
-  },
   filterIconContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginVertical: Padding.p_5xs,
+    marginTop: Padding.p_5xs,
+    marginBottom: Padding.p_base,
+    paddingHorizontal: 30,
     width: "100%",
-    position: 'relative'
-    
+    position: "relative",
   },
   filterIcon: {
-    marginHorizontal: 14,
-    width: 31,
-    height: 31,
     alignItems: "center",
-    right: 13,
   },
   upcomingEvents: {
     fontSize: FontSize.size_3xl,
     fontFamily: FontFamily.alataRegular,
     color: Color.labelColorDarkPrimary,
-    marginHorizontal: 14,
-    
   },
   eventList: {
-    width: "96%",
     alignItems: "center",
     backgroundColor: "rgba(255, 255, 255, 0.1)",
     borderRadius: 20,
     marginTop: 7.5,
+    marginHorizontal: Padding.p_base,
   },
   date: {
     fontSize: FontSize.size_xl,
@@ -129,7 +125,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   circle: {
-    width: 300, 
+    width: 300,
     height: 300,
   },
 });
