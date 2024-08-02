@@ -28,7 +28,7 @@ export const Color = {
   colorLime: "#00fa0a",
   colorRed: "#fa0000",
   colorWhite: "#fff",
-  darkPurple: "211134",
+  darkPurple: "#211134",
   colorOrangered: "#cc0101",
   defaultSystemBlueDark: "#0a84ff",
 };

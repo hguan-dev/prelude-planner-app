@@ -168,7 +168,9 @@ const HomeScreen = () => {
             ))}
           </View>
         </ScrollView>
-        <BottomNav />
+        <View style={styles.bottonNavContainer}>
+          <BottomNav />
+        </View>
       </>
     );
   };
@@ -258,6 +260,11 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: "100%",
     height: "100%",
+  },
+  bottonNavContainer: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
   },
 });
 
