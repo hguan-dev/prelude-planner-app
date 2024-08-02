@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
     height: 90,
     borderTopLeftRadius: Border.br_31xl,
     borderTopRightRadius: Border.br_31xl,
-    backgroundColor: Color.colorGray_100,
+    // backgroundColor: Color.colorGray_100,
+    backgroundColor: Color.darkPurple,
     paddingHorizontal: Padding.p_3xl,
     paddingVertical: Padding.p_sm,
     shadowColor: "rgba(41, 39, 130, 0.1)",
@@ -42,6 +43,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderColor: "#27153D",
     borderWidth: 1.5,
+    //make the area cut off by the border radius transparent
+    
   },
   iconContainer: {
     flexDirection: 'row',
