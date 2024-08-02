@@ -3,7 +3,7 @@ import { Image } from "expo-image";
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import NotificationItem from "../components/NotificationItem";
-import { FontFamily, Color, Padding, Border } from "../GlobalStyles";
+import { FontFamily, Color } from "../GlobalStyles";
 
 // Create an array to hold notification data
 const notifications = [
@@ -21,74 +21,80 @@ const NotificationScreen = () => {
   
   return (
     <View style={[styles.notificationScreen, styles.listShadowBox]}>
-      <Text style={styles.title}>Notifications</Text>
-      <Image
-        style={styles.addIcon}
-        contentFit="cover"
-        source={require("../assets/images/add.png")}
-      />
-      <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+      
+      <View style={styles.headerContainer}>
+        <Text style={styles.title}>Notifications</Text>
+        <View style = {styles.IconContainer}>
           <Image
-          style={styles.crossIcon}
-          contentFit="cover"
-          source={require("../assets/images/cross.png")}
+            style={styles.addIcon}
+            contentFit="cover"
+            source={require("../assets/images/add.png")}
           />
-      </TouchableOpacity>
-      <FlatList
-        style={[styles.list, styles.listShadowBox]}
-        data={notifications} // Pass the notifications array as data
-        renderItem={({ item }) => (
-          <NotificationItem desc={item.desc} /> // Render each notification item
-        )}
-        keyExtractor={item => item.id} // Unique key for each item
-      />
+          <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+              <Image
+              style={styles.crossIcon}
+              contentFit="cover"
+              source={require("../assets/images/cross.png")}
+              />
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style = {styles.listContainer}>
+        <FlatList
+          style={styles.list}
+          data={notifications} // Pass the notifications array as data
+          renderItem={({ item }) => (
+            <NotificationItem desc={item.desc} /> // Render each notification item
+          )}
+          keyExtractor={item => item.id} // Unique key for each item
+        />
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  headerContainer: {
+    marginTop: "15%",
+    marginLeft: 20,
+    marginRight: 20,
+    marginBottom: 20,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
   title: {
-    top: 83,
-    left: 42,
     fontSize: 28,
-    letterSpacing: 0,
-    lineHeight: 30,
     fontFamily: FontFamily.alataRegular,
     color: Color.labelColorDarkPrimary,
-    textAlign: "left",
+  },
+  IconContainer: {
+    marginTop: 8,
     display: "flex",
-    alignItems: "center",
-    width: 204,
-    height: 36,
-    position: "absolute",
+    flexDirection: "row",
   },
   addIcon: {
-    top: 84,
-    left: 295,
     width: 26,
     height: 26,
-    position: "absolute",
+    marginRight: 10,
   },
   crossIcon: {
-    top: 89,
-    left: 330,
+    marginTop: 4,
     width: 18,
     height: 18,
-    position: "absolute",
-    overflow: "hidden",
+  },
+  listContainer: {
+    // borderColor: "rgba(255, 255, 255, 1)",
+    // borderWidth: 10,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   list: {
-    marginLeft: -180,
-    top: 150,
-    left: "50%",
     shadowColor: "rgba(0, 0, 0, 0.25)",
     shadowRadius: 4,
-    elevation: 4,
-    width: 360,
-    height: 790,
-    position: "absolute",
-  },
-  listShadowBox: {
+    width: "90%",
+    height: "80%",
     shadowOpacity: 1,
     shadowOffset: {
       width: 0,
@@ -102,7 +108,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#211134",
     flex: 1,
     width: "100%",
-    height: 844,
+    height: "100%",
     overflow: "hidden",
   },
 });
