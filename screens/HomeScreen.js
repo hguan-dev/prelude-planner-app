@@ -130,7 +130,7 @@ const HomeScreen = () => {
 
   const DefaultHomeView = () => {
     return (
-      <>
+      <View style={styles.home}>
         <Header />
         <ScrollView contentContainerStyle={styles.content}>
           <View style={styles.filterIconContainer}>
@@ -167,7 +167,7 @@ const HomeScreen = () => {
         <View style={styles.bottonNavContainer}>
           <BottomNav />
         </View>
-      </>
+      </View>
     );
   };
 
@@ -185,9 +185,9 @@ const HomeScreen = () => {
   };
 
   return (
-    <View style={styles.home}>
+    <>
       {!isPopupVisible ? <DefaultHomeView /> : <PopupView />}
-    </View>
+    </>
   );
 };
 

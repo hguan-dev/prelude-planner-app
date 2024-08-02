@@ -137,12 +137,8 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   contentContainer: {
-    display: "flex",
-    flexDirection: "column",
-    width: "100%",
-    height: "100%",
-    padding: 30,
-    // backgroundColor: Color.colorFirebrick
+    marginLeft: 20,
+    marginRight: 20,
   },
   titleFont: {
     fontSize: FontSize.size_11xl,
@@ -172,8 +168,8 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   miniIcon: {
-    width: 20,
-    height: 20,
+    width: 24,
+    height: 24,
   },
   optionButtons: {
     display: "flex",
@@ -181,8 +177,8 @@ const styles = StyleSheet.create({
   },
   menuPopup: {
     position: "absolute",
-    top: 25,
-    right: 17,
+    top: 30,
+    right: 22,
   },
   menuPopupOptions: {
     width: 120,
@@ -202,7 +198,7 @@ const styles = StyleSheet.create({
   },
   sharktoothIcon: {
     position: "absolute",
-    top: -7.8,
+    top: -7.4,
     left: 90,
     zIndex: 1,
     width: 15,
@@ -213,6 +209,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    marginTop: "15%",
     },
 });
 
