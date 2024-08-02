@@ -18,7 +18,6 @@ const OpenedEventPopup = ({ setPopupVisible, event }) => {
         />
         <View style={styles.menuPopupOptions}>
           <View style={styles.editRow}>
-            <View style={styles.menuRow}>
               <TouchableOpacity
                 onPress={() => {
                   console.log("edit pressed");
@@ -26,7 +25,6 @@ const OpenedEventPopup = ({ setPopupVisible, event }) => {
               >
                 <Text style={styles.labelFont}>Edit</Text>
               </TouchableOpacity>
-            </View>
           </View>
           <View
             style={{
@@ -35,7 +33,6 @@ const OpenedEventPopup = ({ setPopupVisible, event }) => {
             }}
           />
           <View style={styles.deleteRow}>
-            <View style={styles.menuRow}>
               <TouchableOpacity
                 onPress={() => {
                   console.log("delete pressed");
@@ -43,7 +40,6 @@ const OpenedEventPopup = ({ setPopupVisible, event }) => {
               >
                 <Text style={styles.labelFont}>Delete</Text>
               </TouchableOpacity>
-            </View>
           </View>
         </View>
       </View>
@@ -56,32 +52,34 @@ const OpenedEventPopup = ({ setPopupVisible, event }) => {
         <NewBackgroundGradient stop1="#191079" stop2="#211134" />
       </View>
       <View style={styles.contentContainer}>
-        <View style={styles.optionButtons}>
-          {isMenuVisible && <MenuPopup />}
-          <TouchableOpacity
-            onPress={() => {
-              setMenuVisible(!isMenuVisible);
-            }}
-          >
-            <View style={styles.meatballIcon}>
-              <Image
-                style={styles.miniIcon}
-                contentFit="cover"
-                source={require("../assets/images/OpenedEventPopupImages/dot-menu.png")}
-              />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={setPopupVisible}>
-            <View style={styles.exitIcon}>
-              <Image
-                style={styles.miniIcon}
-                contentFit="cover"
-                source={require("../assets/images/OpenedEventPopupImages/exit-button.png")}
-              />
-            </View>
-          </TouchableOpacity>
+        <View style={styles.optionsBar}>
+          <Text style={styles.titleFont}>{event.title}</Text>
+          <View style={styles.optionButtons}>
+            {isMenuVisible && <MenuPopup />}
+            <TouchableOpacity
+              onPress={() => {
+                setMenuVisible(!isMenuVisible);
+              }}
+            >
+              <View style={styles.meatballIcon}>
+                <Image
+                  style={styles.miniIcon}
+                  contentFit="cover"
+                  source={require("../assets/images/OpenedEventPopupImages/dot-menu.png")}
+                />
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={setPopupVisible}>
+              <View style={styles.exitIcon}>
+                <Image
+                  style={styles.miniIcon}
+                  contentFit="cover"
+                  source={require("../assets/images/OpenedEventPopupImages/exit-button.png")}
+                />
+              </View>
+            </TouchableOpacity>
+          </View>
         </View>
-        <Text style={styles.titleFont}>{event.title}</Text>
         <View style={styles.labelRow}>
           <Image
             style={styles.icon}
@@ -144,6 +142,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     padding: 30,
+    // backgroundColor: Color.colorFirebrick
   },
   titleFont: {
     fontSize: FontSize.size_11xl,
@@ -179,9 +178,6 @@ const styles = StyleSheet.create({
   optionButtons: {
     display: "flex",
     flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    width: "100%",
   },
   menuPopup: {
     position: "absolute",
@@ -193,12 +189,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: Color.colorWhite,
-  },
-  menuRow: {
-    display: "flex",
-    justifyContent: "center",
-    flexDirection: "row",
-    padding: 5,
   },
   deleteRow: {
     backgroundColor: "red",
@@ -218,6 +208,12 @@ const styles = StyleSheet.create({
     width: 15,
     height: 15,
   },
+    optionsBar: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    },
 });
 
 export default OpenedEventPopup;
