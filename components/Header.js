@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Text, StyleSheet, View, TouchableOpacity} from "react-native";
-import { useNavigation } from '@react-navigation/native';
+import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import BellIcon from "../assets/icons/BellIcon";
 import ChatIcon from "../assets/icons/ChatIcon";
 import { FontSize, FontFamily, Color, Padding } from "../GlobalStyles";
@@ -12,10 +12,12 @@ const Header = () => {
     <View style={styles.headerContainer}>
       <Text style={styles.title}>Prelude Planner</Text>
       <View style={styles.iconsContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate('NotificationScreen')}>
-          <BellIcon size={28} style={styles.icon} />
+        <TouchableOpacity
+          onPress={() => navigation.navigate("NotificationScreen")}
+        >
+          <BellIcon size={28} />
         </TouchableOpacity>
-        <ChatIcon size={28} style={styles.icon} />
+        <ChatIcon size={28} />
       </View>
     </View>
   );
@@ -23,26 +25,21 @@ const Header = () => {
 
 const styles = StyleSheet.create({
   headerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: Padding.p_5xs,
-    height: 74, 
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 30,
+    height: 74,
   },
   title: {
     fontSize: FontSize.size_9xl,
     fontFamily: FontFamily.alataRegular,
-    color: '#FFFFFF',
-    marginHorizontal: 14,
+    color: "#FFFFFF",
   },
   iconsContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    width: 100,
-  },
-  icon: {
-    marginHorizontal: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 16,
   },
 });
 

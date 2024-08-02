@@ -12,7 +12,6 @@ import BottomNav from "../components/BottomNav";
 import OpenedEventPopup from "../components/OpenedEventPopup";
 import FilterIcon from "../assets/icons/FilterIcon";
 import { Color, FontFamily, FontSize, Padding } from "../GlobalStyles";
-// import RadialGradientCircle from "../assets/images/BackgroundGradient";
 import NewBackgroundGradient from "../assets/images/NewBackgroundGradient";
 
 const HomeScreen = () => {
@@ -136,12 +135,9 @@ const HomeScreen = () => {
         <ScrollView contentContainerStyle={styles.content}>
           <View style={styles.filterIconContainer}>
             <Text style={styles.upcomingEvents}>Upcoming Events</Text>
-            <FilterIcon style={styles.filterIcon} />
+            <FilterIcon size={28} style={styles.filterIcon} />
           </View>
           <View style={styles.eventList}>
-            {/* <View style={styles.circleContainer}>
-              <RadialGradientCircle style={styles.circle} />
-            </View> */}
             <View style={styles.radialBackground}>
               <NewBackgroundGradient stop1="#2a3648" stop2="#372a48"/>
             </View>
@@ -202,39 +198,30 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingTop: 40,
   },
-  content: {
-    paddingHorizontal: Padding.p_5xs,
-    alignItems: "center",
-  },
   filterIconContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginVertical: Padding.p_5xs,
+    marginTop: Padding.p_5xs,
+    marginBottom: Padding.p_base,
+    paddingHorizontal: 30,
     width: "100%",
     position: "relative",
   },
   filterIcon: {
-    marginHorizontal: 14,
-    width: 31,
-    height: 31,
     alignItems: "center",
-    right: 13,
   },
   upcomingEvents: {
     fontSize: FontSize.size_3xl,
     fontFamily: FontFamily.alataRegular,
     color: Color.labelColorDarkPrimary,
-    marginHorizontal: 14,
   },
   eventList: {
-    width: "96%",
     alignItems: "center",
-    // backgroundColor: "rgba(255, 255, 0, 0.1)",
-    backgroundColor: "rgba(255, 255, 255, 0.5)",
     borderRadius: 20,
     overflow: "hidden",
     marginTop: 7.5,
+    marginHorizontal: Padding.p_base,
   },
   date: {
     fontSize: FontSize.size_xl,
@@ -244,18 +231,6 @@ const styles = StyleSheet.create({
     marginVertical: Padding.p_5xs,
     width: "100%",
   },
-  //old circle styles
-  // circleContainer: {
-  //   position: "absolute",
-  //   top: -25, // Adjust this value to position the circle
-  //   left: 0,
-  //   right: 25,
-  //   alignItems: "center",
-  // },
-  // circle: {
-  //   width: 300,
-  //   height: 300,
-  // },
   radialBackground: {
     position: "absolute",
     width: "100%",
