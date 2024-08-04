@@ -14,6 +14,7 @@ export const FontSize = {
   size_9xl: 28,
   size_xs: 12,
   size_mini: 15,
+  filterText: 16,
 };
 /* Colors */
 export const Color = {
@@ -28,6 +29,7 @@ export const Color = {
   lime: "#00fa0a",
   red: "#fa0000",
   white: "#fff",
+  black: "#000",
   lightPurple: "#a276ff",
   darkPurple: "#211134",
   redOrange: "#cc0101",

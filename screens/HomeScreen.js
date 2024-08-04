@@ -8,6 +8,8 @@ import OpenedEventPopup from "../components/OpenedEventPopup";
 import FilterIcon from "../assets/icons/FilterIcon";
 import { Color, FontFamily, FontSize, Padding } from "../GlobalStyles";
 import NewBackgroundGradient from "../assets/images/NewBackgroundGradient";
+import { TouchableOpacity } from "react-native";
+import FilterModal from "../components/FilterModal";
 
 async function fetchData() {
   // placeholder data
@@ -121,6 +123,9 @@ const HomeScreen = () => {
   const [events, setEvents] = useState([]);
   const [openedEventId, setOpenedEventId] = useState(null);
 
+  const [filterVisible, setFilterVisible] = useState(false);
+  const [filter, setFilter] = useState([]);
+
   useEffect(() => {
     async function getEvents() {
       try {
@@ -140,8 +145,16 @@ const HomeScreen = () => {
         <Header />
         <View style={styles.filterIconContainer}>
           <Text style={styles.upcomingEvents}>Upcoming Events</Text>
-          <FilterIcon size={28} style={styles.filterIcon} />
+          <TouchableOpacity onPress={() => setFilterVisible(true)}>
+            <FilterIcon size={28} style={styles.filterIcon} />
+          </TouchableOpacity>
         </View>
+        <FilterModal
+          visible={filterVisible}
+          onClose={() => setFilterVisible(false)}
+          activeFilters={filter}
+          onChange={setFilter}
+        />
         <View style={styles.visibleScrollView}>
           <ScrollView contentContainerStyle={styles.content}>
             <View style={styles.eventList}>
