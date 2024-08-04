@@ -3,6 +3,7 @@ import { Image } from "expo-image";
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import NotificationItem from "../components/NotificationItem";
+import AddIcon from "../assets/icons/AddIcon";
 import CrossIcon from "../assets/icons/CrossIcon";
 import { FontFamily, Color } from "../GlobalStyles";
 
@@ -26,11 +27,7 @@ const NotificationScreen = () => {
       <View style={styles.headerContainer}>
         <Text style={styles.title}>Notifications</Text>
         <View style={styles.IconContainer}>
-          <Image
-            style={styles.addIcon}
-            contentFit="cover"
-            source={require("../assets/images/add.png")}
-          />
+          <AddIcon size = {26} />
           <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
             <CrossIcon size={18} />
           </TouchableOpacity>
@@ -66,15 +63,10 @@ const styles = StyleSheet.create({
     color: Color.labelColorDarkPrimary,
   },
   IconContainer: {
-    marginTop: 0,
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-  },
-  addIcon: {
-    width: 26,
-    height: 26,
-    marginRight: 10,
+    gap: 10,
   },
   listContainer: {
     // borderColor: "rgba(255, 255, 255, 1)",
