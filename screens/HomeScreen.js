@@ -1,11 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-} from "react-native";
+import { StyleSheet, View, Text, ScrollView } from "react-native";
 import Header from "../components/Header";
 import EventItem from "../components/EventItem";
 import BottomNav from "../components/BottomNav";
@@ -107,15 +102,15 @@ const HomeScreen = () => {
         date: new Date("2024-09-24"),
       },
     ];
-     //fetch then
+    //fetch then
     //sort data by date
     data = data.sort((a, b) => a.date - b.date);
     let sorted = {};
     data.forEach((e) => {
       const date = e.date.toLocaleDateString(undefined, {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
+        year: "numeric",
+        month: "long",
+        day: "numeric",
       });
       if (!sorted[date]) {
         sorted[date] = [];
@@ -132,38 +127,43 @@ const HomeScreen = () => {
     return (
       <View style={styles.home}>
         <Header />
-        <ScrollView contentContainerStyle={styles.content}>
-          <View style={styles.filterIconContainer}>
-            <Text style={styles.upcomingEvents}>Upcoming Events</Text>
-            <FilterIcon size={28} style={styles.filterIcon} />
-          </View>
-          <View style={styles.eventList}>
-            <View style={styles.radialBackground}>
-              <BackgroundGradient stop1="#2a3648" stop2="#372a48"/>
+        <View style={styles.visibleScrollView}>
+          <ScrollView contentContainerStyle={styles.content}>
+            <View style={styles.filterIconContainer}>
+              <Text style={styles.upcomingEvents}>Upcoming Events</Text>
+              <FilterIcon size={28} style={styles.filterIcon} />
             </View>
-            {groupedByDate && Object.entries(groupedByDate).map(([date, objs]) => (
-              <React.Fragment key={date}>
-              <Text key={date} style={styles.date}>{date}</Text>
-              {objs.map((event) => (
-                <EventItem
-                  key={event.id}
-                  onPress={() => {
-                    setShowOpenedEventPopup(event);
-                    setPopupVisible(true);
-                  }}
-                  title={event.title}
-                  time={event.time}
-                  location={event.location}
-                  creator={event.creator}
-                  participants={event.participants}
-                  description={event.description}
-                  confirmation={event.confirmation}
-                />
-              ))}
-              </React.Fragment>
-            ))}
-          </View>
-        </ScrollView>
+            <View style={styles.eventList}>
+              <View style={styles.radialBackground}>
+                <BackgroundGradient stop1="#2a3648" stop2="#372a48" />
+              </View>
+              {groupedByDate &&
+                Object.entries(groupedByDate).map(([date, objs]) => (
+                  <React.Fragment key={date}>
+                    <Text key={date} style={styles.date}>
+                      {date}
+                    </Text>
+                    {objs.map((event) => (
+                      <EventItem
+                        key={event.id}
+                        onPress={() => {
+                          setShowOpenedEventPopup(event);
+                          setPopupVisible(true);
+                        }}
+                        title={event.title}
+                        time={event.time}
+                        location={event.location}
+                        creator={event.creator}
+                        participants={event.participants}
+                        description={event.description}
+                        confirmation={event.confirmation}
+                      />
+                    ))}
+                  </React.Fragment>
+                ))}
+            </View>
+          </ScrollView>
+        </View>
         <View style={styles.bottonNavContainer}>
           <BottomNav />
         </View>
@@ -184,21 +184,20 @@ const HomeScreen = () => {
     );
   };
 
-  return (
-    <>
-      {!isPopupVisible ? <DefaultHomeView /> : <PopupView />}
-    </>
-  );
+  return <>{!isPopupVisible ? <DefaultHomeView /> : <PopupView />}</>;
 };
 
 const styles = StyleSheet.create({
   home: {
     flex: 1,
     backgroundColor: "#211134",
-    justifyContent: "space-between",
     paddingTop: 40,
   },
+  content: {
+    paddingBottom: "25%",
+  },
   filterIconContainer: {
+    display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -206,7 +205,6 @@ const styles = StyleSheet.create({
     marginBottom: Padding.p_base,
     paddingHorizontal: 30,
     width: "100%",
-    position: "relative",
   },
   filterIcon: {
     alignItems: "center",
@@ -240,6 +238,10 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 0,
     width: "100%",
+  },
+  visibleScrollView: {
+    flex: 1,
+    overflow: "visible",
   },
 });
 

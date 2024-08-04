@@ -3,6 +3,8 @@ import { Image } from "expo-image";
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import NotificationItem from "../components/NotificationItem";
+import AddIcon from "../assets/icons/AddIcon";
+import CrossIcon from "../assets/icons/CrossIcon";
 import { FontFamily, Color } from "../GlobalStyles";
 
 // Create an array to hold notification data
@@ -20,22 +22,14 @@ const NotificationScreen = () => {
   const navigation = useNavigation();
   
   return (
-    <View style={[styles.notificationScreen, styles.listShadowBox]}>
+    <View style={styles.notificationScreen}>
       
       <View style={styles.headerContainer}>
         <Text style={styles.title}>Notifications</Text>
-        <View style = {styles.IconContainer}>
-          <Image
-            style={styles.addIcon}
-            contentFit="cover"
-            source={require("../assets/images/add.png")}
-          />
+        <View style={styles.IconContainer}>
+          <AddIcon size = {26} />
           <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
-              <Image
-              style={styles.crossIcon}
-              contentFit="cover"
-              source={require("../assets/images/cross.png")}
-              />
+            <CrossIcon size={18} />
           </TouchableOpacity>
         </View>
       </View>
@@ -69,19 +63,10 @@ const styles = StyleSheet.create({
     color: Color.labelColorDarkPrimary,
   },
   IconContainer: {
-    marginTop: 8,
     display: "flex",
     flexDirection: "row",
-  },
-  addIcon: {
-    width: 26,
-    height: 26,
-    marginRight: 10,
-  },
-  crossIcon: {
-    marginTop: 4,
-    width: 18,
-    height: 18,
+    alignItems: "center",
+    gap: 10,
   },
   listContainer: {
     // borderColor: "rgba(255, 255, 255, 1)",
@@ -102,14 +87,9 @@ const styles = StyleSheet.create({
     },
   },
   notificationScreen: {
-    shadowColor: "rgba(0, 0, 0, 0.2)",
-    shadowRadius: 80,
-    elevation: 80,
     backgroundColor: "#211134",
-    flex: 1,
-    width: "100%",
     height: "100%",
-    overflow: "hidden",
+    width: "100%",
   },
 });
 
