@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 import { FontSize, Color, FontFamily, Padding } from "../GlobalStyles";
-import NewBackgroundGradient from "../assets/images/NewBackgroundGradient";
+import BackgroundGradient from "../assets/images/BackgroundGradient";
 
 const OpenedEventPopup = ({ setPopupVisible, event }) => {
   const [isMenuVisible, setMenuVisible] = useState(false);
@@ -49,7 +49,7 @@ const OpenedEventPopup = ({ setPopupVisible, event }) => {
   return (
     <View style={styles.openedEventFullScreenPopup}>
       <View style={styles.backgroundContainer}>
-        <NewBackgroundGradient stop1="#191079" stop2="#211134" />
+        <BackgroundGradient stop1="#191079" stop2="#211134" />
       </View>
       <View style={styles.contentContainer}>
         <View style={styles.optionsBar}>

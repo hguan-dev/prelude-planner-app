@@ -1,51 +1,37 @@
 import React from "react";
-import Svg, { Defs, RadialGradient, Stop, Circle } from "react-native-svg";
-import { StyleSheet, View } from "react-native";
+import Svg, { Defs, RadialGradient, Stop, Rect } from "react-native-svg";
 
-const RadialGradientCircle = () => {
+const RadialGradientCircle = ({ stop1, stop2 }) => {
   return (
-    <View style={styles.container}>
       <Svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="390"
-        height="615"
-        viewBox="0 0 390 615"
-        fill="none"
+        width="100%"
+        height="100%"
+        preserveAspectRatio="xMinYMin slice"
       >
         <Defs>
           <RadialGradient
-            id="paint0_linear_127_1852"
+            id="custom_grad"
             cx="50%"
             cy="50%"
             r="50%"
             fx="50%"
             fy="50%"
-            gradientUnits="objectBoundingBox"
+            gradientUnits="userSpaceOnUse"
           > 
-            <Stop offset="0%" stopColor="#2a3648" />
-            <Stop offset="100%" stopColor="#372a48" /> 
+            <Stop offset="0%" stopColor={stop1} />
+            <Stop offset="100%" stopColor={stop2} /> 
           </RadialGradient>
         </Defs>
-        <Circle
-          cx="207.5"
-          cy="307.5"
-          r="175"
-          fill="url(#paint0_linear_127_1852)"
-        />
+        <Rect
+        x="0"
+        y="0"
+        width="100%"
+        height="100%"
+        fill="url(#custom_grad)"
+      />
+
       </Svg>
-    </View>
   );
 };
-
-
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
 
 export default RadialGradientCircle;

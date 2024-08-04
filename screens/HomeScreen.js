@@ -12,7 +12,7 @@ import BottomNav from "../components/BottomNav";
 import OpenedEventPopup from "../components/OpenedEventPopup";
 import FilterIcon from "../assets/icons/FilterIcon";
 import { Color, FontFamily, FontSize, Padding } from "../GlobalStyles";
-import NewBackgroundGradient from "../assets/images/NewBackgroundGradient";
+import BackgroundGradient from "../assets/images/BackgroundGradient";
 
 const HomeScreen = () => {
   // used for the opened event popup
@@ -139,7 +139,7 @@ const HomeScreen = () => {
           </View>
           <View style={styles.eventList}>
             <View style={styles.radialBackground}>
-              <NewBackgroundGradient stop1="#2a3648" stop2="#372a48"/>
+              <BackgroundGradient stop1="#2a3648" stop2="#372a48"/>
             </View>
             {groupedByDate && Object.entries(groupedByDate).map(([date, objs]) => (
               <React.Fragment key={date}>
