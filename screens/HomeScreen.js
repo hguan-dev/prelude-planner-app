@@ -119,12 +119,20 @@ function groupByDate(events) {
   return groupedByDate;
 }
 
+// filter events by type
+function filter(events, filters) {
+  if (filters.length === 0) {
+    return events;
+  }
+  return events.filter((event) => filters.includes(event.type));
+}
+
 const HomeScreen = () => {
   const [events, setEvents] = useState([]);
   const [openedEventId, setOpenedEventId] = useState(null);
 
   const [filterVisible, setFilterVisible] = useState(false);
-  const [filter, setFilter] = useState([]);
+  const [filters, setFilters] = useState([]);
 
   useEffect(() => {
     async function getEvents() {
@@ -139,6 +147,8 @@ const HomeScreen = () => {
     getEvents();
   }, []);
 
+  const filteredAndGroupedEvents = groupByDate(filter(events, filters));
+
   const DefaultHomeView = () => {
     return (
       <View style={styles.home}>
@@ -152,8 +162,8 @@ const HomeScreen = () => {
         <FilterModal
           visible={filterVisible}
           onClose={() => setFilterVisible(false)}
-          activeFilters={filter}
-          onChange={setFilter}
+          activeFilters={filters}
+          onChange={setFilters}
         />
         <View style={styles.visibleScrollView}>
           <ScrollView contentContainerStyle={styles.content}>
@@ -161,21 +171,23 @@ const HomeScreen = () => {
               <View style={styles.radialBackground}>
                 <NewBackgroundGradient stop1="#2a3648" stop2="#372a48" />
               </View>
-              {events &&
-                Object.entries(groupByDate(events)).map(([date, events]) => (
-                  <React.Fragment key={date}>
-                    <Text key={date} style={styles.date}>
-                      {date}
-                    </Text>
-                    {events.map((event) => (
-                      <EventItem
-                        key={event.id}
-                        onPress={() => setOpenedEventId(event.id)}
-                        event={event}
-                      />
-                    ))}
-                  </React.Fragment>
-                ))}
+              {filteredAndGroupedEvents &&
+                Object.entries(filteredAndGroupedEvents).map(
+                  ([date, events]) => (
+                    <React.Fragment key={date}>
+                      <Text key={date} style={styles.date}>
+                        {date}
+                      </Text>
+                      {events.map((event) => (
+                        <EventItem
+                          key={event.id}
+                          onPress={() => setOpenedEventId(event.id)}
+                          event={event}
+                        />
+                      ))}
+                    </React.Fragment>
+                  )
+                )}
             </View>
           </ScrollView>
         </View>
