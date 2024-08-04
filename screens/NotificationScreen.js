@@ -20,7 +20,7 @@ const NotificationScreen = () => {
   const navigation = useNavigation();
   
   return (
-    <View style={[styles.notificationScreen, styles.listShadowBox]}>
+    <View style={styles.notificationScreen}>
       
       <View style={styles.headerContainer}>
         <Text style={styles.title}>Notifications</Text>
@@ -102,14 +102,9 @@ const styles = StyleSheet.create({
     },
   },
   notificationScreen: {
-    shadowColor: "rgba(0, 0, 0, 0.2)",
-    shadowRadius: 80,
-    elevation: 80,
     backgroundColor: "#211134",
-    flex: 1,
-    width: "100%",
     height: "100%",
-    overflow: "hidden",
+    width: "100%",
   },
 });
 
