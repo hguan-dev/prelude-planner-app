@@ -3,6 +3,7 @@ import { Image } from "expo-image";
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import NotificationItem from "../components/NotificationItem";
+import CrossIcon from "../assets/icons/CrossIcon";
 import { FontFamily, Color } from "../GlobalStyles";
 
 // Create an array to hold notification data
@@ -24,18 +25,14 @@ const NotificationScreen = () => {
       
       <View style={styles.headerContainer}>
         <Text style={styles.title}>Notifications</Text>
-        <View style = {styles.IconContainer}>
+        <View style={styles.IconContainer}>
           <Image
             style={styles.addIcon}
             contentFit="cover"
             source={require("../assets/images/add.png")}
           />
           <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
-              <Image
-              style={styles.crossIcon}
-              contentFit="cover"
-              source={require("../assets/images/cross.png")}
-              />
+            <CrossIcon size={18} />
           </TouchableOpacity>
         </View>
       </View>
@@ -69,19 +66,15 @@ const styles = StyleSheet.create({
     color: Color.labelColorDarkPrimary,
   },
   IconContainer: {
-    marginTop: 8,
+    marginTop: 0,
     display: "flex",
     flexDirection: "row",
+    alignItems: "center",
   },
   addIcon: {
     width: 26,
     height: 26,
     marginRight: 10,
-  },
-  crossIcon: {
-    marginTop: 4,
-    width: 18,
-    height: 18,
   },
   listContainer: {
     // borderColor: "rgba(255, 255, 255, 1)",
