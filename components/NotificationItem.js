@@ -12,11 +12,11 @@ const NotificationItem = ({ desc }) => {
     >
       <View style={styles.contentContainer}>
         <View style={styles.headerContainer}>
-            <View style={styles.leftHeaderContainer}>
-              <View style={styles.greenBox} />
-              <Text style={styles.subject}>Subject</Text>
-            </View>
-            <Text style={styles.senderXmAgo}>Sender, Xm ago</Text>
+          <View style={styles.leftHeaderContainer}>
+            <View style={styles.greenBox} />
+            <Text style={styles.subject}>Subject</Text>
+          </View>
+          <Text style={styles.senderXmAgo}>Sender, Xm ago</Text>
         </View>
         <Text style={styles.description}>{desc}</Text>
       </View>
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   },
   greenBox: {
     borderRadius: Border.br_9xs,
-    backgroundColor: Color.colorLime,
+    backgroundColor: Color.lime,
     width: 18,
     height: 18,
     marginRight: 10,

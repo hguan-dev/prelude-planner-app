@@ -17,20 +17,23 @@ export const FontSize = {
 };
 /* Colors */
 export const Color = {
-  colorGray_100: "rgba(0, 0, 0, 0.2)",
+  gray_100: "rgba(0, 0, 0, 0.2)",
   labelColorDarkPrimary: "#fff",
   defaultSystemGreenLight: "#34c759",
   labelColorDarkSecondary: "rgba(235, 235, 245, 0.6)",
-  colorFirebrick: "#c73434",
-  colorLightskyblue: "#72ccff",
+  firebrick: "#c73434",
+  lightSkyBlue: "#72ccff",
   defaultSystemBlueDark: "#0a84ff",
   labelColorDarkPrimary: "#fff",
-  colorLime: "#00fa0a",
-  colorRed: "#fa0000",
-  colorWhite: "#fff",
+  lime: "#00fa0a",
+  red: "#fa0000",
+  white: "#fff",
+  lightPurple: "#a276ff",
   darkPurple: "#211134",
-  colorOrangered: "#cc0101",
+  redOrange: "#cc0101",
   defaultSystemBlueDark: "#0a84ff",
+  lightGreen: "#a3fd83",
+  lightPink: "#ed8efd",
 };
 /* Paddings */
 export const Padding = {
@@ -51,3 +54,11 @@ export const Border = {
   br_9xs: 4,
   br_5xs: 5,
 };
+
+export const EventColor = Object.freeze({
+  lesson: Color.lightSkyBlue,
+  masterclass: Color.lightPurple,
+  recital: Color.lightGreen,
+  "studio class": Color.lightPink,
+  misc: Color.white,
+});

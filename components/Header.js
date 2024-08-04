@@ -3,7 +3,7 @@ import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import BellIcon from "../assets/icons/BellIcon";
 import ChatIcon from "../assets/icons/ChatIcon";
-import { FontSize, FontFamily, Color, Padding } from "../GlobalStyles";
+import { FontSize, FontFamily } from "../GlobalStyles";
 
 const Header = () => {
   const navigation = useNavigation();

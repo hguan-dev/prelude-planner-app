@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { StyleSheet, View, Text, ScrollView } from "react-native";
 import Header from "../components/Header";
 import EventItem from "../components/EventItem";
@@ -9,154 +9,156 @@ import FilterIcon from "../assets/icons/FilterIcon";
 import { Color, FontFamily, FontSize, Padding } from "../GlobalStyles";
 import NewBackgroundGradient from "../assets/images/NewBackgroundGradient";
 
-const HomeScreen = () => {
-  // used for the opened event popup
-  const [shownEventItem, setShowOpenedEventPopup] = useState(null);
-  const [isPopupVisible, setPopupVisible] = useState(false);
+async function fetchData() {
+  // placeholder data
+  return Promise.resolve([
+    {
+      id: 1,
+      title: "Prof. X Lesson",
+      time: "5:00 pm - 6:00 pm",
+      location: "Room 101",
+      creator: "Prof. X",
+      participants: "Student A",
+      description: "This is a lesson with Prof. X",
+      confirmation: "Confirmed",
+      type: "lesson",
+      date: new Date(),
+    },
+    {
+      id: 2,
+      title: "Student Recital",
+      time: "5:00 pm - 6:00 pm",
+      location: "Room 101",
+      creator: "Student A",
+      participants: "Student A",
+      description: "This is a recital with Student A",
+      confirmation: "Confirmed",
+      type: "recital",
+      date: new Date(),
+    },
+    {
+      id: 3,
+      title: "Prof. X Lesson",
+      time: "5:00 pm - 6:00 pm",
+      location: "Room 101",
+      creator: "Prof. X",
+      participants: "Student A",
+      description: "This is a lesson with Prof. X",
+      confirmation: "Confirmed",
+      type: "lesson",
+      date: new Date("2024-09-24"),
+    },
+    {
+      id: 5,
+      title: "Masterclass",
+      time: "5:00 pm - 6:00 pm",
+      location: "Room 101",
+      creator: "Visiting Lecturer",
+      participants: "Student A",
+      description: "This is a masterclass with Visiting Lecturer",
+      confirmation: "Unconfirmed",
+      type: "masterclass",
+      date: new Date("2023-03-23"),
+    },
+    {
+      id: 4,
+      title: "Studio Class",
+      time: "5:00 pm - 6:20 pm",
+      location: "Room 101",
+      creator: "Trombone Studio",
+      participants: "Student A",
+      description: "This is a studio class with Trombone Studio",
+      confirmation: "Confirmed",
+      type: "studio class",
+      date: new Date("2024-09-24"),
+    },
+    {
+      id: 6,
+      title: "Studio Class",
+      time: "5:00 pm - 6:20 pm",
+      location: "Room 101",
+      creator: "Trombone Studio",
+      participants: "Student A",
+      description: "This is a studio class with Trombone Studio",
+      confirmation: "Confirmed",
+      type: "studio class",
+      date: new Date("2024-09-24"),
+    },
+    {
+      id: 7,
+      title: "Studio Class",
+      time: "5:00 pm - 6:20 pm",
+      location: "Room 101",
+      creator: "Trombone Studio",
+      participants: "Student A",
+      description: "This is a studio class with Trombone Studio",
+      confirmation: "Confirmed",
+      type: "studio class",
+      date: new Date("2024-09-24"),
+    },
+  ]);
+}
 
-  // probably will be used later
-  const [loading, setLoading] = useState(true);
-  const [events, setEvents] = useState([]);
-  const [groupedByDate, setGroupedByDate] = useState({});
-
-  React.useEffect(() => {
-    setLoading(true);
-
-    //placeholder data
-    let data = [
-      {
-        id: 1,
-        title: "Prof. X Lesson",
-        time: "5:00 pm - 6:00 pm",
-        location: "Room 101",
-        creator: "Prof. X",
-        participants: "Student A",
-        description: "This is a lesson with Prof. X",
-        confirmation: "Confirmed",
-        date: new Date(),
-      },
-      {
-        id: 2,
-        title: "Student Recital",
-        time: "5:00 pm - 6:00 pm",
-        location: "Room 101",
-        creator: "Student A",
-        participants: "Student A",
-        description: "This is a recital with Student A",
-        confirmation: "Confirmed",
-        date: new Date(),
-      },
-      {
-        id: 3,
-        title: "Prof. X Lesson",
-        time: "5:00 pm - 6:00 pm",
-        location: "Room 101",
-        creator: "Prof. X",
-        participants: "Student A",
-        description: "This is a lesson with Prof. X",
-        confirmation: "Confirmed",
-        date: new Date("2024-09-24"),
-      },
-      {
-        id: 5,
-        title: "Masterclass",
-        time: "5:00 pm - 6:00 pm",
-        location: "Room 101",
-        creator: "Visiting Lecturer",
-        participants: "Student A",
-        description: "This is a masterclass with Visiting Lecturer",
-        confirmation: "Unconfirmed",
-        date: new Date("2023-03-23"),
-      },
-      {
-        id: 4,
-        title: "Studio Class",
-        time: "5:00 pm - 6:20 pm",
-        location: "Room 101",
-        creator: "Trombone Studio",
-        participants: "Student A",
-        description: "This is a studio class with Trombone Studio",
-        confirmation: "Confirmed",
-        date: new Date("2024-09-24"),
-      },
-      {
-        id: 6,
-        title: "Studio Class",
-        time: "5:00 pm - 6:20 pm",
-        location: "Room 101",
-        creator: "Trombone Studio",
-        participants: "Student A",
-        description: "This is a studio class with Trombone Studio",
-        confirmation: "Confirmed",
-        date: new Date("2024-09-24"),
-      },
-      {
-        id: 7,
-        title: "Studio Class",
-        time: "5:00 pm - 6:20 pm",
-        location: "Room 101",
-        creator: "Trombone Studio",
-        participants: "Student A",
-        description: "This is a studio class with Trombone Studio",
-        confirmation: "Confirmed",
-        date: new Date("2024-09-24"),
-      },
-    ];
-    //fetch then
-    //sort data by date
-    data = data.sort((a, b) => a.date - b.date);
-    let sorted = {};
-    data.forEach((e) => {
-      const date = e.date.toLocaleDateString(undefined, {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      });
-      if (!sorted[date]) {
-        sorted[date] = [];
-      }
-      sorted[date].push(e);
+// group events by date
+function groupByDate(events) {
+  const sorted = [...events].sort((a, b) => a.date - b.date);
+  const getEventDate = (event) => {
+    return event.date.toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
+  };
+  const groupedByDate = sorted.reduce((dates, event) => {
+    const date = getEventDate(event);
+    (dates[date] = dates[date] || []).push(event);
+    return dates;
+  }, {});
+  return groupedByDate;
+}
 
-    setEvents(data);
-    setGroupedByDate(sorted);
-    setLoading(false);
+const HomeScreen = () => {
+  const [events, setEvents] = useState([]);
+  const [openedEventId, setOpenedEventId] = useState(null);
+
+  useEffect(() => {
+    async function getEvents() {
+      try {
+        // mock api call
+        const data = await fetchData();
+        setEvents(data);
+      } catch {
+        console.log("failed to get events");
+      }
+    }
+    getEvents();
   }, []);
 
   const DefaultHomeView = () => {
     return (
       <View style={styles.home}>
         <Header />
+        <View style={styles.filterIconContainer}>
+          <Text style={styles.upcomingEvents}>Upcoming Events</Text>
+          <FilterIcon size={28} style={styles.filterIcon} />
+        </View>
         <View style={styles.visibleScrollView}>
           <ScrollView contentContainerStyle={styles.content}>
-            <View style={styles.filterIconContainer}>
-              <Text style={styles.upcomingEvents}>Upcoming Events</Text>
-              <FilterIcon size={28} style={styles.filterIcon} />
-            </View>
             <View style={styles.eventList}>
               <View style={styles.radialBackground}>
                 <NewBackgroundGradient stop1="#2a3648" stop2="#372a48" />
               </View>
-              {groupedByDate &&
-                Object.entries(groupedByDate).map(([date, objs]) => (
+              {events &&
+                Object.entries(groupByDate(events)).map(([date, events]) => (
                   <React.Fragment key={date}>
                     <Text key={date} style={styles.date}>
                       {date}
                     </Text>
-                    {objs.map((event) => (
+                    {events.map((event) => (
                       <EventItem
                         key={event.id}
-                        onPress={() => {
-                          setShowOpenedEventPopup(event);
-                          setPopupVisible(true);
-                        }}
-                        title={event.title}
-                        time={event.time}
-                        location={event.location}
-                        creator={event.creator}
-                        participants={event.participants}
-                        description={event.description}
-                        confirmation={event.confirmation}
+                        onPress={() => setOpenedEventId(event.id)}
+                        event={event}
                       />
                     ))}
                   </React.Fragment>
@@ -171,20 +173,16 @@ const HomeScreen = () => {
     );
   };
 
-  const PopupView = () => {
+  const OpenedEventPopupView = () => {
     return (
-      <>
-        {shownEventItem && (
-          <OpenedEventPopup
-            setPopupVisible={() => setPopupVisible(false)}
-            event={shownEventItem}
-          />
-        )}
-      </>
+      <OpenedEventPopup
+        onClose={() => setOpenedEventId(null)}
+        event={events.find((event) => event.id === openedEventId)}
+      />
     );
   };
 
-  return <>{!isPopupVisible ? <DefaultHomeView /> : <PopupView />}</>;
+  return <>{!openedEventId ? <DefaultHomeView /> : <OpenedEventPopupView />}</>;
 };
 
 const styles = StyleSheet.create({
