@@ -53,6 +53,7 @@ export const Padding = {
   headerTop: 40,
   navIcon: 30,
   headerText: 30,
+  pageHeaderTop: 55,
 };
 
 /* gaps */

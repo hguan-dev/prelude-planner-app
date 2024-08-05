@@ -103,8 +103,9 @@ const OpenedEventPopup = ({ onClose, event }) => {
 
 const styles = StyleSheet.create({
   openedEventFullScreenPopup: {
-    width: "100%",
+    flex: 1,
     height: "100%",
+    width: "100%",
   },
   backgroundContainer: {
     position: "absolute",
@@ -112,8 +113,8 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   contentContainer: {
-    marginLeft: 20,
-    marginRight: 20,
+    paddingHorizontal: Padding.headerText,
+    marginTop: Padding.pageHeaderTop,
   },
   titleFont: {
     fontSize: FontSize.size_11xl,
@@ -127,7 +128,6 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.alata,
     color: Color.labelColorDarkPrimary,
   },
-
   labelRow: {
     display: "flex",
     flexDirection: "row",
@@ -140,6 +140,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: Gap.headerIcon,
+  },
+  optionsBar: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    // PaddingTop: Padding.headerTop,
+    // backgroundColor: Color.darkPurple,
   },
   menuPopup: {
     position: "absolute",
@@ -169,13 +177,6 @@ const styles = StyleSheet.create({
     zIndex: 1,
     width: 15,
     height: 15,
-  },
-  optionsBar: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginTop: "15%",
   },
 });
 
