@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { Color, FontFamily, FontSize, Border, Padding } from "../GlobalStyles";
+import { Color, FontFamily, FontSize, Border, Padding, IconSize } from "../GlobalStyles";
 
 const NotificationItem = ({ desc }) => {
   return (
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 10,
+    marginBottom: Padding.default,
   },
   leftHeaderContainer: {
     display: "flex",
@@ -39,9 +39,9 @@ const styles = StyleSheet.create({
   greenBox: {
     borderRadius: Border.tinyRadius,
     backgroundColor: Color.green,
-    width: 18,
-    height: 18,
-    marginRight: 10,
+    width: IconSize.iconSmall,
+    height: IconSize.iconSmall,
+    marginRight: Padding.default,
   },
   subject: {
     color: Color.white,
@@ -62,13 +62,13 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: Padding.default,
+    marginBottom: Padding.default,
   },
   notificationItem: {
-    marginBottom: 20,
+    marginBottom: Padding.larger,
     borderRadius: Border.defaultRadius,
-    paddingVertical: Padding.p_xs,
+    paddingVertical: Padding.default,
     alignItems: "center",
     width: "100%",
   },

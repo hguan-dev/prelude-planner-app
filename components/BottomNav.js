@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     margin: Gap.navIcon,
   },
   plusIcon: {
-    marginLeft: 6,
+    marginLeft: 6, // hard coded cuz svg off center
   },
   plusIconContainer: {
     position: 'absolute',

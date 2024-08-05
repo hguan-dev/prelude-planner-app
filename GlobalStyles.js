@@ -47,12 +47,7 @@ export const Color = {
 };
 /* Paddings (and margins ig) */
 export const Padding = {
-  p_3xl: 22,
-  p_sm: 14,
   p_base: 16,
-  p_2xs: 11,
-  p_9xs: 4,
-  p_8xs: 5,
   p_5xs: 8,
   p_xs: 12,
 
@@ -62,7 +57,8 @@ export const Padding = {
   headerText: 30, // horizontal padding for header text
   pageHeaderTop: 55,  // distance from top of page
 
-  content: 10,
+  larger: 15,
+  default: 10,
 };
 
 /* gaps */

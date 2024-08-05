@@ -120,10 +120,10 @@ const styles = StyleSheet.create({
     fontSize: FontSize.header,
     fontFamily: FontFamily.alata,
     color: Color.white,
-    marginBottom: Padding.p_sm,
+    marginBottom: Padding.default,
   },
   labelFont: {
-    marginLeft: Padding.p_2xs,
+    marginLeft: Padding.default,
     fontSize: FontSize.medium,
     fontFamily: FontFamily.alata,
     color: Color.white,
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 10,
+    marginTop: Padding.default,
     width: "75%",
   },
   optionButtons: {
