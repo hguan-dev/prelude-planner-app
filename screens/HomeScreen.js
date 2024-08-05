@@ -168,7 +168,7 @@ const DefaultHomeView = ({
         <ScrollView contentContainerStyle={styles.content}>
           <View style={styles.eventList}>
             <View style={styles.radialBackground}>
-              <BackgroundGradient stop1="#36437d" stop2="#372a48" />
+              <BackgroundGradient stop1={Color.niceBlue} stop2={Color.purplyBlue}/>
             </View>
             {!isEmpty(events) ? (
               Object.entries(events).map(([date, events]) => (
@@ -264,9 +264,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   upcomingEvents: {
-    fontSize: FontSize.size_3xl,
+    fontSize: FontSize.subheader,
     fontFamily: FontFamily.alataRegular,
-    color: Color.labelColorDarkPrimary,
+    color: Color.white,
   },
   eventList: {
     alignItems: "center",
@@ -276,17 +276,17 @@ const styles = StyleSheet.create({
     marginHorizontal: Padding.p_base,
   },
   date: {
-    fontSize: FontSize.size_xl,
+    fontSize: FontSize.header3,
     fontFamily: FontFamily.alataRegular,
-    color: Color.labelColorDarkPrimary,
+    color: Color.white,
     textAlign: "center",
     marginVertical: Padding.p_5xs,
     width: "100%",
   },
   noEventsText: {
-    fontSize: FontSize.size_xl,
+    fontSize: FontSize.header3,
     fontFamily: FontFamily.alataRegular,
-    color: Color.labelColorDarkPrimary,
+    color: Color.white,
     textAlign: "center",
     marginVertical: Padding.p_5xs,
     width: "100%",

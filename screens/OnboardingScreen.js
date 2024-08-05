@@ -2,7 +2,7 @@ import * as React from "react";
 import { Image } from "expo-image";
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from "react-native";
 import { useNavigation } from '@react-navigation/native';
-import { FontFamily, Color } from "../GlobalStyles";
+import { FontFamily, Color, FontSize } from "../GlobalStyles";
 import { BlurView } from 'expo-blur';
 
 const OnboardingScreen = () => {
@@ -82,24 +82,24 @@ const styles = StyleSheet.create({
         letterSpacing: 0,
     },
     instrumentalStudioOrganizati: {
-        fontSize: 20,
+        fontSize: FontSize.large,
         lineHeight: 25,
-        color: Color.labelColorDarkPrimary,
+        color: Color.white,
     },
     youGotThe: {
-        fontSize: 12,
+        fontSize: FontSize.small,
         lineHeight: 16,
-        color: Color.labelColorDarkSecondary,
+        color: Color.opacityGray,
         marginTop: 5.4,
     },
     logIn: {
-        fontSize: 15,
+        fontSize: FontSize.small,
         lineHeight: 20,
         width: 115,
         height: 20,
         textAlign: "center",
         letterSpacing: 0,
-        color: Color.labelColorDarkPrimary,
+        color: Color.white,
         fontFamily: FontFamily.alataRegular,
     },
     button: {
@@ -123,11 +123,11 @@ const styles = StyleSheet.create({
     },
     title: {
         top: 77,
-        fontSize: 37,
+        fontSize: FontSize.huge,
         textAlign: "left",
         width: 299,
         height: 150,
-        color: Color.labelColorDarkPrimary,
+        color: Color.white,
         fontFamily: FontFamily.alataRegular,
         left: 42,
         position: "absolute",

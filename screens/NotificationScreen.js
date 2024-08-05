@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import NotificationItem from "../components/NotificationItem";
 import AddIcon from "../assets/icons/AddIcon";
 import CrossIcon from "../assets/icons/CrossIcon";
-import { FontFamily, Color } from "../GlobalStyles";
+import { FontFamily, Color, IconSize, Padding, Gap, FontSize} from "../GlobalStyles";
 
 // Create an array to hold notification data
 const notifications = [
@@ -27,9 +27,9 @@ const NotificationScreen = () => {
       <View style={styles.headerContainer}>
         <Text style={styles.title}>Notifications</Text>
         <View style={styles.IconContainer}>
-          <AddIcon size = {26} />
+          <AddIcon size = {IconSize.iconDefault} />
           <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
-            <CrossIcon size={18} />
+            <CrossIcon size={IconSize.iconSmall} />
           </TouchableOpacity>
         </View>
       </View>
@@ -58,19 +58,17 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   title: {
-    fontSize: 28,
+    fontSize: FontSize.header,
     fontFamily: FontFamily.alataRegular,
-    color: Color.labelColorDarkPrimary,
+    color: Color.white,
   },
   IconContainer: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    gap: 10,
+    gap: Gap.headerIcon,
   },
   listContainer: {
-    // borderColor: "rgba(255, 255, 255, 1)",
-    // borderWidth: 10,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -87,7 +85,7 @@ const styles = StyleSheet.create({
     },
   },
   notificationScreen: {
-    backgroundColor: "#211134",
+    backgroundColor: Color.darkPurple,
     height: "100%",
     width: "100%",
   },
