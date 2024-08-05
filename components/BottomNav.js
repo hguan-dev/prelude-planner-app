@@ -1,8 +1,8 @@
 import * as React from "react";
 import { StyleSheet, View } from "react-native";
-import HomeIcon from "../assets/icons/HomeIcon"; 
+import HomeIcon from "../assets/icons/HomeIcon";
 import CalendarIcon from "../assets/icons/CalendarIcon";
-import SearchIcon from "../assets/icons/SearchIcon"; 
+import SearchIcon from "../assets/icons/SearchIcon";
 import ProfileIcon from "../assets/icons/ProfileIcon";
 import PlusIcon from "../assets/icons/PlusIcon";
 import { Color, Border, Padding, Gap, IconSize} from "../GlobalStyles";
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     backgroundColor: Color.darkPurple,
     justifyContent: 'center',
     alignItems: 'center',
-    borderColor: Color.lightPurple,
+    borderColor: Color.mediumPurple,
     borderWidth: Border.defaultWidth,
   },
   iconContainer: {

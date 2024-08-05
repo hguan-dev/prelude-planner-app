@@ -12,7 +12,7 @@ import GroupIcon from "../assets/icons/GroupIcon";
 import LocationIcon from "../assets/icons/LocationIcon";
 import UserIcon from "../assets/icons/UserIcon";
 
-const OpenedEventPopup = ({ setPopupVisible, event }) => {
+const OpenedEventPopup = ({ onClose, event }) => {
   const [isMenuVisible, setMenuVisible] = useState(false);
 
   const MenuPopup = () => {
@@ -25,28 +25,28 @@ const OpenedEventPopup = ({ setPopupVisible, event }) => {
         />
         <View style={styles.menuPopupOptions}>
           <View style={styles.editRow}>
-              <TouchableOpacity
-                onPress={() => {
-                  console.log("edit pressed");
-                }}
-              >
-                <Text style={styles.labelFont}>Edit</Text>
-              </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                console.log("edit pressed");
+              }}
+            >
+              <Text style={styles.labelFont}>Edit</Text>
+            </TouchableOpacity>
           </View>
           <View
             style={{
-              borderBottomColor: Color.colorWhite,
+              borderBottomColor: Color.white,
               borderBottomWidth: 1,
             }}
           />
           <View style={styles.deleteRow}>
-              <TouchableOpacity
-                onPress={() => {
-                  console.log("delete pressed");
-                }}
-              >
-                <Text style={styles.labelFont}>Delete</Text>
-              </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                console.log("delete pressed");
+              }}
+            >
+              <Text style={styles.labelFont}>Delete</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -70,7 +70,7 @@ const OpenedEventPopup = ({ setPopupVisible, event }) => {
             >
               <MeatBallIcon size={28}/>
             </TouchableOpacity>
-            <TouchableOpacity onPress={setPopupVisible}>
+            <TouchableOpacity onPress={onClose}>
               <CrossIcon size={18}/>
             </TouchableOpacity>
           </View>
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     width: 120,
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: Color.colorWhite,
+    borderColor: Color.white,
   },
   deleteRow: {
     backgroundColor: "red",
@@ -170,13 +170,13 @@ const styles = StyleSheet.create({
     width: 15,
     height: 15,
   },
-    optionsBar: {
+  optionsBar: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     marginTop: "15%",
-    },
+  },
 });
 
 export default OpenedEventPopup;

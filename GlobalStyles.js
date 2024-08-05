@@ -26,12 +26,18 @@ export const IconSize = {
 export const Color = {
   labelColorDarkPrimary: "#fff",
   labelColorDarkSecondary: "rgba(235, 235, 245, 0.6)",
-  colorFirebrick: "#c73434",
-  colorLime: "#00fa0a",
-  colorRed: "#fa0000",
-  colorWhite: "#fff",
+  lightSkyBlue: "#72ccff",
+  labelColorDarkPrimary: "#fff",
+  lime: "#00fa0a",
+  red: "#fa0000",
+  white: "#fff",
+  black: "#000",
+  lightPurple: "#a276ff",
+  mediumPurple: "#27153D",
   darkPurple: "#211134",
-  lightPurple: "#27153D",
+  redOrange: "#cc0101",
+  lightGreen: "#a3fd83",
+  lightPink: "#ed8efd",
 };
 /* Paddings */
 export const Padding = {
@@ -68,3 +74,10 @@ export const Border = {
   defaultWidth: 2,
 };
 
+export const EventColor = Object.freeze({
+  lesson: Color.lightSkyBlue,
+  masterclass: Color.lightPurple,
+  recital: Color.lightGreen,
+  "studio class": Color.lightPink,
+  misc: Color.white,
+});
