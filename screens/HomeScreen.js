@@ -127,6 +127,15 @@ function filter(events, filters) {
   return events.filter((event) => filters.includes(event.type));
 }
 
+function isEmpty(obj) {
+  for (const prop in obj) {
+    if (Object.hasOwn(obj, prop)) {
+      return false;
+    }
+  }
+  return true;
+}
+
 const DefaultHomeView = ({
   events,
   setOpenedEventId,
@@ -156,7 +165,7 @@ const DefaultHomeView = ({
             <View style={styles.radialBackground}>
               <NewBackgroundGradient stop1="#2a3648" stop2="#372a48" />
             </View>
-            {events &&
+            {!isEmpty(events) ? (
               Object.entries(events).map(([date, events]) => (
                 <React.Fragment key={date}>
                   <Text key={date} style={styles.date}>
@@ -170,7 +179,10 @@ const DefaultHomeView = ({
                     />
                   ))}
                 </React.Fragment>
-              ))}
+              ))
+            ) : (
+              <Text style={styles.noEventsText}>No events at this time.</Text>
+            )}
           </View>
         </ScrollView>
       </View>
@@ -260,6 +272,14 @@ const styles = StyleSheet.create({
     marginHorizontal: Padding.p_base,
   },
   date: {
+    fontSize: FontSize.size_xl,
+    fontFamily: FontFamily.alataRegular,
+    color: Color.labelColorDarkPrimary,
+    textAlign: "center",
+    marginVertical: Padding.p_5xs,
+    width: "100%",
+  },
+  noEventsText: {
     fontSize: FontSize.size_xl,
     fontFamily: FontFamily.alataRegular,
     color: Color.labelColorDarkPrimary,
