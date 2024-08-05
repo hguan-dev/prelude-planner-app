@@ -2,8 +2,15 @@ import * as React from "react";
 import { useState } from "react";
 import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
-import { FontSize, Color, FontFamily, Padding } from "../GlobalStyles";
+import { FontSize, Color, FontFamily, Padding, Gap } from "../GlobalStyles";
 import BackgroundGradient from "../assets/images/BackgroundGradient";
+import TimeIcon from "../assets/icons/TimeIcon";
+import MeatBallIcon from "../assets/icons/MeatBallIcon";
+import CrossIcon from "../assets/icons/CrossIcon";
+import FileIcon from "../assets/icons/FileIcon";
+import GroupIcon from "../assets/icons/GroupIcon";
+import LocationIcon from "../assets/icons/LocationIcon";
+import UserIcon from "../assets/icons/UserIcon";
 
 const OpenedEventPopup = ({ setPopupVisible, event }) => {
   const [isMenuVisible, setMenuVisible] = useState(false);
@@ -61,64 +68,32 @@ const OpenedEventPopup = ({ setPopupVisible, event }) => {
                 setMenuVisible(!isMenuVisible);
               }}
             >
-              <View style={styles.meatballIcon}>
-                <Image
-                  style={styles.miniIcon}
-                  contentFit="cover"
-                  source={require("../assets/images/OpenedEventPopupImages/dot-menu.png")}
-                />
-              </View>
+              <MeatBallIcon size={28}/>
             </TouchableOpacity>
             <TouchableOpacity onPress={setPopupVisible}>
-              <View style={styles.exitIcon}>
-                <Image
-                  style={styles.miniIcon}
-                  contentFit="cover"
-                  source={require("../assets/images/OpenedEventPopupImages/exit-button.png")}
-                />
-              </View>
+              <CrossIcon size={18}/>
             </TouchableOpacity>
           </View>
         </View>
         <View style={styles.labelRow}>
-          <Image
-            style={styles.icon}
-            contentFit="cover"
-            source={require("../assets/images/OpenedEventPopupImages/creator-icon.png")}
-          />
+          <UserIcon size={28}/>
           <Text style={styles.labelFont}>{event.creator}</Text>
         </View>
         <View style={styles.labelRow}>
-          <Image
-            style={styles.icon}
-            contentFit="cover"
-            source={require("../assets/images/OpenedEventPopupImages/participants-icon.png")}
-          />
+          <GroupIcon size={28}/>
           <Text style={styles.labelFont}>{event.participants}</Text>
         </View>
         <View style={styles.labelRow}>
-          <Image
-            style={styles.icon}
-            contentFit="cover"
-            source={require("../assets/images/OpenedEventPopupImages/clock.png")}
-          />
+          <TimeIcon size={28}/>
           <Text style={styles.labelFont}>{event.time}</Text>
         </View>
         <View style={styles.labelRow}>
-          <Image
-            style={styles.icon}
-            contentFit="cover"
-            source={require("../assets/images/OpenedEventPopupImages/location-icon.png")}
-          />
+          <LocationIcon size={28}/>
           <Text style={styles.labelFont}>{event.location}</Text>
         </View>
 
         <View style={styles.labelRow}>
-          <Image
-            style={styles.icon}
-            contentFit="cover"
-            source={require("../assets/images/OpenedEventPopupImages/file-dock.png")}
-          />
+          <FileIcon size={28}/>
           <Text style={styles.labelFont}>{event.description}</Text>
         </View>
       </View>
@@ -152,10 +127,7 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.alata,
     color: Color.labelColorDarkPrimary,
   },
-  icon: {
-    width: 34,
-    height: 34,
-  },
+
   labelRow: {
     display: "flex",
     flexDirection: "row",
@@ -163,17 +135,11 @@ const styles = StyleSheet.create({
     marginTop: 10,
     width: "75%",
   },
-  exitIcon: {},
-  meatballIcon: {
-    marginRight: 10,
-  },
-  miniIcon: {
-    width: 24,
-    height: 24,
-  },
   optionButtons: {
     display: "flex",
     flexDirection: "row",
+    alignItems: "center",
+    gap: Gap.headerIcon,
   },
   menuPopup: {
     position: "absolute",

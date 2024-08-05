@@ -6,7 +6,7 @@ import EventItem from "../components/EventItem";
 import BottomNav from "../components/BottomNav";
 import OpenedEventPopup from "../components/OpenedEventPopup";
 import FilterIcon from "../assets/icons/FilterIcon";
-import { Color, FontFamily, FontSize, Padding } from "../GlobalStyles";
+import { Color, FontFamily, FontSize, Padding, Gap, Border, IconSize } from "../GlobalStyles";
 import BackgroundGradient from "../assets/images/BackgroundGradient";
 
 const HomeScreen = () => {
@@ -131,7 +131,7 @@ const HomeScreen = () => {
           <ScrollView contentContainerStyle={styles.content}>
             <View style={styles.filterIconContainer}>
               <Text style={styles.upcomingEvents}>Upcoming Events</Text>
-              <FilterIcon size={28} style={styles.filterIcon} />
+              <FilterIcon size={IconSize.iconDefault} style={styles.filterIcon} />
             </View>
             <View style={styles.eventList}>
               <View style={styles.radialBackground}>
@@ -190,8 +190,8 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   home: {
     flex: 1,
-    backgroundColor: "#211134",
-    paddingTop: 40,
+    backgroundColor: Color.darkPurple,
+    paddingTop: Padding.headerTop,
   },
   content: {
     paddingBottom: "25%",
@@ -203,8 +203,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: Padding.p_5xs,
     marginBottom: Padding.p_base,
-    paddingHorizontal: 30,
-    width: "100%",
+    paddingHorizontal: Padding.headerText,
   },
   filterIcon: {
     alignItems: "center",
@@ -216,7 +215,7 @@ const styles = StyleSheet.create({
   },
   eventList: {
     alignItems: "center",
-    borderRadius: 20,
+    borderRadius: Border.defaultRadius,
     overflow: "hidden",
     marginTop: 7.5,
     marginHorizontal: Padding.p_base,

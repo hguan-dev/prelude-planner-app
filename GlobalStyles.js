@@ -15,22 +15,23 @@ export const FontSize = {
   size_xs: 12,
   size_mini: 15,
 };
-/* Colors */
+
+export const IconSize = {
+  iconSmall: 18,
+  iconDefault: 28,
+  navPlusIcon: 115,
+};
+
+/* Font Colors and Background colors */
 export const Color = {
-  colorGray_100: "rgba(0, 0, 0, 0.2)",
   labelColorDarkPrimary: "#fff",
-  defaultSystemGreenLight: "#34c759",
   labelColorDarkSecondary: "rgba(235, 235, 245, 0.6)",
   colorFirebrick: "#c73434",
-  colorLightskyblue: "#72ccff",
-  defaultSystemBlueDark: "#0a84ff",
-  labelColorDarkPrimary: "#fff",
   colorLime: "#00fa0a",
   colorRed: "#fa0000",
   colorWhite: "#fff",
   darkPurple: "#211134",
-  colorOrangered: "#cc0101",
-  defaultSystemBlueDark: "#0a84ff",
+  lightPurple: "#27153D",
 };
 /* Paddings */
 export const Padding = {
@@ -42,12 +43,28 @@ export const Padding = {
   p_8xs: 5,
   p_5xs: 8,
   p_xs: 12,
+
+  headerTop: 40,
+  navIcon: 30,
+  headerText: 30,
 };
-/* border radiuses */
+
+/* gaps */
+export const Gap = {
+  headerIcon: 16,
+  navIcon: 30,
+}
+
+/* border radiuses and width */
 export const Border = {
   br_31xl: 50,
   br_3xs: 10,
   br_base: 16,
   br_9xs: 4,
   br_5xs: 5,
+
+  defaultRadius: 20,
+  largeRadius: 50,
+  defaultWidth: 2,
 };
+
