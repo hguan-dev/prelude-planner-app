@@ -1,6 +1,12 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { StyleSheet, View, Text, ScrollView, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 import Header from "../components/Header";
 import EventItem from "../components/EventItem";
 import BottomNav from "../components/BottomNav";
@@ -162,7 +168,7 @@ const DefaultHomeView = ({
         <ScrollView contentContainerStyle={styles.content}>
           <View style={styles.eventList}>
             <View style={styles.radialBackground}>
-              <BackgroundGradient stop1="#2a3648" stop2="#372a48" />
+              <BackgroundGradient stop1="#36437d" stop2="#372a48" />
             </View>
             {!isEmpty(events) ? (
               Object.entries(events).map(([date, events]) => (
