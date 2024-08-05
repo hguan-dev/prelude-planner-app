@@ -1,20 +1,26 @@
 import * as React from "react";
 import { StyleSheet, View } from "react-native";
-import HomeIcon from "../assets/icons/HomeIcon"; 
+import HomeIcon from "../assets/icons/HomeIcon";
 import CalendarIcon from "../assets/icons/CalendarIcon";
-import SearchIcon from "../assets/icons/SearchIcon"; 
+import SearchIcon from "../assets/icons/SearchIcon";
 import ProfileIcon from "../assets/icons/ProfileIcon";
-import { Color, Border, Padding } from "../GlobalStyles";
+import PlusIcon from "../assets/icons/PlusIcon";
+import { Color, Border, Padding, Gap, IconSize} from "../GlobalStyles";
 
 const BottomNav = () => {
   return (
     <View style={styles.tabbar}>
       <View style={styles.iconContainer}>
-        <HomeIcon size={28} style={styles.icon} />
-        <CalendarIcon size={28} style={styles.icon} />
-        <SearchIcon size={28} style={styles.icon} />
-        <ProfileIcon size={28} style={styles.icon} />
+        <HomeIcon size={IconSize.iconDefault} style={styles.icon} />
+        <CalendarIcon size={IconSize.iconDefault} style={styles.icon} />
+        <SearchIcon size={IconSize.iconDefault} style={styles.icon} />
+        <ProfileIcon size={IconSize.iconDefault} style={styles.icon} />
       </View>
+      <View style={styles.plusIconContainer}>
+          <View style={styles.plusIcon}>
+            <PlusIcon size={IconSize.navPlusIcon} />
+          </View>
+        </View>
     </View>
   );
 };
@@ -22,27 +28,30 @@ const BottomNav = () => {
 const styles = StyleSheet.create({
   tabbar: {
     width: '100%',
-    height: 90,
-    borderTopLeftRadius: Border.br_31xl,
-    borderTopRightRadius: Border.br_31xl,
-    backgroundColor: Color.colorGray_100,
-    paddingHorizontal: Padding.p_3xl,
-    paddingVertical: Padding.p_sm,
-    shadowColor: "rgba(41, 39, 130, 0.1)",
-    shadowOffset: { width: 0, height: -5 },
-    shadowRadius: 30,
-    elevation: 30,
-    shadowOpacity: 1,
+    height: "100%",
+    borderTopLeftRadius: Border.largeRadius,
+    borderTopRightRadius: Border.largeRadius,
+    backgroundColor: Color.darkPurple,
     justifyContent: 'center',
     alignItems: 'center',
+    borderColor: Color.mediumPurple,
+    borderWidth: Border.defaultWidth,
   },
   iconContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    width: '100%',
+    width: "100%",
+    margin: Gap.navIcon,
   },
-  icon: {
-    marginHorizontal: 20
+  plusIcon: {
+    marginLeft: 6,
+  },
+  plusIconContainer: {
+    position: 'absolute',
+    width: "100%",
+    justifyContent: 'center',
+    alignItems: 'center',
+    bottom: 45,
   },
 });
 

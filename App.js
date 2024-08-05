@@ -4,6 +4,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import HomeScreen from "./screens/HomeScreen";
 import ProfileScreen from "./screens/ProfileScreen";
+import NotificationScreen from "./screens/NotificationScreen"; 
+import Onboarding from "./screens/OnboardingScreen";
+
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View, Text, Pressable, TouchableOpacity } from "react-native";
@@ -25,6 +28,11 @@ const App = () => {
         {hideSplashScreen ? (
           <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen
+              name="Onboarding"
+              component={Onboarding}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
               name="HomeScreen"
               component={HomeScreen}
               options={{ headerShown: false }}
@@ -34,6 +42,11 @@ const App = () => {
               component={ProfileScreen}
               options={{ headerShown: false }}
             />
+            <Stack.Screen
+            name="NotificationScreen"
+            component={NotificationScreen}
+            options={{ headerShown: false }}
+          />
           </Stack.Navigator>
         ) : null}
       </NavigationContainer>

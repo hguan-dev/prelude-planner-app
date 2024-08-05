@@ -42,5 +42,4 @@ Thumbs.db
 # Turtle
 turtle-build/
 
-.nvmrc
 .watchmanconfig

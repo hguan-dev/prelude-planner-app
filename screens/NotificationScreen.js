@@ -1,11 +1,96 @@
-import * as React from 'react';
+import * as React from "react";
+import { Image } from "expo-image";
+import { StyleSheet, Text, View, FlatList, TouchableOpacity } from "react-native";
+import { useNavigation } from '@react-navigation/native';
+import NotificationItem from "../components/NotificationItem";
+import AddIcon from "../assets/icons/AddIcon";
+import CrossIcon from "../assets/icons/CrossIcon";
+import { FontFamily, Color } from "../GlobalStyles";
+
+// Create an array to hold notification data
+const notifications = [
+  { id: '1', desc: '<description>' },
+  { id: '2', desc: '<description>' },
+  { id: '3', desc: '<description>' },
+  { id: '4', desc: '<description>' },
+  { id: '5', desc: '<description>' },
+  { id: '6', desc: '<descriptionthatisverylongdescriptionthatisveryl...>' },
+  { id: '7', desc: '<descriptionthatisverylongdescriptionthatisveryl...>' }
+];
 
 const NotificationScreen = () => {
-    return (
-        <View>
-            <Text>Notification Screen</Text>
+  const navigation = useNavigation();
+  
+  return (
+    <View style={styles.notificationScreen}>
+      
+      <View style={styles.headerContainer}>
+        <Text style={styles.title}>Notifications</Text>
+        <View style={styles.IconContainer}>
+          <AddIcon size = {26} />
+          <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+            <CrossIcon size={18} />
+          </TouchableOpacity>
         </View>
-    );
+      </View>
+      <View style = {styles.listContainer}>
+        <FlatList
+          style={styles.list}
+          data={notifications} // Pass the notifications array as data
+          renderItem={({ item }) => (
+            <NotificationItem desc={item.desc} /> // Render each notification item
+          )}
+          keyExtractor={item => item.id} // Unique key for each item
+        />
+      </View>
+    </View>
+  );
 };
 
-export default NotificationScreen
+const styles = StyleSheet.create({
+  headerContainer: {
+    marginTop: "15%",
+    marginLeft: 20,
+    marginRight: 20,
+    marginBottom: 20,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  title: {
+    fontSize: 28,
+    fontFamily: FontFamily.alataRegular,
+    color: Color.labelColorDarkPrimary,
+  },
+  IconContainer: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+  },
+  listContainer: {
+    // borderColor: "rgba(255, 255, 255, 1)",
+    // borderWidth: 10,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  list: {
+    shadowColor: "rgba(0, 0, 0, 0.25)",
+    shadowRadius: 4,
+    width: "90%",
+    height: "80%",
+    shadowOpacity: 1,
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+  },
+  notificationScreen: {
+    backgroundColor: "#211134",
+    height: "100%",
+    width: "100%",
+  },
+});
+
+export default NotificationScreen;
