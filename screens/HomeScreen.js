@@ -228,7 +228,7 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   home: {
     flex: 1,
-    backgroundColor: "#211134",
+    backgroundColor: Color.darkPurple,
     paddingTop: 40,
   },
   content: {
