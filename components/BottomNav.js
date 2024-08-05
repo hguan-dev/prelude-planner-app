@@ -1,8 +1,8 @@
 import * as React from "react";
 import { StyleSheet, View } from "react-native";
-import HomeIcon from "../assets/icons/HomeIcon"; 
+import HomeIcon from "../assets/icons/HomeIcon";
 import CalendarIcon from "../assets/icons/CalendarIcon";
-import SearchIcon from "../assets/icons/SearchIcon"; 
+import SearchIcon from "../assets/icons/SearchIcon";
 import ProfileIcon from "../assets/icons/ProfileIcon";
 import PlusIcon from "../assets/icons/PlusIcon";
 
@@ -26,11 +26,11 @@ const BottomNav = () => {
 
 const styles = StyleSheet.create({
   tabbar: {
-    width: '100%',
+    width: "100%",
     height: 90,
     borderTopLeftRadius: Border.br_31xl,
     borderTopRightRadius: Border.br_31xl,
-    // backgroundColor: Color.colorGray_100,
+    // backgroundColor: Color.gray_100,
     backgroundColor: Color.darkPurple,
     paddingHorizontal: Padding.p_3xl,
     paddingVertical: Padding.p_sm,
@@ -39,27 +39,26 @@ const styles = StyleSheet.create({
     shadowRadius: 30,
     elevation: 30,
     shadowOpacity: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     borderColor: "#27153D",
     borderWidth: 1.5,
     //make the area cut off by the border radius transparent
-    
   },
   iconContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    width: '100%',
+    flexDirection: "row",
+    justifyContent: "space-around",
+    width: "100%",
   },
   icon: {
-    marginHorizontal: 20
+    marginHorizontal: 20,
   },
   plusIcon: {
     position: "absolute",
     bottom: 10,
     marginHorizontal: 100,
-    zIndex: 1
-  }
+    zIndex: 1,
+  },
 });
 
 export default BottomNav;
