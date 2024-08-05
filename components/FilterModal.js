@@ -1,5 +1,5 @@
 import { StyleSheet, View, Text, Pressable } from "react-native";
-import { Color, EventColor, FontSize } from "../GlobalStyles";
+import { Color, EventColor, FontFamily, FontSize } from "../GlobalStyles";
 import Checkmark from "../assets/icons/Checkmark";
 
 const filters = ["lesson", "studio class", "recital", "masterclass", "misc"];
@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
   },
   filterText: {
     color: Color.white,
+    fontFamily: FontFamily.alataRegular,
     fontSize: FontSize.filterText,
   },
   sharktooth: {
