@@ -47,10 +47,6 @@ export const Color = {
 };
 /* Paddings (and margins ig) */
 export const Padding = {
-  p_base: 16,
-  p_5xs: 8,
-  p_xs: 12,
-
   headerTop: 40, // only used on main header component
   navIcon: 30, // only used in nav
 
