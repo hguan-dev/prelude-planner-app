@@ -37,26 +37,26 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   greenBox: {
-    borderRadius: Border.br_9xs,
-    backgroundColor: Color.lime,
+    borderRadius: Border.tinyRadius,
+    backgroundColor: Color.green,
     width: 18,
     height: 18,
     marginRight: 10,
   },
   subject: {
-    color: Color.labelColorDarkPrimary,
+    color: Color.white,
     fontFamily: FontFamily.alataRegular,
-    fontSize: FontSize.size_xs,
+    fontSize: FontSize.small,
   },
   senderXmAgo: {
-    color: Color.labelColorDarkPrimary,
+    color: Color.white,
     fontFamily: FontFamily.alataRegular,
-    fontSize: FontSize.size_xs,
+    fontSize: FontSize.small,
   },
   description: {
-    color: Color.labelColorDarkPrimary,
+    color: Color.white,
     fontFamily: FontFamily.alataRegular,
-    fontSize: FontSize.size_xs,
+    fontSize: FontSize.small,
   },
   contentContainer: {
     display: "flex",
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
   notificationItem: {
     marginBottom: 20,
-    borderRadius: Border.br_base,
+    borderRadius: Border.defaultRadius,
     paddingVertical: Padding.p_xs,
     alignItems: "center",
     width: "100%",

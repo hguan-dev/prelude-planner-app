@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   filterText: {
     color: Color.white,
     fontFamily: FontFamily.alataRegular,
-    fontSize: FontSize.filterText,
+    fontSize: FontSize.medium,
   },
   sharktooth: {
     position: "absolute",

@@ -63,21 +63,15 @@ const EventItem = ({
 
 const styles = StyleSheet.create({
   tablerow: {
-    width: "95%",
-    marginBottom: Padding.p_base,
-    //backgroundColor: Color.white,
-    borderRadius: Border.br_sm,
-    shadowColor: "rgba(0, 0, 0, 0.1)",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 4,
-    elevation: 2,
+    width: "100%",
+    paddingHorizontal: Padding.p_base,
+    marginBottom: Padding.p_5xs,
   },
   content: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: Padding.p_5xs,
+    paddingVertical: Padding.p_5xs,
   },
   leftContent: {
     flex: 1,
@@ -93,34 +87,32 @@ const styles = StyleSheet.create({
     letterSpacing: 0,
   },
   title: {
-    fontSize: FontSize.defaultBoldHeadline_size,
+    fontSize: FontSize.medium,
     lineHeight: 22,
-    color: Color.labelColorDarkPrimary,
+    color: Color.white,
     textAlign: "left",
   },
   creator: {
     marginTop: 8,
     lineHeight: 13,
-    fontSize: FontSize.size_smi,
-    color: Color.labelColorDarkSecondary,
+    fontSize: FontSize.small,
+    color: Color.opacityGray,
     textAlign: "left",
   },
   time: {
     lineHeight: 20,
-    fontSize: FontSize.defaultRegularSubheadline_size,
-    color: Color.labelColorDarkPrimary,
+    fontSize: FontSize.medium,
+    color: Color.white,
   },
   confirmation: {
-    color: "#34C759",
+    color: Color.green,
   },
   confirmationUnconfirmed: {
-    color: "#C73434",
+    color: Color.red,
   },
   eventLine: {
     height: 1,
-    marginHorizontal: Padding.p_5xs,
-    borderBottomLeftRadius: Border.br_sm,
-    borderBottomRightRadius: Border.br_sm,
+    // marginHorizontal: Padding.p_5xs,
   },
 });
 

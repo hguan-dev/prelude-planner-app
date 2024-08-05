@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
   tabbar: {
     width: '100%',
     height: "100%",
-    borderTopLeftRadius: Border.largeRadius,
-    borderTopRightRadius: Border.largeRadius,
+    borderTopLeftRadius: Border.hugeRadius,
+    borderTopRightRadius: Border.hugeRadius,
     backgroundColor: Color.darkPurple,
     justifyContent: 'center',
     alignItems: 'center',

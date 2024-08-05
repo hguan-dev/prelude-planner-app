@@ -5,41 +5,47 @@ export const FontFamily = {
 };
 /* font sizes */
 export const FontSize = {
-  size_11xl: 30,
-  size_3xl: 22,
-  size_smi: 13,
-  defaultRegularSubheadline_size: 15,
-  defaultBoldHeadline_size: 17,
-  size_xl: 20,
-  size_9xl: 28,
-  size_xs: 12,
-  size_mini: 15,
+  huge: 37, // onboard page
+
+  header: 28, // page header
+  subheader: 22,
+  large: 19, // sub sub header
+  medium: 16, //normal text
+  small: 13, //desc and such
 };
 
 export const IconSize = {
-  iconSmall: 18,
-  iconDefault: 28,
-  navPlusIcon: 115,
+  navPlusIcon: 115, 
+
+  iconSmall: 18, // for close icon
+  iconDefault: 28, // most icons
 };
 
 /* Font Colors and Background colors */
 export const Color = {
-  labelColorDarkPrimary: "#fff",
-  labelColorDarkSecondary: "rgba(235, 235, 245, 0.6)",
-  lightSkyBlue: "#72ccff",
-  labelColorDarkPrimary: "#fff",
-  lime: "#00fa0a",
-  red: "#fa0000",
   white: "#fff",
   black: "#000",
-  lightPurple: "#a276ff",
-  mediumPurple: "#27153D",
-  darkPurple: "#211134",
-  redOrange: "#cc0101",
+  gray: "#a0a0a0",
+  opacityGray: "rgba(190, 190, 190, 0.7)",
+
+  // background / gradient
+  darkPurple: "#211134", // default background color
+  mediumPurple: "#27153D", // some weird purple
+  strongBlue: "#191079",
+  niceBlue: "#36437d",
+  purplyBlue: "#372a48",
+  //status
+  green: "#34C759",
+  red: "#C73434",
+
+  // event filter colors
   lightGreen: "#a3fd83",
   lightPink: "#ed8efd",
+  lightPurple: "#a276ff",
+  lightSkyBlue: "#72ccff",
+  white: "#fff",
 };
-/* Paddings */
+/* Paddings (and margins ig) */
 export const Padding = {
   p_3xl: 22,
   p_sm: 14,
@@ -50,29 +56,33 @@ export const Padding = {
   p_5xs: 8,
   p_xs: 12,
 
-  headerTop: 40,
-  navIcon: 30,
-  headerText: 30,
-  pageHeaderTop: 55,
+  headerTop: 40, // only used on main header component
+  navIcon: 30, // only used in nav
+
+  headerText: 30, // horizontal padding for header text
+  pageHeaderTop: 55,  // distance from top of page
+
+  content: 10,
 };
 
 /* gaps */
 export const Gap = {
-  headerIcon: 16,
-  navIcon: 30,
+  navIcon: 30, // only used in nav
+
+  headerIcon: 16, // go to gap between icons if in header
 }
 
 /* border radiuses and width */
 export const Border = {
-  br_31xl: 50,
-  br_3xs: 10,
-  br_base: 16,
-  br_9xs: 4,
-  br_5xs: 5,
+  // border radius
+  hugeRadius: 50, // used on nav
+  largeRadius: 20,
+  defaultRadius: 15,
+  smallRadius: 10,
+  tinyRadius: 5,
 
-  defaultRadius: 20,
-  largeRadius: 50,
-  defaultWidth: 2,
+  // border width
+  defaultWidth: 2, 
 };
 
 export const EventColor = Object.freeze({

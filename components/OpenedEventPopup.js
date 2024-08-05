@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState } from "react";
 import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
-import { FontSize, Color, FontFamily, Padding, Gap } from "../GlobalStyles";
+import { FontSize, Color, FontFamily, Padding, Gap, IconSize } from "../GlobalStyles";
 import BackgroundGradient from "../assets/images/BackgroundGradient";
 import TimeIcon from "../assets/icons/TimeIcon";
 import MeatBallIcon from "../assets/icons/MeatBallIcon";
@@ -56,7 +56,7 @@ const OpenedEventPopup = ({ onClose, event }) => {
   return (
     <View style={styles.openedEventFullScreenPopup}>
       <View style={styles.backgroundContainer}>
-        <BackgroundGradient stop1="#191079" stop2="#211134" />
+        <BackgroundGradient stop1={Color.strongBlue} stop2={Color.darkPurple} />
       </View>
       <View style={styles.contentContainer}>
         <View style={styles.optionsBar}>
@@ -68,32 +68,32 @@ const OpenedEventPopup = ({ onClose, event }) => {
                 setMenuVisible(!isMenuVisible);
               }}
             >
-              <MeatBallIcon size={28}/>
+              <MeatBallIcon size={IconSize.iconDefault}/>
             </TouchableOpacity>
             <TouchableOpacity onPress={onClose}>
-              <CrossIcon size={18}/>
+              <CrossIcon size={IconSize.iconSmall}/>
             </TouchableOpacity>
           </View>
         </View>
         <View style={styles.labelRow}>
-          <UserIcon size={28}/>
+          <UserIcon size={IconSize.iconDefault}/>
           <Text style={styles.labelFont}>{event.creator}</Text>
         </View>
         <View style={styles.labelRow}>
-          <GroupIcon size={28}/>
+          <GroupIcon size={IconSize.iconDefault}/>
           <Text style={styles.labelFont}>{event.participants}</Text>
         </View>
         <View style={styles.labelRow}>
-          <TimeIcon size={28}/>
+          <TimeIcon size={IconSize.iconDefault}/>
           <Text style={styles.labelFont}>{event.time}</Text>
         </View>
         <View style={styles.labelRow}>
-          <LocationIcon size={28}/>
+          <LocationIcon size={IconSize.iconDefault}/>
           <Text style={styles.labelFont}>{event.location}</Text>
         </View>
 
         <View style={styles.labelRow}>
-          <FileIcon size={28}/>
+          <FileIcon size={IconSize.iconDefault}/>
           <Text style={styles.labelFont}>{event.description}</Text>
         </View>
       </View>
@@ -117,16 +117,16 @@ const styles = StyleSheet.create({
     marginTop: Padding.pageHeaderTop,
   },
   titleFont: {
-    fontSize: FontSize.size_11xl,
+    fontSize: FontSize.header,
     fontFamily: FontFamily.alata,
-    color: Color.labelColorDarkPrimary,
+    color: Color.white,
     marginBottom: Padding.p_sm,
   },
   labelFont: {
     marginLeft: Padding.p_2xs,
-    fontSize: FontSize.size_mini,
+    fontSize: FontSize.medium,
     fontFamily: FontFamily.alata,
-    color: Color.labelColorDarkPrimary,
+    color: Color.white,
   },
   labelRow: {
     display: "flex",
@@ -146,9 +146,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    // PaddingTop: Padding.headerTop,
-    // backgroundColor: Color.darkPurple,
   },
+  // bad menu popup css
   menuPopup: {
     position: "absolute",
     top: 30,

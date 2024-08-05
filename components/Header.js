@@ -32,9 +32,9 @@ const styles = StyleSheet.create({
     height: 74,
   },
   title: {
-    fontSize: FontSize.size_9xl,
+    fontSize: FontSize.header,
     fontFamily: FontFamily.alataRegular,
-    color: "#FFFFFF",
+    color: Color.white,
   },
   iconsContainer: {
     flexDirection: "row",
