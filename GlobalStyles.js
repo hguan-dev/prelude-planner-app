@@ -14,26 +14,28 @@ export const FontSize = {
   size_9xl: 28,
   size_xs: 12,
   size_mini: 15,
-  filterText: 16,
 };
-/* Colors */
+
+export const IconSize = {
+  iconSmall: 18,
+  iconDefault: 28,
+  navPlusIcon: 115,
+};
+
+/* Font Colors and Background colors */
 export const Color = {
-  gray_100: "rgba(0, 0, 0, 0.2)",
   labelColorDarkPrimary: "#fff",
-  defaultSystemGreenLight: "#34c759",
   labelColorDarkSecondary: "rgba(235, 235, 245, 0.6)",
-  firebrick: "#c73434",
   lightSkyBlue: "#72ccff",
-  defaultSystemBlueDark: "#0a84ff",
   labelColorDarkPrimary: "#fff",
   lime: "#00fa0a",
   red: "#fa0000",
   white: "#fff",
   black: "#000",
   lightPurple: "#a276ff",
+  mediumPurple: "#27153D",
   darkPurple: "#211134",
   redOrange: "#cc0101",
-  defaultSystemBlueDark: "#0a84ff",
   lightGreen: "#a3fd83",
   lightPink: "#ed8efd",
 };
@@ -47,14 +49,30 @@ export const Padding = {
   p_8xs: 5,
   p_5xs: 8,
   p_xs: 12,
+
+  headerTop: 40,
+  navIcon: 30,
+  headerText: 30,
+  pageHeaderTop: 55,
 };
-/* border radiuses */
+
+/* gaps */
+export const Gap = {
+  headerIcon: 16,
+  navIcon: 30,
+}
+
+/* border radiuses and width */
 export const Border = {
   br_31xl: 50,
   br_3xs: 10,
   br_base: 16,
   br_9xs: 4,
   br_5xs: 5,
+
+  defaultRadius: 20,
+  largeRadius: 50,
+  defaultWidth: 2,
 };
 
 export const EventColor = Object.freeze({

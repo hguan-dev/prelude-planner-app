@@ -2,8 +2,15 @@ import * as React from "react";
 import { useState } from "react";
 import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
-import { FontSize, Color, FontFamily, Padding } from "../GlobalStyles";
-import NewBackgroundGradient from "../assets/images/NewBackgroundGradient";
+import { FontSize, Color, FontFamily, Padding, Gap } from "../GlobalStyles";
+import BackgroundGradient from "../assets/images/BackgroundGradient";
+import TimeIcon from "../assets/icons/TimeIcon";
+import MeatBallIcon from "../assets/icons/MeatBallIcon";
+import CrossIcon from "../assets/icons/CrossIcon";
+import FileIcon from "../assets/icons/FileIcon";
+import GroupIcon from "../assets/icons/GroupIcon";
+import LocationIcon from "../assets/icons/LocationIcon";
+import UserIcon from "../assets/icons/UserIcon";
 
 const OpenedEventPopup = ({ onClose, event }) => {
   const [isMenuVisible, setMenuVisible] = useState(false);
@@ -49,7 +56,7 @@ const OpenedEventPopup = ({ onClose, event }) => {
   return (
     <View style={styles.openedEventFullScreenPopup}>
       <View style={styles.backgroundContainer}>
-        <NewBackgroundGradient stop1="#191079" stop2="#211134" />
+        <BackgroundGradient stop1="#191079" stop2="#211134" />
       </View>
       <View style={styles.contentContainer}>
         <View style={styles.optionsBar}>
@@ -61,64 +68,32 @@ const OpenedEventPopup = ({ onClose, event }) => {
                 setMenuVisible(!isMenuVisible);
               }}
             >
-              <View style={styles.meatballIcon}>
-                <Image
-                  style={styles.miniIcon}
-                  contentFit="cover"
-                  source={require("../assets/images/OpenedEventPopupImages/dot-menu.png")}
-                />
-              </View>
+              <MeatBallIcon size={28}/>
             </TouchableOpacity>
             <TouchableOpacity onPress={onClose}>
-              <View style={styles.exitIcon}>
-                <Image
-                  style={styles.miniIcon}
-                  contentFit="cover"
-                  source={require("../assets/images/OpenedEventPopupImages/exit-button.png")}
-                />
-              </View>
+              <CrossIcon size={18}/>
             </TouchableOpacity>
           </View>
         </View>
         <View style={styles.labelRow}>
-          <Image
-            style={styles.icon}
-            contentFit="cover"
-            source={require("../assets/images/OpenedEventPopupImages/creator-icon.png")}
-          />
+          <UserIcon size={28}/>
           <Text style={styles.labelFont}>{event.creator}</Text>
         </View>
         <View style={styles.labelRow}>
-          <Image
-            style={styles.icon}
-            contentFit="cover"
-            source={require("../assets/images/OpenedEventPopupImages/participants-icon.png")}
-          />
+          <GroupIcon size={28}/>
           <Text style={styles.labelFont}>{event.participants}</Text>
         </View>
         <View style={styles.labelRow}>
-          <Image
-            style={styles.icon}
-            contentFit="cover"
-            source={require("../assets/images/OpenedEventPopupImages/clock.png")}
-          />
+          <TimeIcon size={28}/>
           <Text style={styles.labelFont}>{event.time}</Text>
         </View>
         <View style={styles.labelRow}>
-          <Image
-            style={styles.icon}
-            contentFit="cover"
-            source={require("../assets/images/OpenedEventPopupImages/location-icon.png")}
-          />
+          <LocationIcon size={28}/>
           <Text style={styles.labelFont}>{event.location}</Text>
         </View>
 
         <View style={styles.labelRow}>
-          <Image
-            style={styles.icon}
-            contentFit="cover"
-            source={require("../assets/images/OpenedEventPopupImages/file-dock.png")}
-          />
+          <FileIcon size={28}/>
           <Text style={styles.labelFont}>{event.description}</Text>
         </View>
       </View>
@@ -128,8 +103,9 @@ const OpenedEventPopup = ({ onClose, event }) => {
 
 const styles = StyleSheet.create({
   openedEventFullScreenPopup: {
-    width: "100%",
+    flex: 1,
     height: "100%",
+    width: "100%",
   },
   backgroundContainer: {
     position: "absolute",
@@ -137,8 +113,8 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   contentContainer: {
-    marginLeft: 20,
-    marginRight: 20,
+    paddingHorizontal: Padding.headerText,
+    marginTop: Padding.pageHeaderTop,
   },
   titleFont: {
     fontSize: FontSize.size_11xl,
@@ -152,10 +128,6 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.alata,
     color: Color.labelColorDarkPrimary,
   },
-  icon: {
-    width: 34,
-    height: 34,
-  },
   labelRow: {
     display: "flex",
     flexDirection: "row",
@@ -163,17 +135,19 @@ const styles = StyleSheet.create({
     marginTop: 10,
     width: "75%",
   },
-  exitIcon: {},
-  meatballIcon: {
-    marginRight: 10,
-  },
-  miniIcon: {
-    width: 24,
-    height: 24,
-  },
   optionButtons: {
     display: "flex",
     flexDirection: "row",
+    alignItems: "center",
+    gap: Gap.headerIcon,
+  },
+  optionsBar: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    // PaddingTop: Padding.headerTop,
+    // backgroundColor: Color.darkPurple,
   },
   menuPopup: {
     position: "absolute",
@@ -203,13 +177,6 @@ const styles = StyleSheet.create({
     zIndex: 1,
     width: 15,
     height: 15,
-  },
-  optionsBar: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginTop: "15%",
   },
 });
 

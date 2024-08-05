@@ -1,14 +1,13 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { StyleSheet, View, Text, ScrollView } from "react-native";
+import { StyleSheet, View, Text, ScrollView, TouchableOpacity } from "react-native";
 import Header from "../components/Header";
 import EventItem from "../components/EventItem";
 import BottomNav from "../components/BottomNav";
 import OpenedEventPopup from "../components/OpenedEventPopup";
 import FilterIcon from "../assets/icons/FilterIcon";
-import { Color, FontFamily, FontSize, Padding } from "../GlobalStyles";
-import NewBackgroundGradient from "../assets/images/NewBackgroundGradient";
-import { TouchableOpacity } from "react-native";
+import { Color, FontFamily, FontSize, Padding, Border } from "../GlobalStyles";
+import BackgroundGradient from "../assets/images/BackgroundGradient";
 import FilterModal from "../components/FilterModal";
 
 async function fetchData() {
@@ -163,7 +162,7 @@ const DefaultHomeView = ({
         <ScrollView contentContainerStyle={styles.content}>
           <View style={styles.eventList}>
             <View style={styles.radialBackground}>
-              <NewBackgroundGradient stop1="#2a3648" stop2="#372a48" />
+              <BackgroundGradient stop1="#2a3648" stop2="#372a48" />
             </View>
             {!isEmpty(events) ? (
               Object.entries(events).map(([date, events]) => (
@@ -241,7 +240,7 @@ const styles = StyleSheet.create({
   home: {
     flex: 1,
     backgroundColor: Color.darkPurple,
-    paddingTop: 40,
+    paddingTop: Padding.headerTop,
   },
   content: {
     paddingBottom: "25%",
@@ -253,8 +252,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: Padding.p_5xs,
     marginBottom: Padding.p_base,
-    paddingHorizontal: 30,
-    width: "100%",
+    paddingHorizontal: Padding.headerText,
   },
   filterIcon: {
     alignItems: "center",
@@ -266,7 +264,7 @@ const styles = StyleSheet.create({
   },
   eventList: {
     alignItems: "center",
-    borderRadius: 20,
+    borderRadius: Border.defaultRadius,
     overflow: "hidden",
     marginTop: 7.5,
     marginHorizontal: Padding.p_base,
