@@ -127,6 +127,60 @@ function filter(events, filters) {
   return events.filter((event) => filters.includes(event.type));
 }
 
+const DefaultHomeView = ({
+  events,
+  setOpenedEventId,
+  filters,
+  setFilters,
+  filterVisible,
+  setFilterVisible,
+}) => {
+  return (
+    <View style={styles.home}>
+      <Header />
+      <View style={styles.filterIconContainer}>
+        <Text style={styles.upcomingEvents}>Upcoming Events</Text>
+        <TouchableOpacity onPress={() => setFilterVisible(true)}>
+          <FilterIcon size={28} style={styles.filterIcon} />
+        </TouchableOpacity>
+      </View>
+      <FilterModal
+        visible={filterVisible}
+        onClose={() => setFilterVisible(false)}
+        activeFilters={filters}
+        onChange={setFilters}
+      />
+      <View style={styles.visibleScrollView}>
+        <ScrollView contentContainerStyle={styles.content}>
+          <View style={styles.eventList}>
+            <View style={styles.radialBackground}>
+              <NewBackgroundGradient stop1="#2a3648" stop2="#372a48" />
+            </View>
+            {events &&
+              Object.entries(events).map(([date, events]) => (
+                <React.Fragment key={date}>
+                  <Text key={date} style={styles.date}>
+                    {date}
+                  </Text>
+                  {events.map((event) => (
+                    <EventItem
+                      key={event.id}
+                      onPress={() => setOpenedEventId(event.id)}
+                      event={event}
+                    />
+                  ))}
+                </React.Fragment>
+              ))}
+          </View>
+        </ScrollView>
+      </View>
+      <View style={styles.bottonNavContainer}>
+        <BottomNav />
+      </View>
+    </View>
+  );
+};
+
 const HomeScreen = () => {
   const [events, setEvents] = useState([]);
   const [openedEventId, setOpenedEventId] = useState(null);
@@ -147,67 +201,28 @@ const HomeScreen = () => {
     getEvents();
   }, []);
 
-  const filteredAndGroupedEvents = groupByDate(filter(events, filters));
+  const filteredEvents = filter(events, filters);
+  const filteredAndGroupedEvents = groupByDate(filteredEvents);
 
-  const DefaultHomeView = () => {
-    return (
-      <View style={styles.home}>
-        <Header />
-        <View style={styles.filterIconContainer}>
-          <Text style={styles.upcomingEvents}>Upcoming Events</Text>
-          <TouchableOpacity onPress={() => setFilterVisible(true)}>
-            <FilterIcon size={28} style={styles.filterIcon} />
-          </TouchableOpacity>
-        </View>
-        <FilterModal
-          visible={filterVisible}
-          onClose={() => setFilterVisible(false)}
-          activeFilters={filters}
-          onChange={setFilters}
+  return (
+    <>
+      {!openedEventId ? (
+        <DefaultHomeView
+          events={filteredAndGroupedEvents}
+          setOpenedEventId={setOpenedEventId}
+          filters={filters}
+          setFilters={setFilters}
+          filterVisible={filterVisible}
+          setFilterVisible={setFilterVisible}
         />
-        <View style={styles.visibleScrollView}>
-          <ScrollView contentContainerStyle={styles.content}>
-            <View style={styles.eventList}>
-              <View style={styles.radialBackground}>
-                <NewBackgroundGradient stop1="#2a3648" stop2="#372a48" />
-              </View>
-              {filteredAndGroupedEvents &&
-                Object.entries(filteredAndGroupedEvents).map(
-                  ([date, events]) => (
-                    <React.Fragment key={date}>
-                      <Text key={date} style={styles.date}>
-                        {date}
-                      </Text>
-                      {events.map((event) => (
-                        <EventItem
-                          key={event.id}
-                          onPress={() => setOpenedEventId(event.id)}
-                          event={event}
-                        />
-                      ))}
-                    </React.Fragment>
-                  )
-                )}
-            </View>
-          </ScrollView>
-        </View>
-        <View style={styles.bottonNavContainer}>
-          <BottomNav />
-        </View>
-      </View>
-    );
-  };
-
-  const OpenedEventPopupView = () => {
-    return (
-      <OpenedEventPopup
-        onClose={() => setOpenedEventId(null)}
-        event={events.find((event) => event.id === openedEventId)}
-      />
-    );
-  };
-
-  return <>{!openedEventId ? <DefaultHomeView /> : <OpenedEventPopupView />}</>;
+      ) : (
+        <OpenedEventPopup
+          event={filteredEvents.find((event) => event.id === openedEventId)}
+          onClose={() => setOpenedEventId(null)}
+        />
+      )}
+    </>
+  );
 };
 
 const styles = StyleSheet.create({
