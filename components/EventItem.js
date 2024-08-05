@@ -64,14 +64,14 @@ const EventItem = ({
 const styles = StyleSheet.create({
   tablerow: {
     width: "100%",
-    paddingHorizontal: Padding.p_base,
-    marginBottom: Padding.p_5xs,
+    paddingHorizontal: Padding.larger,
+    marginBottom: Padding.default,
   },
   content: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingVertical: Padding.p_5xs,
+    paddingVertical: Padding.default,
   },
   leftContent: {
     flex: 1,
@@ -112,7 +112,6 @@ const styles = StyleSheet.create({
   },
   eventLine: {
     height: 1,
-    // marginHorizontal: Padding.p_5xs,
   },
 });
 

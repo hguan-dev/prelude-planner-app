@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Image } from "expo-image";
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import NotificationItem from "../components/NotificationItem";
@@ -49,10 +48,9 @@ const NotificationScreen = () => {
 
 const styles = StyleSheet.create({
   headerContainer: {
-    marginTop: "15%",
-    marginLeft: 20,
-    marginRight: 20,
-    marginBottom: 20,
+    paddingTop: Padding.pageHeaderTop,
+    paddingHorizontal: Padding.headerText,
+    marginBottom: Padding.larger,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",

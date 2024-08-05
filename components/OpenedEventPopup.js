@@ -1,8 +1,14 @@
 import * as React from "react";
 import { useState } from "react";
 import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
-import { Image } from "expo-image";
-import { FontSize, Color, FontFamily, Padding, Gap, IconSize } from "../GlobalStyles";
+import {
+  FontSize,
+  Color,
+  FontFamily,
+  Padding,
+  Gap,
+  IconSize,
+} from "../GlobalStyles";
 import BackgroundGradient from "../assets/images/BackgroundGradient";
 import TimeIcon from "../assets/icons/TimeIcon";
 import MeatBallIcon from "../assets/icons/MeatBallIcon";
@@ -11,50 +17,46 @@ import FileIcon from "../assets/icons/FileIcon";
 import GroupIcon from "../assets/icons/GroupIcon";
 import LocationIcon from "../assets/icons/LocationIcon";
 import UserIcon from "../assets/icons/UserIcon";
-
+import Modal from "./Modal";
 const OpenedEventPopup = ({ onClose, event }) => {
   const [isMenuVisible, setMenuVisible] = useState(false);
 
-  const MenuPopup = () => {
+  const MenuButtons = () => {
     return (
-      <View style={styles.menuPopup}>
-        <Image
-          style={styles.sharktoothIcon}
-          contentFit="cover"
-          source={require("../assets/images/OpenedEventPopupImages/sharktooth.png")}
-        />
-        <View style={styles.menuPopupOptions}>
+      <View style={styles.menuPopupOptions}>
+        <TouchableOpacity
+          onPress={() => {
+            console.log("edit pressed");
+          }}
+        >
           <View style={styles.editRow}>
-            <TouchableOpacity
-              onPress={() => {
-                console.log("edit pressed");
-              }}
-            >
-              <Text style={styles.labelFont}>Edit</Text>
-            </TouchableOpacity>
+            <Text style={styles.labelFont}>Edit</Text>
           </View>
-          <View
-            style={{
-              borderBottomColor: Color.white,
-              borderBottomWidth: 1,
-            }}
-          />
+        </TouchableOpacity>
+        <View
+          style={{
+            borderBottomColor: Color.white,
+            borderBottomWidth: 1,
+          }}
+        />
+        <TouchableOpacity
+          onPress={() => {
+            console.log("delete pressed");
+          }}
+        >
           <View style={styles.deleteRow}>
-            <TouchableOpacity
-              onPress={() => {
-                console.log("delete pressed");
-              }}
-            >
-              <Text style={styles.labelFont}>Delete</Text>
-            </TouchableOpacity>
+            <Text style={styles.labelFont}>Delete</Text>
           </View>
-        </View>
+        </TouchableOpacity>
       </View>
     );
   };
 
   return (
     <View style={styles.openedEventFullScreenPopup}>
+      <Modal visible={isMenuVisible} onClose={() => setMenuVisible(false)}>
+        <MenuButtons />
+      </Modal>
       <View style={styles.backgroundContainer}>
         <BackgroundGradient stop1={Color.strongBlue} stop2={Color.darkPurple} />
       </View>
@@ -62,38 +64,37 @@ const OpenedEventPopup = ({ onClose, event }) => {
         <View style={styles.optionsBar}>
           <Text style={styles.titleFont}>{event.title}</Text>
           <View style={styles.optionButtons}>
-            {isMenuVisible && <MenuPopup />}
             <TouchableOpacity
               onPress={() => {
                 setMenuVisible(!isMenuVisible);
               }}
             >
-              <MeatBallIcon size={IconSize.iconDefault}/>
+              <MeatBallIcon size={IconSize.iconDefault} />
             </TouchableOpacity>
             <TouchableOpacity onPress={onClose}>
-              <CrossIcon size={IconSize.iconSmall}/>
+              <CrossIcon size={IconSize.iconSmall} />
             </TouchableOpacity>
           </View>
         </View>
         <View style={styles.labelRow}>
-          <UserIcon size={IconSize.iconDefault}/>
+          <UserIcon size={IconSize.iconDefault} />
           <Text style={styles.labelFont}>{event.creator}</Text>
         </View>
         <View style={styles.labelRow}>
-          <GroupIcon size={IconSize.iconDefault}/>
+          <GroupIcon size={IconSize.iconDefault} />
           <Text style={styles.labelFont}>{event.participants}</Text>
         </View>
         <View style={styles.labelRow}>
-          <TimeIcon size={IconSize.iconDefault}/>
+          <TimeIcon size={IconSize.iconDefault} />
           <Text style={styles.labelFont}>{event.time}</Text>
         </View>
         <View style={styles.labelRow}>
-          <LocationIcon size={IconSize.iconDefault}/>
+          <LocationIcon size={IconSize.iconDefault} />
           <Text style={styles.labelFont}>{event.location}</Text>
         </View>
 
         <View style={styles.labelRow}>
-          <FileIcon size={IconSize.iconDefault}/>
+          <FileIcon size={IconSize.iconDefault} />
           <Text style={styles.labelFont}>{event.description}</Text>
         </View>
       </View>
@@ -120,10 +121,10 @@ const styles = StyleSheet.create({
     fontSize: FontSize.header,
     fontFamily: FontFamily.alata,
     color: Color.white,
-    marginBottom: Padding.p_sm,
+    marginBottom: Padding.default,
   },
   labelFont: {
-    marginLeft: Padding.p_2xs,
+    marginLeft: Padding.default,
     fontSize: FontSize.medium,
     fontFamily: FontFamily.alata,
     color: Color.white,
@@ -132,7 +133,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 10,
+    marginTop: Padding.default,
     width: "75%",
   },
   optionButtons: {
@@ -148,34 +149,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   // bad menu popup css
-  menuPopup: {
-    position: "absolute",
-    top: 30,
-    right: 22,
-  },
   menuPopupOptions: {
-    width: 120,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: Color.white,
+    width: 100,
   },
   deleteRow: {
-    backgroundColor: "red",
-    borderBottomLeftRadius: 9,
-    borderBottomRightRadius: 9,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: Color.red,
   },
   editRow: {
-    backgroundColor: "#211134",
-    borderTopLeftRadius: 9,
-    borderTopRightRadius: 9,
-  },
-  sharktoothIcon: {
-    position: "absolute",
-    top: -7.4,
-    left: 90,
-    zIndex: 1,
-    width: 15,
-    height: 15,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 
