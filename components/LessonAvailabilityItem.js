@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
-import { Color, FontFamily, FontSize, Border, Padding } from "../GlobalStyles";
+import { Color, FontFamily, FontSize, Padding } from "../GlobalStyles";
 
 // the component takes in the lesson title and a confirmation status (confirm now or edit time)
 const LessonAvailabilityItem = ({ title, dates, confirmation }) => {
@@ -8,6 +8,12 @@ const LessonAvailabilityItem = ({ title, dates, confirmation }) => {
   const handlePress = () => {
     console.log("Confirmation button pressed");
   };
+
+  // color for lesson divider line
+  const confirmationColor =
+  confirmation === "Confirm Now!"
+    ? styles.unconfirmed.backgroundColor
+    : styles.confirmed.backgroundColor;
 
   return (
     <View style={styles.container}>
@@ -21,7 +27,8 @@ const LessonAvailabilityItem = ({ title, dates, confirmation }) => {
           </TouchableOpacity>
         </View>
         {/* line for dividing each lesson item */}
-        <View style={styles.lessonLine}></View>
+        {/* <View style={styles.lessonLine}></View> */}
+        <View style={[styles.lessonLine, { backgroundColor: confirmationColor }]} />
     </View>
   );
 };
@@ -74,7 +81,12 @@ const styles = StyleSheet.create({
     lessonLine: {
       height: 1,
       marginTop: 10,
-      backgroundColor: "white",
+    },
+    confirmed: {
+      backgroundColor: Color.lightSkyBlue,
+    },
+    unconfirmed: {
+      backgroundColor: Color.lightPurple,
     },
   });
   
