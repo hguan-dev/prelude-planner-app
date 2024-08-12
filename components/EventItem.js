@@ -1,6 +1,13 @@
 import React, { useMemo } from "react";
-import { Text, StyleSheet, View } from "react-native";
-import { Color, FontFamily, FontSize, Border, Padding } from "../GlobalStyles";
+import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
+import {
+  Color,
+  FontFamily,
+  FontSize,
+  Border,
+  Padding,
+  EventColor,
+} from "../GlobalStyles";
 
 const getStyleValue = (key, value) => {
   if (value === undefined) return;
@@ -8,22 +15,18 @@ const getStyleValue = (key, value) => {
 };
 
 const getEventColor = (type) => {
-  switch (type) {
-    case "lessons":
-      return "#72CCFF";
-    case "masterclasses":
-      return "#A276FF";
-    case "recitals":
-      return "#A3FD83";
-    case "studio class":
-      return "#ED8EFD";
-    case "misc":
-    default:
-      return "#FFFFFF";
+  if (type in EventColor) {
+    return EventColor[type];
   }
+  return Color.white;
 };
 
-const EventItem = ({ type, title, details, time, confirmation, propWidth, propAlignSelf }) => {
+const EventItem = ({
+  onPress,
+  event: { type, title, creator, time, confirmation },
+  propWidth,
+  propAlignSelf,
+}) => {
   const tableRowStyle = useMemo(() => {
     return {
       ...getStyleValue("width", propWidth),
@@ -31,86 +34,84 @@ const EventItem = ({ type, title, details, time, confirmation, propWidth, propAl
     };
   }, [propWidth, propAlignSelf]);
 
-  const confirmationStyle = confirmation === "Unconfirmed" ? styles.confirmationUnconfirmed : styles.confirmation;
+  const confirmationStyle =
+    confirmation === "Unconfirmed"
+      ? styles.confirmationUnconfirmed
+      : styles.confirmation;
   const eventColor = getEventColor(type);
 
   return (
     <View style={[styles.tablerow, tableRowStyle]}>
-      <View style={styles.content}>
-        <View style={styles.leftContent}>
-          <Text style={[styles.title, styles.textCommon]}>{title}</Text>
-          <Text style={[styles.details, styles.textCommon]}>{details}</Text>
+      <TouchableOpacity onPress={onPress}>
+        <View style={styles.content}>
+          <View style={styles.leftContent}>
+            <Text style={[styles.title, styles.textCommon]}>{title}</Text>
+            <Text style={[styles.creator, styles.textCommon]}>{creator}</Text>
+          </View>
+          <View style={styles.rightContent}>
+            <Text style={[styles.time, styles.textCommon]}>{time}</Text>
+            <Text style={[confirmationStyle, styles.textCommon]}>
+              {confirmation}
+            </Text>
+          </View>
         </View>
-        <View style={styles.rightContent}>
-          <Text style={[styles.time, styles.textCommon]}>{time}</Text>
-          <Text style={[confirmationStyle, styles.textCommon]}>{confirmation}</Text>
-        </View>
-      </View>
-      <View style={[styles.eventLine, { backgroundColor: eventColor }]} />
+        <View style={[styles.eventLine, { backgroundColor: eventColor }]} />
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   tablerow: {
-    width: '95%',
-    marginBottom: Padding.p_base,
-    backgroundColor: Color.colorWhite,
-    borderRadius: Border.br_sm,
-    shadowColor: "rgba(0, 0, 0, 0.1)",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 4,
-    elevation: 2,
+    width: "100%",
+    paddingHorizontal: Padding.larger,
+    marginBottom: Padding.default,
   },
   content: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: Padding.p_5xs,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingVertical: Padding.default,
   },
   leftContent: {
     flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: "flex-start",
   },
   rightContent: {
     flex: 1,
-    alignItems: 'flex-end',
-    justifyContent: 'flex-start',
+    alignItems: "flex-end",
+    justifyContent: "flex-start",
   },
   textCommon: {
     fontFamily: FontFamily.alataRegular,
     letterSpacing: 0,
   },
   title: {
-    fontSize: FontSize.defaultBoldHeadline_size,
+    fontSize: FontSize.medium,
     lineHeight: 22,
-    color: Color.labelColorDarkPrimary,
+    color: Color.white,
     textAlign: "left",
   },
-  details: {
+  creator: {
     marginTop: 8,
     lineHeight: 13,
-    fontSize: FontSize.size_smi,
-    color: Color.labelColorDarkSecondary,
+    fontSize: FontSize.small,
+    color: Color.opacityGray,
     textAlign: "left",
   },
   time: {
     lineHeight: 20,
-    fontSize: FontSize.defaultRegularSubheadline_size,
-    color: Color.labelColorDarkPrimary,
+    fontSize: FontSize.medium,
+    color: Color.white,
   },
   confirmation: {
-    color: "#34C759",
+    color: Color.green,
   },
   confirmationUnconfirmed: {
-    color: "#C73434", 
+    color: Color.red,
   },
   eventLine: {
     height: 1,
-    marginHorizontal: Padding.p_5xs,
-    borderBottomLeftRadius: Border.br_sm,
-    borderBottomRightRadius: Border.br_sm,
   },
 });
 

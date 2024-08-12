@@ -1,87 +1,76 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { Color, FontFamily, FontSize, Border, Padding } from "../GlobalStyles";
+import { Color, FontFamily, FontSize, Border, Padding, IconSize } from "../GlobalStyles";
 
-const getStyleValue = (key, value) => {
-  if (value === undefined) return;
-  return { [key]: value === "unset" ? undefined : value };
-};
-
-const NotificationItem = ({ desc, propLeft }) => {
-  const notificationItemStyle = useMemo(() => {
-    return {
-      ...getStyleValue("left", propLeft),
-    };
-  }, [propLeft]);
-
+const NotificationItem = ({ desc }) => {
   return (
     <LinearGradient
-      style={[styles.notificationItem, notificationItemStyle]}
+      style={styles.notificationItem}
       locations={[0, 1]}
       colors={["#311c51", "#4679d1"]}
     >
-      <View style={styles.header}>
-          <View style={[styles.headerChildGreen, styles.headerPosition]} />
-          <Text style={[styles.subject, styles.headerPosition]}>Subject</Text>
-          <Text style={[styles.senderXmAgo, styles.headerPosition]}>Sender, Xm ago</Text>
+      <View style={styles.contentContainer}>
+        <View style={styles.headerContainer}>
+          <View style={styles.leftHeaderContainer}>
+            <View style={styles.greenBox} />
+            <Text style={styles.subject}>Subject</Text>
+          </View>
+          <Text style={styles.senderXmAgo}>Sender, Xm ago</Text>
+        </View>
+        <Text style={styles.description}>{desc}</Text>
       </View>
-      <Text style={styles.description}>{desc}</Text>
     </LinearGradient>
   );
 };
 
 const styles = StyleSheet.create({
-  header: {
-    height: 30,
-    width: 320,
-  },
-  headerPosition: {
-    height: 18,
-    top: 10,
+  headerContainer: {
+    width: "90%",
     display: "flex",
-    color: Color.labelColorDarkPrimary,
-    fontFamily: FontFamily.alataRegular,
-    fontSize: FontSize.size_xs,
-    alignItems: "center",
-    position: "absolute",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: Padding.default,
   },
-  headerChildGreen: {
-    borderRadius: Border.br_9xs,
-    backgroundColor: Color.colorLime,
-    width: 18,
+  leftHeaderContainer: {
+    display: "flex",
+    flexDirection: "row",
+  },
+  greenBox: {
+    borderRadius: Border.tinyRadius,
+    backgroundColor: Color.green,
+    width: IconSize.iconSmall,
+    height: IconSize.iconSmall,
+    marginRight: Padding.default,
   },
   subject: {
-    left: 25,
-    width: 183,
-    textAlign: "left",
-    height: 12,
+    color: Color.white,
+    fontFamily: FontFamily.alataRegular,
+    fontSize: FontSize.small,
   },
   senderXmAgo: {
-    right: 0,
-    textAlign: "right",
-    width: 117,
-    height: 12,
+    color: Color.white,
+    fontFamily: FontFamily.alataRegular,
+    fontSize: FontSize.small,
   },
   description: {
-    top: 5,
-    marginBottom: 15,
-    width: 292,
-    display: "flex",
-    color: Color.labelColorDarkPrimary,
+    color: Color.white,
     fontFamily: FontFamily.alataRegular,
-    fontSize: FontSize.size_xs,
-    textAlign: "left",
-    alignItems: "center",
-    overflow: "hidden",
+    fontSize: FontSize.small,
+  },
+  contentContainer: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    marginTop: Padding.default,
+    marginBottom: Padding.default,
   },
   notificationItem: {
-    marginBottom: 20, // Add bottom margin to space items apart
-    borderRadius: Border.br_base,
-    paddingHorizontal: Padding.p_5xs,
-    paddingVertical: Padding.p_xs,
-    backgroundColor: "transparent",
+    marginBottom: Padding.larger,
+    borderRadius: Border.defaultRadius,
+    paddingVertical: Padding.default,
     alignItems: "center",
+    width: "100%",
   },
 });
 
