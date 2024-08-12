@@ -72,7 +72,7 @@ const DefaultHomeView = ({
       {/* LESSON AVAILABILITES SECTION */} 
       <View style={styles.lessonList}>
       <View style={styles.radialBackground}>
-      <BackgroundGradient stop1={Color.niceBlue} stop2={Color.purplyBlue}/>
+      <RadialGradientCircle stop1={Color.niceBlue} stop2={Color.purplyBlue}/>
       </View>
         <LessonAvailabilityItem 
           title="MM Lesson"
