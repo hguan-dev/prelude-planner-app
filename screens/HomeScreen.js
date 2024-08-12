@@ -13,7 +13,7 @@ import BottomNav from "../components/BottomNav";
 import OpenedEventPopup from "../components/OpenedEventPopup";
 import FilterIcon from "../assets/icons/FilterIcon";
 import { Color, FontFamily, FontSize, Padding, Border } from "../GlobalStyles";
-import BackgroundGradient from "../assets/images/BackgroundGradient";
+import RadialGradientCircle from "../assets/images/RadialGradientCircle";
 import FilterModal from "../components/FilterModal";
 import LessonAvailabilityItem from "../components/LessonAvailabilityItem";
 // I put the events in this file, use them from there
@@ -106,7 +106,7 @@ const DefaultHomeView = ({
         <ScrollView contentContainerStyle={styles.content}>
           <View style={styles.eventList}>
             <View style={styles.radialBackground}>
-              <BackgroundGradient stop1={Color.niceBlue} stop2={Color.purplyBlue}/>
+              <RadialGradientCircle stop1={Color.niceBlue} stop2={Color.purplyBlue}/>
             </View>
             {!isEmpty(events) ? (
               Object.entries(events).map(([date, events]) => (
