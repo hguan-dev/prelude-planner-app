@@ -16,101 +16,14 @@ import { Color, FontFamily, FontSize, Padding, Border } from "../GlobalStyles";
 import BackgroundGradient from "../assets/images/BackgroundGradient";
 import FilterModal from "../components/FilterModal";
 
-async function fetchData() {
-  // placeholder data
-  return Promise.resolve([
-    {
-      id: 1,
-      title: "Prof. X Lesson",
-      time: "5:00 pm - 6:00 pm",
-      location: "Room 101",
-      creator: "Prof. X",
-      participants: "Student A",
-      description: "This is a lesson with Prof. X",
-      confirmation: "Confirmed",
-      type: "lesson",
-      date: new Date(),
-    },
-    {
-      id: 2,
-      title: "Student Recital",
-      time: "5:00 pm - 6:00 pm",
-      location: "Room 101",
-      creator: "Student A",
-      participants: "Student A",
-      description: "This is a recital with Student A",
-      confirmation: "Confirmed",
-      type: "recital",
-      date: new Date(),
-    },
-    {
-      id: 3,
-      title: "Prof. X Lesson",
-      time: "5:00 pm - 6:00 pm",
-      location: "Room 101",
-      creator: "Prof. X",
-      participants: "Student A",
-      description: "This is a lesson with Prof. X",
-      confirmation: "Confirmed",
-      type: "lesson",
-      date: new Date("2024-09-24"),
-    },
-    {
-      id: 5,
-      title: "Masterclass",
-      time: "5:00 pm - 6:00 pm",
-      location: "Room 101",
-      creator: "Visiting Lecturer",
-      participants: "Student A",
-      description: "This is a masterclass with Visiting Lecturer",
-      confirmation: "Unconfirmed",
-      type: "masterclass",
-      date: new Date("2023-03-23"),
-    },
-    {
-      id: 4,
-      title: "Studio Class",
-      time: "5:00 pm - 6:20 pm",
-      location: "Room 101",
-      creator: "Trombone Studio",
-      participants: "Student A",
-      description: "This is a studio class with Trombone Studio",
-      confirmation: "Confirmed",
-      type: "studio class",
-      date: new Date("2024-09-24"),
-    },
-    {
-      id: 6,
-      title: "Studio Class",
-      time: "5:00 pm - 6:20 pm",
-      location: "Room 101",
-      creator: "Trombone Studio",
-      participants: "Student A",
-      description: "This is a studio class with Trombone Studio",
-      confirmation: "Confirmed",
-      type: "studio class",
-      date: new Date("2024-09-24"),
-    },
-    {
-      id: 7,
-      title: "Studio Class",
-      time: "5:00 pm - 6:20 pm",
-      location: "Room 101",
-      creator: "Trombone Studio",
-      participants: "Student A",
-      description: "This is a studio class with Trombone Studio",
-      confirmation: "Confirmed",
-      type: "studio class",
-      date: new Date("2024-09-24"),
-    },
-  ]);
-}
+// I put the events in this file, use them from there
+import eventsData from "../assets/data/events.json"; 
 
 // group events by date
 function groupByDate(events) {
-  const sorted = [...events].sort((a, b) => a.date - b.date);
+  const sorted = [...events].sort((a, b) => new Date(a.date) - new Date(b.date));
   const getEventDate = (event) => {
-    return event.date.toLocaleDateString(undefined, {
+    return new Date(event.date).toLocaleDateString(undefined, {
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -206,16 +119,8 @@ const HomeScreen = () => {
   const [filters, setFilters] = useState([]);
 
   useEffect(() => {
-    async function getEvents() {
-      try {
-        // mock api call
-        const data = await fetchData();
-        setEvents(data);
-      } catch {
-        console.log("failed to get events");
-      }
-    }
-    getEvents();
+    // Use the imported JSON data instead of fetching it
+    setEvents(eventsData);
   }, []);
 
   const filteredEvents = filter(events, filters);
