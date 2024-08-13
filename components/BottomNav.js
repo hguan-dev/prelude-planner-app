@@ -5,7 +5,7 @@ import CalendarIcon from "../assets/icons/CalendarIcon";
 import SearchIcon from "../assets/icons/SearchIcon";
 import ProfileIcon from "../assets/icons/ProfileIcon";
 import PlusIcon from "../assets/icons/PlusIcon";
-import { Color, Border, Padding, Gap, IconSize} from "../GlobalStyles";
+import { Color, Border, Padding, Gap, IconSize } from "../GlobalStyles";
 
 const BottomNav = () => {
   return (
@@ -17,29 +17,29 @@ const BottomNav = () => {
         <ProfileIcon size={IconSize.iconDefault} style={styles.icon} />
       </View>
       <View style={styles.plusIconContainer}>
-          <View style={styles.plusIcon}>
-            <PlusIcon size={IconSize.navPlusIcon} />
-          </View>
+        <View style={styles.plusIcon}>
+          <PlusIcon size={IconSize.navPlusIcon} />
         </View>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   tabbar: {
-    width: '100%',
+    width: "100%",
     height: "100%",
     borderTopLeftRadius: Border.hugeRadius,
     borderTopRightRadius: Border.hugeRadius,
     backgroundColor: Color.darkPurple,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     borderColor: Color.mediumPurple,
     borderWidth: Border.defaultWidth,
   },
   iconContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    justifyContent: "space-around",
     width: "100%",
     margin: Gap.navIcon,
   },
@@ -47,10 +47,10 @@ const styles = StyleSheet.create({
     marginLeft: 6, // hard coded cuz svg off center
   },
   plusIconContainer: {
-    position: 'absolute',
+    position: "absolute",
     width: "100%",
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     bottom: 45,
   },
 });

@@ -1,13 +1,13 @@
 import { StyleSheet, View, Pressable } from "react-native";
 import { Color, EventColor, FontFamily, FontSize } from "../GlobalStyles";
 
-const Modal = ({ visible, onClose, children }) => {
+const Modal = ({ visible, onClose, position, children }) => {
   return (
     <>
       {visible && (
         <Pressable style={styles.outside} onPress={onClose}>
           <Pressable onPress={(e) => e.stopPropagation()}>
-            <View style={styles.bubble}>
+            <View style={[styles.bubble, position]}>
               <View style={styles.content}>{children}</View>
               <View style={styles.sharktoothBorder} />
               <View style={styles.sharktooth} />
@@ -28,8 +28,6 @@ const styles = StyleSheet.create({
   },
   bubble: {
     position: "absolute",
-    top: 100,
-    right: 45,
     zIndex: 1,
     backgroundColor: Color.darkPurple,
   },

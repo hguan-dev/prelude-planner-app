@@ -15,7 +15,7 @@ export const FontSize = {
 };
 
 export const IconSize = {
-  navPlusIcon: 115, 
+  navPlusIcon: 115,
 
   iconSmall: 18, // for close icon
   iconDefault: 28, // most icons
@@ -51,10 +51,11 @@ export const Padding = {
   navIcon: 30, // only used in nav
 
   headerText: 30, // horizontal padding for header text
-  pageHeaderTop: 55,  // distance from top of page
+  pageHeaderTop: 55, // distance from top of page
 
   larger: 15,
   default: 10,
+  smaller: 5,
 };
 
 /* gaps */
@@ -62,7 +63,7 @@ export const Gap = {
   navIcon: 30, // only used in nav
 
   headerIcon: 16, // go to gap between icons if in header
-}
+};
 
 /* border radiuses and width */
 export const Border = {
@@ -74,7 +75,7 @@ export const Border = {
   tinyRadius: 5,
 
   // border width
-  defaultWidth: 2, 
+  defaultWidth: 2,
 };
 
 export const EventColor = Object.freeze({
