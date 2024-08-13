@@ -9,7 +9,7 @@ import {
   Gap,
   IconSize,
 } from "../GlobalStyles";
-import BackgroundGradient from "../assets/images/BackgroundGradient";
+import RadialGradientCircle from "../assets/images/RadialGradientCircle";
 import TimeIcon from "../assets/icons/TimeIcon";
 import MeatBallIcon from "../assets/icons/MeatBallIcon";
 import CrossIcon from "../assets/icons/CrossIcon";
@@ -58,7 +58,7 @@ const OpenedEventPopup = ({ onClose, event }) => {
         <MenuButtons />
       </Modal>
       <View style={styles.backgroundContainer}>
-        <BackgroundGradient stop1={Color.strongBlue} stop2={Color.darkPurple} />
+        <RadialGradientCircle stop1={Color.strongBlue} stop2={Color.darkPurple} />
       </View>
       <View style={styles.contentContainer}>
         <View style={styles.optionsBar}>

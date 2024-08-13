@@ -15,7 +15,7 @@ import FilterIcon from "../assets/icons/FilterIcon";
 import { Color, FontFamily, FontSize, Padding, Border } from "../GlobalStyles";
 import RadialGradientCircle from "../assets/images/RadialGradientCircle";
 import FilterModal from "../components/FilterModal";
-
+import LessonAvailabilityItem from "../components/LessonAvailabilityItem";
 // I put the events in this file, use them from there
 import eventsData from "../assets/data/events.json"; 
 
@@ -65,6 +65,31 @@ const DefaultHomeView = ({
   return (
     <View style={styles.home}>
       <Header />
+      <ScrollView contentContainerStyle={styles.content}>
+      <View style={styles.filterIconContainer}>
+          <Text style={styles.upcomingEvents}>Lesson Availabilities</Text>
+      </View>
+      {/* LESSON AVAILABILITES SECTION */} 
+      <View style={styles.lessonList}>
+      <View style={styles.radialBackground}>
+      <RadialGradientCircle stop1={Color.niceBlue} stop2={Color.purplyBlue}/>
+      </View>
+        <LessonAvailabilityItem 
+          title="MM Lesson"
+          dates="9/24/24 - 9/25/24"
+          confirmation="Confirm Now!" 
+        />
+        <LessonAvailabilityItem 
+          title="RH Lesson"
+          dates="9/26/24 - 9/29/24"
+          confirmation="Edit Time" 
+        />
+        <LessonAvailabilityItem 
+          dates="10/01/24 - 10/03/24"
+          title="RH Lesson"
+          confirmation="Edit Time" 
+        />
+      </View>
       <View style={styles.filterIconContainer}>
         <Text style={styles.upcomingEvents}>Upcoming Events</Text>
         <TouchableOpacity onPress={() => setFilterVisible(true)}>
@@ -104,6 +129,7 @@ const DefaultHomeView = ({
           </View>
         </ScrollView>
       </View>
+      </ScrollView>
       <View style={styles.bottonNavContainer}>
         <BottomNav />
       </View>
@@ -172,6 +198,15 @@ const styles = StyleSheet.create({
     fontSize: FontSize.subheader,
     fontFamily: FontFamily.alataRegular,
     color: Color.white,
+  },
+  lessonList: {
+    alignItems: "center",
+    borderRadius: Border.defaultRadius,
+    overflow: "hidden",
+    marginTop: 7.5,
+    marginBottom: 25, //spacing between lessons and events
+    marginHorizontal: Padding.larger,
+    backgroundColor: "rgba(150, 25, 150, 0.4)",
   },
   eventList: {
     alignItems: "center",
