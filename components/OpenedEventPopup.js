@@ -1,7 +1,12 @@
 import * as React from "react";
 import { useState } from "react";
-import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
-import { Image } from "expo-image";
+import {
+  Text,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Pressable,
+} from "react-native";
 import { FontSize, Color, FontFamily, Padding } from "../GlobalStyles";
 import MeatBallIcon from "../assets/icons/MeatBallIcon";
 import CheckIcon from "../assets/icons/CheckIcon";
@@ -51,22 +56,6 @@ const OpenedEventPopup = ({ onClose, event }) => {
         }}
       >
         <MeatBallIcon size={28} />
-        <Modal
-          visible={isMenuVisible}
-          onClose={() => setMenuVisible(false)}
-          position={{ top: 40, left: -56 }}
-        >
-          <MenuButtons
-            onPressEdit={() => {
-              setEditing(true);
-              setMenuVisible(false);
-            }}
-            onPressDelete={() => {
-              console.log("delete pressed");
-              onClose();
-            }}
-          />
-        </Modal>
       </TouchableOpacity>
       <TouchableOpacity onPress={onClose}>
         <CrossIcon size={18} />
@@ -75,18 +64,37 @@ const OpenedEventPopup = ({ onClose, event }) => {
   );
 
   return (
-    <EventDetails
-      event={editedEvent}
-      options={options}
-      editing={editing}
-      onEdit={(field, text) =>
-        setEditedEvent({ ...editedEvent, [field]: text })
-      }
-    />
+    <Pressable onPress={() => setMenuVisible(false)} style={styles.outside}>
+      <Modal visible={isMenuVisible} position={{ top: 100, right: 46 }}>
+        <MenuButtons
+          onPressEdit={() => {
+            setEditing(true);
+            setMenuVisible(false);
+          }}
+          onPressDelete={() => {
+            console.log("delete pressed");
+            onClose();
+          }}
+        />
+      </Modal>
+      <EventDetails
+        event={editedEvent}
+        options={options}
+        editing={editing}
+        onEdit={(field, text) =>
+          setEditedEvent({ ...editedEvent, [field]: text })
+        }
+      />
+    </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
+  outside: {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+  },
   labelFont: {
     fontSize: FontSize.medium,
     fontFamily: FontFamily.alata,

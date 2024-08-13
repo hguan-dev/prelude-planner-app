@@ -1,40 +1,35 @@
 import { StyleSheet, View, Pressable } from "react-native";
-import { Color, EventColor, FontFamily, FontSize } from "../GlobalStyles";
+import { Color } from "../GlobalStyles";
 
-const Modal = ({ visible, onClose, position, children }) => {
+// To handle closing the modal by pressing outside of it,
+// wrap a Pressable around the entire outside area
+// including the modal itself
+const Modal = ({ visible, position, style, children }) => {
   return (
     <>
       {visible && (
-        <Pressable style={styles.outside} onPress={onClose}>
+        <View style={[styles.modal, position]}>
           <Pressable onPress={(e) => e.stopPropagation()}>
-            <View style={[styles.bubble, position]}>
-              <View style={styles.content}>{children}</View>
-              <View style={styles.sharktoothBorder} />
-              <View style={styles.sharktooth} />
-            </View>
+            <View style={[styles.content, style]}>{children}</View>
+            <View style={styles.sharktoothBorder} />
+            <View style={styles.sharktooth} />
           </Pressable>
-        </Pressable>
+        </View>
       )}
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  outside: {
+  modal: {
     position: "absolute",
     zIndex: 1,
-    width: "100%",
-    height: "100%",
-  },
-  bubble: {
-    position: "absolute",
-    zIndex: 1,
-    backgroundColor: Color.darkPurple,
   },
   content: {
     borderRadius: 14,
     borderWidth: 1,
     borderColor: Color.white,
+    backgroundColor: Color.darkPurple,
     overflow: "hidden",
   },
   sharktooth: {

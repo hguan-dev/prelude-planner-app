@@ -6,6 +6,7 @@ import {
   Text,
   ScrollView,
   TouchableOpacity,
+  Pressable,
 } from "react-native";
 import Header from "../components/Header";
 import EventItem from "../components/EventItem";
@@ -17,11 +18,13 @@ import RadialGradientCircle from "../assets/images/RadialGradientCircle";
 import FilterModal from "../components/FilterModal";
 import LessonAvailabilityItem from "../components/LessonAvailabilityItem";
 // I put the events in this file, use them from there
-import eventsData from "../assets/data/events.json"; 
+import eventsData from "../assets/data/events.json";
 
 // group events by date
 function groupByDate(events) {
-  const sorted = [...events].sort((a, b) => new Date(a.date) - new Date(b.date));
+  const sorted = [...events].sort(
+    (a, b) => new Date(a.date) - new Date(b.date)
+  );
   const getEventDate = (event) => {
     return new Date(event.date).toLocaleDateString(undefined, {
       year: "numeric",
@@ -63,77 +66,83 @@ const DefaultHomeView = ({
   setFilterVisible,
 }) => {
   return (
-    <View style={styles.home}>
-      <Header />
-      <ScrollView contentContainerStyle={styles.content}>
-      <View style={styles.filterIconContainer}>
-          <Text style={styles.upcomingEvents}>Lesson Availabilities</Text>
-      </View>
-      {/* LESSON AVAILABILITES SECTION */} 
-      <View style={styles.lessonList}>
-      <View style={styles.radialBackground}>
-      <RadialGradientCircle stop1={Color.niceBlue} stop2={Color.purplyBlue}/>
-      </View>
-        <LessonAvailabilityItem 
-          title="MM Lesson"
-          dates="9/24/24 - 9/25/24"
-          confirmation="Confirm Now!" 
-        />
-        <LessonAvailabilityItem 
-          title="RH Lesson"
-          dates="9/26/24 - 9/29/24"
-          confirmation="Edit Time" 
-        />
-        <LessonAvailabilityItem 
-          dates="10/01/24 - 10/03/24"
-          title="RH Lesson"
-          confirmation="Edit Time" 
-        />
-      </View>
-      <View style={styles.filterIconContainer}>
-        <Text style={styles.upcomingEvents}>Upcoming Events</Text>
-        <TouchableOpacity onPress={() => setFilterVisible(true)}>
-          <FilterIcon size={28} style={styles.filterIcon} />
-        </TouchableOpacity>
-      </View>
-      <FilterModal
-        visible={filterVisible}
-        onClose={() => setFilterVisible(false)}
-        activeFilters={filters}
-        onChange={setFilters}
-      />
-      <View style={styles.visibleScrollView}>
+    <Pressable onPress={() => setFilterVisible(false)} style={styles.outside}>
+      <View style={styles.home}>
+        <Header />
         <ScrollView contentContainerStyle={styles.content}>
-          <View style={styles.eventList}>
+          <View style={styles.filterIconContainer}>
+            <Text style={styles.upcomingEvents}>Lesson Availabilities</Text>
+          </View>
+          {/* LESSON AVAILABILITES SECTION */}
+          <View style={styles.lessonList}>
             <View style={styles.radialBackground}>
-              <RadialGradientCircle stop1={Color.niceBlue} stop2={Color.purplyBlue}/>
+              <RadialGradientCircle
+                stop1={Color.niceBlue}
+                stop2={Color.purplyBlue}
+              />
             </View>
-            {!isEmpty(events) ? (
-              Object.entries(events).map(([date, events]) => (
-                <React.Fragment key={date}>
-                  <Text key={date} style={styles.date}>
-                    {date}
-                  </Text>
-                  {events.map((event) => (
-                    <EventItem
-                      key={event.id}
-                      onPress={() => setOpenedEventId(event.id)}
-                      event={event}
-                    />
-                  ))}
-                </React.Fragment>
-              ))
-            ) : (
-              <Text style={styles.noEventsText}>No events at this time.</Text>
-            )}
+            <LessonAvailabilityItem
+              title="MM Lesson"
+              dates="9/24/24 - 9/25/24"
+              confirmation="Confirm Now!"
+            />
+            <LessonAvailabilityItem
+              title="RH Lesson"
+              dates="9/26/24 - 9/29/24"
+              confirmation="Edit Time"
+            />
+            <LessonAvailabilityItem
+              dates="10/01/24 - 10/03/24"
+              title="RH Lesson"
+              confirmation="Edit Time"
+            />
+          </View>
+          <View style={styles.filterIconContainer}>
+            <Text style={styles.upcomingEvents}>Upcoming Events</Text>
+            <TouchableOpacity onPress={() => setFilterVisible(true)}>
+              <FilterIcon size={28} style={styles.filterIcon} />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.visibleScrollView}>
+            <FilterModal
+              visible={filterVisible}
+              position={{ top: 0, right: 12 }}
+              activeFilters={filters}
+              onChange={setFilters}
+            />
+            <View style={styles.eventList}>
+              <View style={styles.radialBackground}>
+                <RadialGradientCircle
+                  stop1={Color.niceBlue}
+                  stop2={Color.purplyBlue}
+                />
+              </View>
+              {!isEmpty(events) ? (
+                Object.entries(events).map(([date, events]) => (
+                  <React.Fragment key={date}>
+                    <Text key={date} style={styles.date}>
+                      {date}
+                    </Text>
+                    {events.map((event) => (
+                      <EventItem
+                        key={event.id}
+                        onPress={() => setOpenedEventId(event.id)}
+                        event={event}
+                      />
+                    ))}
+                  </React.Fragment>
+                ))
+              ) : (
+                <Text style={styles.noEventsText}>No events at this time.</Text>
+              )}
+            </View>
           </View>
         </ScrollView>
+        <View style={styles.bottonNavContainer}>
+          <BottomNav />
+        </View>
       </View>
-      </ScrollView>
-      <View style={styles.bottonNavContainer}>
-        <BottomNav />
-      </View>
-    </View>
+    </Pressable>
   );
 };
 
@@ -174,6 +183,11 @@ const HomeScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  outside: {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+  },
   home: {
     flex: 1,
     backgroundColor: Color.darkPurple,

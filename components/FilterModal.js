@@ -1,6 +1,7 @@
 import { StyleSheet, View, Text, Pressable } from "react-native";
 import { Color, EventColor, FontFamily, FontSize } from "../GlobalStyles";
 import Checkmark from "../assets/icons/Checkmark";
+import Modal from "./Modal";
 
 const filters = ["lesson", "studio class", "recital", "masterclass", "misc"];
 
@@ -28,64 +29,48 @@ const Checkbox = ({
   );
 };
 
-const FilterModal = ({ visible, onClose, activeFilters, onChange }) => {
+const FilterModal = ({
+  visible,
+  onClose,
+  position,
+  activeFilters,
+  onChange,
+}) => {
   return (
-    <>
-      {visible && (
-        <Pressable style={styles.outside} onPress={onClose}>
-          <Pressable onPress={(e) => e.stopPropagation()}>
-            <View style={styles.filter}>
-              <View style={styles.sharktoothBorder} />
-              <View style={styles.sharktooth} />
-              {filters.map((filter) => (
-                <View style={styles.filterRow} key={filter}>
-                  <Checkbox
-                    style={[
-                      styles.checkbox,
-                      { borderColor: EventColor[filter] },
-                    ]}
-                    activeStyle={{ backgroundColor: EventColor[filter] }}
-                    checkmarkColor={Color.black}
-                    checked={activeFilters.includes(filter)}
-                    onChange={(checked) => {
-                      if (checked) {
-                        onChange([...activeFilters, filter]);
-                      } else {
-                        onChange(
-                          activeFilters.filter(
-                            (activeFilter) => activeFilter !== filter
-                          )
-                        );
-                      }
-                    }}
-                  />
-                  <Text style={styles.filterText}>{capitalize(filter)}</Text>
-                </View>
-              ))}
-            </View>
-          </Pressable>
-        </Pressable>
-      )}
-    </>
+    <Modal
+      visible={visible}
+      onClose={onClose}
+      position={position}
+      style={styles.filter}
+    >
+      {filters.map((filter) => (
+        <View style={styles.filterRow} key={filter}>
+          <Checkbox
+            style={[styles.checkbox, { borderColor: EventColor[filter] }]}
+            activeStyle={{ backgroundColor: EventColor[filter] }}
+            checkmarkColor={Color.black}
+            checked={activeFilters.includes(filter)}
+            onChange={(checked) => {
+              if (checked) {
+                onChange([...activeFilters, filter]);
+              } else {
+                onChange(
+                  activeFilters.filter(
+                    (activeFilter) => activeFilter !== filter
+                  )
+                );
+              }
+            }}
+          />
+          <Text style={styles.filterText}>{capitalize(filter)}</Text>
+        </View>
+      ))}
+    </Modal>
   );
 };
 
 const styles = StyleSheet.create({
-  outside: {
-    position: "absolute",
-    zIndex: 1,
-    width: "100%",
-    height: "100%",
-  },
   filter: {
-    position: "absolute",
-    top: 164,
-    right: 10,
-    zIndex: 1,
-    backgroundColor: Color.darkPurple,
-    borderColor: Color.white,
-    borderWidth: 1,
-    borderRadius: 16,
     padding: 8,
   },
   filterRow: {
@@ -106,28 +91,6 @@ const styles = StyleSheet.create({
     color: Color.white,
     fontFamily: FontFamily.alataRegular,
     fontSize: FontSize.medium,
-  },
-  sharktooth: {
-    position: "absolute",
-    top: -10,
-    right: 22,
-    borderLeftWidth: 10,
-    borderLeftColor: "transparent",
-    borderRightWidth: 10,
-    borderRightColor: "transparent",
-    borderBottomWidth: 10,
-    borderBottomColor: Color.darkPurple,
-  },
-  sharktoothBorder: {
-    position: "absolute",
-    top: -12,
-    right: 20,
-    borderLeftWidth: 12,
-    borderLeftColor: "transparent",
-    borderRightWidth: 12,
-    borderRightColor: "transparent",
-    borderBottomWidth: 12,
-    borderBottomColor: Color.white,
   },
 });
 
