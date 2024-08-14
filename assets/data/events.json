@@ -1,0 +1,87 @@
+[
+    {
+      "id": 1,
+      "title": "Prof. X Lesson",
+      "time": "5:00 pm - 6:00 pm",
+      "location": "Room 101",
+      "creator": "Prof. X",
+      "participants": "Student A",
+      "description": "This is a lesson with Prof. X",
+      "confirmation": "Confirmed",
+      "type": "lesson",
+      "date": "2024-09-24T17:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "title": "Student Recital",
+      "time": "5:00 pm - 6:00 pm",
+      "location": "Room 101",
+      "creator": "Student A",
+      "participants": "Student A",
+      "description": "This is a recital with Student A",
+      "confirmation": "Confirmed",
+      "type": "recital",
+      "date": "2024-09-25T17:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "title": "Prof. X Lesson",
+      "time": "5:00 pm - 6:00 pm",
+      "location": "Room 101",
+      "creator": "Prof. X",
+      "participants": "Student A",
+      "description": "This is a lesson with Prof. X",
+      "confirmation": "Confirmed",
+      "type": "lesson",
+      "date": "2024-09-24T17:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "title": "Masterclass",
+      "time": "5:00 pm - 6:00 pm",
+      "location": "Room 101",
+      "creator": "Visiting Lecturer",
+      "participants": "Student A",
+      "description": "This is a masterclass with Visiting Lecturer",
+      "confirmation": "Unconfirmed",
+      "type": "masterclass",
+      "date": "2023-03-23T17:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "title": "Studio Class",
+      "time": "5:00 pm - 6:20 pm",
+      "location": "Room 101",
+      "creator": "Trombone Studio",
+      "participants": "Student A",
+      "description": "This is a studio class with Trombone Studio",
+      "confirmation": "Confirmed",
+      "type": "studio class",
+      "date": "2024-09-24T17:00:00.000Z"
+    },
+    {
+      "id": 6,
+      "title": "Studio Class",
+      "time": "5:00 pm - 6:20 pm",
+      "location": "Room 101",
+      "creator": "Trombone Studio",
+      "participants": "Student A",
+      "description": "This is a studio class with Trombone Studio",
+      "confirmation": "Confirmed",
+      "type": "studio class",
+      "date": "2024-09-24T17:00:00.000Z"
+    },
+    {
+      "id": 7,
+      "title": "Studio Class",
+      "time": "5:00 pm - 6:20 pm",
+      "location": "Room 101",
+      "creator": "Trombone Studio",
+      "participants": "Student A",
+      "description": "This is a studio class with Trombone Studio",
+      "confirmation": "Confirmed",
+      "type": "studio class",
+      "date": "2024-09-24T17:00:00.000Z"
+    }
+  ]
+  

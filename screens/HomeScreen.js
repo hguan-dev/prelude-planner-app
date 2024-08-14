@@ -13,104 +13,17 @@ import BottomNav from "../components/BottomNav";
 import OpenedEventPopup from "../components/OpenedEventPopup";
 import FilterIcon from "../assets/icons/FilterIcon";
 import { Color, FontFamily, FontSize, Padding, Border } from "../GlobalStyles";
-import BackgroundGradient from "../assets/images/BackgroundGradient";
+import RadialGradientCircle from "../assets/images/RadialGradientCircle";
 import FilterModal from "../components/FilterModal";
-
-async function fetchData() {
-  // placeholder data
-  return Promise.resolve([
-    {
-      id: 1,
-      title: "Prof. X Lesson",
-      time: "5:00 pm - 6:00 pm",
-      location: "Room 101",
-      creator: "Prof. X",
-      participants: "Student A",
-      description: "This is a lesson with Prof. X",
-      confirmation: "Confirmed",
-      type: "lesson",
-      date: new Date(),
-    },
-    {
-      id: 2,
-      title: "Student Recital",
-      time: "5:00 pm - 6:00 pm",
-      location: "Room 101",
-      creator: "Student A",
-      participants: "Student A",
-      description: "This is a recital with Student A",
-      confirmation: "Confirmed",
-      type: "recital",
-      date: new Date(),
-    },
-    {
-      id: 3,
-      title: "Prof. X Lesson",
-      time: "5:00 pm - 6:00 pm",
-      location: "Room 101",
-      creator: "Prof. X",
-      participants: "Student A",
-      description: "This is a lesson with Prof. X",
-      confirmation: "Confirmed",
-      type: "lesson",
-      date: new Date("2024-09-24"),
-    },
-    {
-      id: 5,
-      title: "Masterclass",
-      time: "5:00 pm - 6:00 pm",
-      location: "Room 101",
-      creator: "Visiting Lecturer",
-      participants: "Student A",
-      description: "This is a masterclass with Visiting Lecturer",
-      confirmation: "Unconfirmed",
-      type: "masterclass",
-      date: new Date("2023-03-23"),
-    },
-    {
-      id: 4,
-      title: "Studio Class",
-      time: "5:00 pm - 6:20 pm",
-      location: "Room 101",
-      creator: "Trombone Studio",
-      participants: "Student A",
-      description: "This is a studio class with Trombone Studio",
-      confirmation: "Confirmed",
-      type: "studio class",
-      date: new Date("2024-09-24"),
-    },
-    {
-      id: 6,
-      title: "Studio Class",
-      time: "5:00 pm - 6:20 pm",
-      location: "Room 101",
-      creator: "Trombone Studio",
-      participants: "Student A",
-      description: "This is a studio class with Trombone Studio",
-      confirmation: "Confirmed",
-      type: "studio class",
-      date: new Date("2024-09-24"),
-    },
-    {
-      id: 7,
-      title: "Studio Class",
-      time: "5:00 pm - 6:20 pm",
-      location: "Room 101",
-      creator: "Trombone Studio",
-      participants: "Student A",
-      description: "This is a studio class with Trombone Studio",
-      confirmation: "Confirmed",
-      type: "studio class",
-      date: new Date("2024-09-24"),
-    },
-  ]);
-}
+import LessonAvailabilityItem from "../components/LessonAvailabilityItem";
+// I put the events in this file, use them from there
+import eventsData from "../assets/data/events.json"; 
 
 // group events by date
 function groupByDate(events) {
-  const sorted = [...events].sort((a, b) => a.date - b.date);
+  const sorted = [...events].sort((a, b) => new Date(a.date) - new Date(b.date));
   const getEventDate = (event) => {
-    return event.date.toLocaleDateString(undefined, {
+    return new Date(event.date).toLocaleDateString(undefined, {
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -152,6 +65,31 @@ const DefaultHomeView = ({
   return (
     <View style={styles.home}>
       <Header />
+      <ScrollView contentContainerStyle={styles.content}>
+      <View style={styles.filterIconContainer}>
+          <Text style={styles.upcomingEvents}>Lesson Availabilities</Text>
+      </View>
+      {/* LESSON AVAILABILITES SECTION */} 
+      <View style={styles.lessonList}>
+      <View style={styles.radialBackground}>
+      <RadialGradientCircle stop1={Color.niceBlue} stop2={Color.purplyBlue}/>
+      </View>
+        <LessonAvailabilityItem 
+          title="MM Lesson"
+          dates="9/24/24 - 9/25/24"
+          confirmation="Confirm Now!" 
+        />
+        <LessonAvailabilityItem 
+          title="RH Lesson"
+          dates="9/26/24 - 9/29/24"
+          confirmation="Edit Time" 
+        />
+        <LessonAvailabilityItem 
+          dates="10/01/24 - 10/03/24"
+          title="RH Lesson"
+          confirmation="Edit Time" 
+        />
+      </View>
       <View style={styles.filterIconContainer}>
         <Text style={styles.upcomingEvents}>Upcoming Events</Text>
         <TouchableOpacity onPress={() => setFilterVisible(true)}>
@@ -168,7 +106,7 @@ const DefaultHomeView = ({
         <ScrollView contentContainerStyle={styles.content}>
           <View style={styles.eventList}>
             <View style={styles.radialBackground}>
-              <BackgroundGradient stop1={Color.niceBlue} stop2={Color.purplyBlue}/>
+              <RadialGradientCircle stop1={Color.niceBlue} stop2={Color.purplyBlue}/>
             </View>
             {!isEmpty(events) ? (
               Object.entries(events).map(([date, events]) => (
@@ -191,6 +129,7 @@ const DefaultHomeView = ({
           </View>
         </ScrollView>
       </View>
+      </ScrollView>
       <View style={styles.bottonNavContainer}>
         <BottomNav />
       </View>
@@ -206,16 +145,8 @@ const HomeScreen = () => {
   const [filters, setFilters] = useState([]);
 
   useEffect(() => {
-    async function getEvents() {
-      try {
-        // mock api call
-        const data = await fetchData();
-        setEvents(data);
-      } catch {
-        console.log("failed to get events");
-      }
-    }
-    getEvents();
+    // Use the imported JSON data instead of fetching it
+    setEvents(eventsData);
   }, []);
 
   const filteredEvents = filter(events, filters);
@@ -267,6 +198,15 @@ const styles = StyleSheet.create({
     fontSize: FontSize.subheader,
     fontFamily: FontFamily.alataRegular,
     color: Color.white,
+  },
+  lessonList: {
+    alignItems: "center",
+    borderRadius: Border.defaultRadius,
+    overflow: "hidden",
+    marginTop: 7.5,
+    marginBottom: 25, //spacing between lessons and events
+    marginHorizontal: Padding.larger,
+    backgroundColor: "rgba(150, 25, 150, 0.4)",
   },
   eventList: {
     alignItems: "center",
