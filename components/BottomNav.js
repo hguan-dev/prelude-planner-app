@@ -7,7 +7,7 @@ import ProfileIcon from "../assets/icons/ProfileIcon";
 import PlusIcon from "../assets/icons/PlusIcon";
 import { Color, Border, Padding, Gap, IconSize } from "../GlobalStyles";
 
-const BottomNav = () => {
+const BottomNav = ({ onPlusPress }) => {
   return (
     <View style={styles.tabbar}>
       <View style={styles.iconContainer}>
@@ -18,7 +18,7 @@ const BottomNav = () => {
       </View>
       <View style={styles.plusIconContainer}>
         <View style={styles.plusIcon}>
-          <PlusIcon size={IconSize.navPlusIcon} />
+          <PlusIcon size={IconSize.navPlusIcon} onPress={onPlusPress}/>
         </View>
       </View>
     </View>

@@ -19,6 +19,7 @@ import FilterModal from "../components/FilterModal";
 import LessonAvailabilityItem from "../components/LessonAvailabilityItem";
 // I put the events in this file, use them from there
 import eventsData from "../assets/data/events.json";
+import NewEventPopup from "../components/NewEventPopup";
 
 // group events by date
 function groupByDate(events) {
@@ -64,6 +65,7 @@ const DefaultHomeView = ({
   setFilters,
   filterVisible,
   setFilterVisible,
+  setNewEventScreenVisible,
 }) => {
   return (
     <Pressable onPress={() => setFilterVisible(false)} style={styles.outside}>
@@ -97,6 +99,7 @@ const DefaultHomeView = ({
               confirmation="Edit Time"
             />
           </View>
+          {/* <Text onPress={() => {setNewEventScreenVisible(true)}}>Click me!</Text> */}
           <View style={styles.filterIconContainer}>
             <Text style={styles.upcomingEvents}>Upcoming Events</Text>
             <TouchableOpacity onPress={() => setFilterVisible(true)}>
@@ -139,7 +142,9 @@ const DefaultHomeView = ({
           </View>
         </ScrollView>
         <View style={styles.bottonNavContainer}>
-          <BottomNav />
+          <BottomNav 
+            onPlusPress={() => setNewEventScreenVisible(true)}
+          />
         </View>
       </View>
     </Pressable>
@@ -152,6 +157,8 @@ const HomeScreen = () => {
 
   const [filterVisible, setFilterVisible] = useState(false);
   const [filters, setFilters] = useState([]);
+  
+  const [newEventScreenVisible, setNewEventScreenVisible] = useState(true);
 
   useEffect(() => {
     // Use the imported JSON data instead of fetching it
@@ -163,7 +170,18 @@ const HomeScreen = () => {
 
   return (
     <>
-      {!openedEventId ? (
+      {openedEventId ? (
+        <OpenedEventPopup
+        event={filteredEvents.find((event) => event.id === openedEventId)}
+        onClose={() => setOpenedEventId(null)}
+      />
+        
+      ) : (
+        newEventScreenVisible ? (
+          <NewEventPopup
+          onClose={() => setNewEventScreenVisible(false)}
+          />
+        ) : (
         <DefaultHomeView
           events={filteredAndGroupedEvents}
           setOpenedEventId={setOpenedEventId}
@@ -171,12 +189,9 @@ const HomeScreen = () => {
           setFilters={setFilters}
           filterVisible={filterVisible}
           setFilterVisible={setFilterVisible}
+          setNewEventScreenVisible={setNewEventScreenVisible}
         />
-      ) : (
-        <OpenedEventPopup
-          event={filteredEvents.find((event) => event.id === openedEventId)}
-          onClose={() => setOpenedEventId(null)}
-        />
+      )
       )}
     </>
   );
