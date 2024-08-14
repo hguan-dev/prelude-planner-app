@@ -99,7 +99,6 @@ const DefaultHomeView = ({
               confirmation="Edit Time"
             />
           </View>
-          {/* <Text onPress={() => {setNewEventScreenVisible(true)}}>Click me!</Text> */}
           <View style={styles.filterIconContainer}>
             <Text style={styles.upcomingEvents}>Upcoming Events</Text>
             <TouchableOpacity onPress={() => setFilterVisible(true)}>
@@ -158,7 +157,7 @@ const HomeScreen = () => {
   const [filterVisible, setFilterVisible] = useState(false);
   const [filters, setFilters] = useState([]);
   
-  const [newEventScreenVisible, setNewEventScreenVisible] = useState(true);
+  const [newEventScreenVisible, setNewEventScreenVisible] = useState(false);
 
   useEffect(() => {
     // Use the imported JSON data instead of fetching it
