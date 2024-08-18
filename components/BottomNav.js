@@ -1,26 +1,35 @@
 import * as React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import HomeIcon from "../assets/icons/HomeIcon";
 import CalendarIcon from "../assets/icons/CalendarIcon";
 import SearchIcon from "../assets/icons/SearchIcon";
 import ProfileIcon from "../assets/icons/ProfileIcon";
 import PlusIcon from "../assets/icons/PlusIcon";
-import { Color, Border, Padding, Gap, IconSize} from "../GlobalStyles";
+import { useNavigation } from "@react-navigation/native";
+import { Color, Border, Gap, IconSize } from "../GlobalStyles";
 
 const BottomNav = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.tabbar}>
       <View style={styles.iconContainer}>
-        <HomeIcon size={IconSize.iconDefault} style={styles.icon} />
-        <CalendarIcon size={IconSize.iconDefault} style={styles.icon} />
-        <SearchIcon size={IconSize.iconDefault} style={styles.icon} />
-        <ProfileIcon size={IconSize.iconDefault} style={styles.icon} />
+        <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")} style={styles.touchable}>
+          <HomeIcon size={IconSize.iconDefault} style={styles.icon} />
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => navigation.navigate("CalendarScreen")} style={styles.touchable}>
+          <CalendarIcon size={IconSize.iconDefault} style={styles.icon} />
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => navigation.navigate("SearchScreen")} style={styles.touchable}>
+          <SearchIcon size={IconSize.iconDefault} style={styles.icon} />
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => navigation.navigate("ProfileScreen")} style={styles.touchable}>
+          <ProfileIcon size={IconSize.iconDefault} style={styles.icon} />
+        </TouchableOpacity>
       </View>
-      <View style={styles.plusIconContainer}>
-          <View style={styles.plusIcon}>
-            <PlusIcon size={IconSize.navPlusIcon} />
-          </View>
-        </View>
     </View>
   );
 };
@@ -28,30 +37,40 @@ const BottomNav = () => {
 const styles = StyleSheet.create({
   tabbar: {
     width: '100%',
-    height: "100%",
+    height: 80,
     borderTopLeftRadius: Border.hugeRadius,
     borderTopRightRadius: Border.hugeRadius,
     backgroundColor: Color.darkPurple,
-    justifyContent: 'center',
-    alignItems: 'center',
     borderColor: Color.mediumPurple,
     borderWidth: Border.defaultWidth,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
   iconContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    width: "100%",
-    margin: Gap.navIcon,
+    flex: 1,
+    alignItems: 'center',
+  },
+  touchable: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   plusIcon: {
-    marginLeft: 6, // hard coded cuz svg off center
+    marginLeft: 6, 
   },
   plusIconContainer: {
     position: 'absolute',
     width: "100%",
     justifyContent: 'center',
     alignItems: 'center',
-    bottom: 45,
+    bottom: 15, 
+  },
+  icon: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

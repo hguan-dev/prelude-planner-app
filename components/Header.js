@@ -12,9 +12,7 @@ const Header = () => {
     <View style={styles.headerContainer}>
       <Text style={styles.title}>Prelude Planner</Text>
       <View style={styles.iconsContainer}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("NotificationScreen")}
-        >
+        <TouchableOpacity onPress={() => navigation.navigate("NotificationScreen")}>
           <BellIcon size={IconSize.iconDefault} />
         </TouchableOpacity>
         <ChatIcon size={IconSize.iconDefault} />
