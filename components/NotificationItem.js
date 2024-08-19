@@ -8,7 +8,7 @@ const NotificationItem = ({ desc }) => {
     <LinearGradient
       style={styles.notificationItem}
       locations={[0, 1]}
-      colors={["#311c51", "#4679d1"]}
+      colors={["#2a1d52", "#2f2b80"]}
     >
       <View style={styles.contentContainer}>
         <View style={styles.headerContainer}>

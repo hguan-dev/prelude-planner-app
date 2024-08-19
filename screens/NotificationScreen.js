@@ -17,6 +17,7 @@ const notifications = [
   { id: '7', desc: '<descriptionthatisverylongdescriptionthatisveryl...>' }
 ];
 
+
 const NotificationScreen = () => {
   const navigation = useNavigation();
   
@@ -37,7 +38,9 @@ const NotificationScreen = () => {
           style={styles.list}
           data={notifications} // Pass the notifications array as data
           renderItem={({ item }) => (
-            <NotificationItem desc={item.desc} /> // Render each notification item
+            <NotificationItem 
+                desc={item.desc} /> // Render each notification item
+               
           )}
           keyExtractor={item => item.id} // Unique key for each item
         />
