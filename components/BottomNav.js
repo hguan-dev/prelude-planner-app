@@ -1,18 +1,23 @@
 import * as React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import HomeIcon from "../assets/icons/HomeIcon";
 import CalendarIcon from "../assets/icons/CalendarIcon";
 import SearchIcon from "../assets/icons/SearchIcon";
 import ProfileIcon from "../assets/icons/ProfileIcon";
 import PlusIcon from "../assets/icons/PlusIcon";
 import { Color, Border, Padding, Gap, IconSize } from "../GlobalStyles";
+import { useNavigation } from "@react-navigation/native";
 
 const BottomNav = ({ onPlusPress }) => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.tabbar}>
       <View style={styles.iconContainer}>
         <HomeIcon size={IconSize.iconDefault} style={styles.icon} />
-        <CalendarIcon size={IconSize.iconDefault} style={styles.icon} />
+        <TouchableOpacity onPress={() => navigation.navigate('CalendarScreen')}>
+          <CalendarIcon size={IconSize.iconDefault} style={styles.icon} />
+        </TouchableOpacity>
         <SearchIcon size={IconSize.iconDefault} style={styles.icon} />
         <ProfileIcon size={IconSize.iconDefault} style={styles.icon} />
       </View>
