@@ -14,7 +14,9 @@ const BottomNav = ({ onPlusPress }) => {
   return (
     <View style={styles.tabbar}>
       <View style={styles.iconContainer}>
-        <HomeIcon size={IconSize.iconDefault} style={styles.icon} />
+        <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+         <HomeIcon size={IconSize.iconDefault} style={styles.icon} />
+        </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('CalendarScreen')}>
           <CalendarIcon size={IconSize.iconDefault} style={styles.icon} />
         </TouchableOpacity>

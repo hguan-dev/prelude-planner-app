@@ -12,12 +12,14 @@ import {
 import { Color, FontFamily, FontSize, Padding, Border } from "../GlobalStyles";
 
 import Header from "../components/Header";
+import CalendarMonthView from "../components/CalendarMonthView";
 import BottomNav from "../components/BottomNav";
 
 
 const CalendarScreen = () => {
     const navigation = useNavigation();
     const [calendarView, setCalendarView] = useState("month")
+
     return (
         <View style={styles.calendarScreenContainer}>
             <Header />
@@ -26,6 +28,9 @@ const CalendarScreen = () => {
                 {/* temp placeholder for the calendar filter */}
                 <Text style={styles.calendarHeader}>Filter</Text>
             </View>  
+            <View>
+                 <CalendarMonthView />
+            </View>
             <View style={styles.bottonNavContainer}>
                 <BottomNav 
                     onPlusPress={() => setNewEventScreenVisible(true)}
