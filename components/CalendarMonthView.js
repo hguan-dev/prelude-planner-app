@@ -29,10 +29,15 @@ const CalendarMonthView = () => {
     const[events, setEvents] = useState([])
 
     // days for calendar
-    const daysInMonth = selectedMonth.daysInMonth(); // num of days changes based on selected month
-    const daysArray =  Array(daysInMonth).fill().map((day, i) => i + 1);
     const firstDayOfMonth = moment(selectedMonth).startOf("month").day(); // first day changes based on month so use selected month as the curr moment
+    const lastDayOfMonth = moment(selectedMonth).endOf("month").day(); // first day changes based on month so use selected month as the curr moment
 
+    const daysInMonth = selectedMonth.daysInMonth(); // num of days changes based on selected month
+    //const daysInPrevMonth = selectedMonth.clone().subtract(1, 'month').daysInMonth();
+    const lastDayinPrevMonth = selectedMonth.clone().subtract(1, 'month').endOf('month');
+    const daysArray =  Array(daysInMonth).fill().map((day, i) => i + 1); // array of days in current month
+    const inactivePrevDaysArray = Array.from({ length: firstDayOfMonth}, (day, i) => lastDayinPrevMonth.date() - i).reverse();
+    const inactiveNextDaysArray = Array.from({ length: 42 - (firstDayOfMonth + daysArray.length)}, (day, i) => i + 1)
     //clicking a different date on calendar
     const handleDate = (day) => {
         setSelectedDate(moment(currentDate).date(day));
@@ -61,8 +66,17 @@ const CalendarMonthView = () => {
             {/* SPECIFIC DATES FOR EACH MONTH */}
             <View style={styles.datesContainer}>
                 {/* render cells for days BEFORE first day of month */}
-                {Array(firstDayOfMonth).fill().map((day, i) => (
+                {/* {Array(firstDayOfMonth).fill().map((day, i) => (
                     <View key={i} style={styles.emptyDateCell} />
+                ))} */}
+                {inactivePrevDaysArray.map(day => (
+                    <TouchableOpacity 
+                        key={day} 
+                        onPress={() => handleDate(day)} 
+                        style={styles.dateCell}
+                    >
+                        <Text style={styles.inactiveDateText}>{day}</Text>
+                    </TouchableOpacity>
                 ))}
                 {/* render cells for days in the month */}
                 {daysArray.map(day => (
@@ -74,6 +88,15 @@ const CalendarMonthView = () => {
                         <Text style={styles.dateText}>{day}</Text>
                     </TouchableOpacity>
                 ))}
+                {inactiveNextDaysArray.map(day => (
+                    <TouchableOpacity 
+                        key={day} 
+                        onPress={() => handleDate(day)} 
+                        style={styles.dateCell}
+                    >
+                        <Text style={styles.inactiveDateText}>{day}</Text>
+                    </TouchableOpacity>
+                ))}
             </View>
             
         </View>
@@ -83,12 +106,12 @@ const CalendarMonthView = () => {
 
 const styles = StyleSheet.create({
     calendarContainer: {
-        paddingHorizontal: Padding.headerText, // padding for width of calendar
     },
     monthSelectorContainer: {
         flexDirection: "row",
         justifyContent: "space-between",
         marginVertical: Padding.larger,
+        paddingHorizontal: Padding.headerText,
     },
     selectedMonth: {
         textAlign: "center",
@@ -99,6 +122,7 @@ const styles = StyleSheet.create({
     daysContainer: {
         flexDirection: "row",
         justifyContent: "space-between",
+        paddingHorizontal: 17,
     },
     dayOfWeekText: {
         width: "14.28%", 
@@ -106,10 +130,12 @@ const styles = StyleSheet.create({
         fontFamily: FontFamily.alataRegular,
         color: Color.white,
         fontSize: FontSize.small,
+        marginBottom: Padding.larger,
     },
     datesContainer: {
         flexDirection: "row",
         flexWrap: "wrap",
+        paddingHorizontal: 17,
     },
     emptyDateCell: {
         width: "14.28%",
@@ -128,6 +154,11 @@ const styles = StyleSheet.create({
     },
     dateText: {
         color: Color.white,
+        fontFamily: FontFamily.alataRegular,
+        fontSize: FontSize.medium,
+    },
+    inactiveDateText: {
+        color: "#8F9BB3",
         fontFamily: FontFamily.alataRegular,
         fontSize: FontSize.medium,
     },
