@@ -30,17 +30,21 @@ const CalendarMonthView = () => {
 
     // days for calendar
     const firstDayOfMonth = moment(selectedMonth).startOf("month").day(); // first day changes based on month so use selected month as the curr moment
-    const lastDayOfMonth = moment(selectedMonth).endOf("month").day(); // first day changes based on month so use selected month as the curr moment
-
     const daysInMonth = selectedMonth.daysInMonth(); // num of days changes based on selected month
-    //const daysInPrevMonth = selectedMonth.clone().subtract(1, 'month').daysInMonth();
     const lastDayinPrevMonth = selectedMonth.clone().subtract(1, 'month').endOf('month');
     const daysArray =  Array(daysInMonth).fill().map((day, i) => i + 1); // array of days in current month
     const inactivePrevDaysArray = Array.from({ length: firstDayOfMonth}, (day, i) => lastDayinPrevMonth.date() - i).reverse();
     const inactiveNextDaysArray = Array.from({ length: 42 - (firstDayOfMonth + daysArray.length)}, (day, i) => i + 1)
+    
+    const handlePrevDate = (day) => {
+        setSelectedDate(selectedMonth.clone().subtract(1, 'month').date(day))
+    }
     //clicking a different date on calendar
     const handleDate = (day) => {
-        setSelectedDate(moment(currentDate).date(day));
+        setSelectedDate(selectedMonth.clone().date(day));
+    }
+    const handleNextDate = (day) => {
+        setSelectedDate(selectedMonth.clone().add(1, 'month').date(day))
     }
     return ( 
         <View style={styles.calendarContainer}>
@@ -66,15 +70,14 @@ const CalendarMonthView = () => {
             {/* SPECIFIC DATES FOR EACH MONTH */}
             <View style={styles.datesContainer}>
                 {/* render cells for days BEFORE first day of month */}
-                {/* {Array(firstDayOfMonth).fill().map((day, i) => (
-                    <View key={i} style={styles.emptyDateCell} />
-                ))} */}
                 {inactivePrevDaysArray.map(day => (
                     <TouchableOpacity 
                         key={day} 
-                        onPress={() => handleDate(day)} 
-                        style={styles.dateCell}
-                    >
+                        onPress={() => handlePrevDate(day)} 
+                        style={[
+                            styles.dateCell,
+                            selectedDate.date() === day && selectedDate.isSame(selectedMonth.clone().subtract(1, 'month'), 'month') ? styles.selectedDateCell : null]}
+                            >
                         <Text style={styles.inactiveDateText}>{day}</Text>
                     </TouchableOpacity>
                 ))}
@@ -83,17 +86,22 @@ const CalendarMonthView = () => {
                     <TouchableOpacity 
                         key={day} 
                         onPress={() => handleDate(day)} 
-                        style={styles.dateCell}
-                    >
+                        style={[
+                            styles.dateCell,
+                            selectedDate.date() === day && selectedDate.isSame(selectedMonth, 'month') ? styles.selectedDateCell : null]}
+                            >
                         <Text style={styles.dateText}>{day}</Text>
                     </TouchableOpacity>
                 ))}
+                {/* render cells for days AFTER first day of month */}
                 {inactiveNextDaysArray.map(day => (
                     <TouchableOpacity 
                         key={day} 
-                        onPress={() => handleDate(day)} 
-                        style={styles.dateCell}
-                    >
+                        onPress={() => handleNextDate(day)} 
+                        style={[
+                            styles.dateCell,
+                            selectedDate.date() === day && selectedDate.isSame(selectedMonth.clone().add(1, 'month'), 'month') ? styles.selectedDateCell : null]}
+                            >
                         <Text style={styles.inactiveDateText}>{day}</Text>
                     </TouchableOpacity>
                 ))}
@@ -125,7 +133,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 17,
     },
     dayOfWeekText: {
-        width: "14.28%", 
+        width: "14.28%", // 100% divded by 7 / num of days in a week for even width across screen
         textAlign: "center",
         fontFamily: FontFamily.alataRegular,
         color: Color.white,
@@ -137,20 +145,16 @@ const styles = StyleSheet.create({
         flexWrap: "wrap",
         paddingHorizontal: 17,
     },
-    emptyDateCell: {
-        width: "14.28%",
-        height: 40, // Same height as dateCell
-    },
     dateCell: {
         width: "14.28%",
-        height: 40,
+        height: 48,
         justifyContent: "center",
         alignItems: "center",
         marginBottom: 5,
     },
     selectedDateCell: {
         backgroundColor: Color.lightPurple,
-        borderRadius: Border.br5,
+        borderRadius: 15,
     },
     dateText: {
         color: Color.white,
