@@ -8,6 +8,7 @@ import RadialGradientCircle from "../assets/images/RadialGradientCircle";
 import leftArrow from '../assets/images/arrow-square-left.png'
 import rightArrow from '../assets/images/arrow-square-right.png'
 const CalendarMonthView = () => {
+    const [currentDate, setCurrentDate] = useState(moment());
     // selected date (default current date)
     const [selectedDate, setSelectedDate] = useState(moment());
     // selected month
@@ -45,6 +46,7 @@ const CalendarMonthView = () => {
     const handleNextDate = (day) => {
         setSelectedDate(selectedMonth.clone().add(1, 'month').date(day))
     }
+
     return ( 
         <View style={styles.calendarContainer}>
             {/* MONTH AND ARROWS  */}
@@ -67,6 +69,7 @@ const CalendarMonthView = () => {
                 ))}
             </View>
             {/* SPECIFIC DATES FOR EACH MONTH */}
+            
             <View style={styles.datesContainer}>
                 {/* render cells for days BEFORE first day of month */}
                 {inactivePrevDaysArray.map(day => (
@@ -81,17 +84,23 @@ const CalendarMonthView = () => {
                     </TouchableOpacity>
                 ))}
                 {/* render cells for days in the month */}
-                {daysArray.map(day => (
+                {daysArray.map(day => {
+                    const isCurrentDate = currentDate.isSame(selectedMonth.clone().date(day), 'day');
+                    const isSelectedDate = selectedDate.date() === day && selectedDate.isSame(selectedMonth, 'month');
+                    return (
                     <TouchableOpacity 
                         key={day} 
                         onPress={() => handleDate(day)} 
                         style={[
                             styles.dateCell,
-                            selectedDate.date() === day && selectedDate.isSame(selectedMonth, 'month') ? styles.selectedDateCell : null]}
+                            isSelectedDate ? styles.selectedDateCell : null,
+                            // greyed out color if current date is not selected
+                            isCurrentDate && !isSelectedDate ? styles.currentDateCell : null]}
                             >
                         <Text style={styles.dateText}>{day}</Text>
                     </TouchableOpacity>
-                ))}
+                    );
+                })}
                 {/* render cells for days AFTER first day of month */}
                 {inactiveNextDaysArray.map(day => (
                     <TouchableOpacity 
@@ -154,6 +163,10 @@ const styles = StyleSheet.create({
     selectedDateCell: {
         backgroundColor: Color.lightPurple,
         borderRadius: Border.defaultRadius,
+    },
+    currentDateCell: {
+        backgroundColor: Color.grayPurple,
+        borderRadius: Border.defaultRadius,  
     },
     dateText: {
         color: Color.white,
