@@ -4,13 +4,11 @@ import { Color, FontFamily, FontSize, Padding, Border } from "../GlobalStyles";
 import moment from "moment";
 import eventsData from "../assets/data/events.json";
 import RadialGradientCircle from "../assets/images/RadialGradientCircle";
-// import { MaterialIcons } from '@expo/vector-icons';
+// prob should change to icons later since pngs are a bit blurry
 import leftArrow from '../assets/images/arrow-square-left.png'
 import rightArrow from '../assets/images/arrow-square-right.png'
 const CalendarMonthView = () => {
-    // current date
-    const [currentDate, setCurrentDate] = useState(moment());
-    // selected date
+    // selected date (default current date)
     const [selectedDate, setSelectedDate] = useState(moment());
     // selected month
     const [selectedMonth, setSelectedMonth] = useState(moment());
@@ -36,10 +34,11 @@ const CalendarMonthView = () => {
     const inactivePrevDaysArray = Array.from({ length: firstDayOfMonth}, (day, i) => lastDayinPrevMonth.date() - i).reverse();
     const inactiveNextDaysArray = Array.from({ length: 42 - (firstDayOfMonth + daysArray.length)}, (day, i) => i + 1)
     
+    //clicking a different date on calendar (seperate logic )
     const handlePrevDate = (day) => {
         setSelectedDate(selectedMonth.clone().subtract(1, 'month').date(day))
     }
-    //clicking a different date on calendar
+    
     const handleDate = (day) => {
         setSelectedDate(selectedMonth.clone().date(day));
     }
@@ -154,7 +153,7 @@ const styles = StyleSheet.create({
     },
     selectedDateCell: {
         backgroundColor: Color.lightPurple,
-        borderRadius: 15,
+        borderRadius: Border.defaultRadius,
     },
     dateText: {
         color: Color.white,
