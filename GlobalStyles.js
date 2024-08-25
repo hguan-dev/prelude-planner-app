@@ -44,6 +44,9 @@ export const Color = {
   lightPurple: "#a276ff",
   lightSkyBlue: "#72ccff",
   white: "#fff",
+  
+  // calendar colors
+  grayPurple: "#3C2C50"
 };
 /* Paddings (and margins ig) */
 export const Padding = {
