@@ -141,9 +141,7 @@ const DefaultHomeView = ({
           </View>
         </ScrollView>
         <View style={styles.bottonNavContainer}>
-          <BottomNav 
-            onPlusPress={() => setNewEventScreenVisible(true)}
-          />
+          <BottomNav onPlusPress={() => setNewEventScreenVisible(true)} />
         </View>
       </View>
     </Pressable>
@@ -156,7 +154,7 @@ const HomeScreen = () => {
 
   const [filterVisible, setFilterVisible] = useState(false);
   const [filters, setFilters] = useState([]);
-  
+
   const [newEventScreenVisible, setNewEventScreenVisible] = useState(false);
 
   useEffect(() => {
@@ -171,16 +169,12 @@ const HomeScreen = () => {
     <>
       {openedEventId ? (
         <OpenedEventPopup
-        event={filteredEvents.find((event) => event.id === openedEventId)}
-        onClose={() => setOpenedEventId(null)}
-      />
-        
+          event={filteredEvents.find((event) => event.id === openedEventId)}
+          onClose={() => setOpenedEventId(null)}
+        />
+      ) : newEventScreenVisible ? (
+        <NewEventPopup onClose={() => setNewEventScreenVisible(false)} />
       ) : (
-        newEventScreenVisible ? (
-          <NewEventPopup
-          onClose={() => setNewEventScreenVisible(false)}
-          />
-        ) : (
         <DefaultHomeView
           events={filteredAndGroupedEvents}
           setOpenedEventId={setOpenedEventId}
@@ -190,7 +184,6 @@ const HomeScreen = () => {
           setFilterVisible={setFilterVisible}
           setNewEventScreenVisible={setNewEventScreenVisible}
         />
-      )
       )}
     </>
   );

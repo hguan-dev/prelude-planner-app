@@ -5,7 +5,7 @@ import CalendarIcon from "../assets/icons/CalendarIcon";
 import SearchIcon from "../assets/icons/SearchIcon";
 import ProfileIcon from "../assets/icons/ProfileIcon";
 import PlusIcon from "../assets/icons/PlusIcon";
-import { Color, Border, Padding, Gap, IconSize } from "../GlobalStyles";
+import { Color, Border, Gap, IconSize } from "../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
 
 const BottomNav = ({ onPlusPress }) => {
@@ -14,10 +14,10 @@ const BottomNav = ({ onPlusPress }) => {
   return (
     <View style={styles.tabbar}>
       <View style={styles.iconContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
-         <HomeIcon size={IconSize.iconDefault} style={styles.icon} />
+        <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
+          <HomeIcon size={IconSize.iconDefault} style={styles.icon} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('CalendarScreen')}>
+        <TouchableOpacity onPress={() => navigation.navigate("CalendarScreen")}>
           <CalendarIcon size={IconSize.iconDefault} style={styles.icon} />
         </TouchableOpacity>
         <SearchIcon size={IconSize.iconDefault} style={styles.icon} />
@@ -25,7 +25,7 @@ const BottomNav = ({ onPlusPress }) => {
       </View>
       <View style={styles.plusIconContainer}>
         <View style={styles.plusIcon}>
-          <PlusIcon size={IconSize.navPlusIcon} onPress={onPlusPress}/>
+          <PlusIcon size={IconSize.navPlusIcon} onPress={onPlusPress} />
         </View>
       </View>
     </View>
