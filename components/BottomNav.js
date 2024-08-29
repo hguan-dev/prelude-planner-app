@@ -65,7 +65,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   touchable: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -79,11 +78,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     bottom: 15, 
   },
-  circleButton: {
-    width: 40,  // Set the width of the button
-    height: 40, // Set the height of the button to the same as the width
-    borderRadius: 20,  // Half of the width/height to make it a circle
-    // Example background color
+  circleButton: { 
+    width: 50,
+    height: 50, 
+    borderRadius: 25,  
     alignItems: 'center',
     justifyContent: 'center',
   },
