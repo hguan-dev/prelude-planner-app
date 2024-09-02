@@ -5,6 +5,7 @@ export const FontFamily = {
 };
 /* font sizes */
 export const FontSize = {
+  gigantic: 60,
   huge: 37, // onboard page
 
   header: 28, // page header

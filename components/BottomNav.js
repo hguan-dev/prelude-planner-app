@@ -1,32 +1,46 @@
 import * as React from "react";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import HomeIcon from "../assets/icons/HomeIcon";
 import CalendarIcon from "../assets/icons/CalendarIcon";
 import SearchIcon from "../assets/icons/SearchIcon";
 import ProfileIcon from "../assets/icons/ProfileIcon";
 import PlusIcon from "../assets/icons/PlusIcon";
+import { useNavigation, useNavigationState } from "@react-navigation/native";
 import { Color, Border, Gap, IconSize } from "../GlobalStyles";
-import { useNavigation } from "@react-navigation/native";
 
-const BottomNav = ({ onPlusPress }) => {
+const BottomNav = () => {
   const navigation = useNavigation();
+
+  const currentRouteName = useNavigationState(state => state.routes[state.index].name);
+
+  const isProfileScreen = currentRouteName === "ProfileScreen";
 
   return (
     <View style={styles.tabbar}>
       <View style={styles.iconContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
+        <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")} style={styles.touchable}>
           <HomeIcon size={IconSize.iconDefault} style={styles.icon} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("CalendarScreen")}>
+
+        <TouchableOpacity onPress={() => navigation.navigate("CalendarScreen")} style={styles.touchable}>
           <CalendarIcon size={IconSize.iconDefault} style={styles.icon} />
         </TouchableOpacity>
-        <SearchIcon size={IconSize.iconDefault} style={styles.icon} />
-        <ProfileIcon size={IconSize.iconDefault} style={styles.icon} />
-      </View>
-      <View style={styles.plusIconContainer}>
-        <View style={styles.plusIcon}>
-          <PlusIcon size={IconSize.navPlusIcon} onPress={onPlusPress} />
-        </View>
+
+        <TouchableOpacity onPress={() => navigation.navigate("SearchScreen")} style={styles.touchable}>
+          <SearchIcon size={IconSize.iconDefault} style={styles.icon} />
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          onPress = {() => navigation.navigate("ProfileScreen")}
+          style = {[
+            styles.touchable, 
+            styles.circleButton, 
+            isProfileScreen && styles.pressedTouchable
+          ]}
+        >
+          <ProfileIcon size = {IconSize.iconDefault} style = {styles.icon} />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -34,31 +48,50 @@ const BottomNav = ({ onPlusPress }) => {
 
 const styles = StyleSheet.create({
   tabbar: {
-    width: "100%",
-    height: "100%",
+    width: '100%',
+    height: 80,
     borderTopLeftRadius: Border.hugeRadius,
     borderTopRightRadius: Border.hugeRadius,
     backgroundColor: Color.darkPurple,
-    justifyContent: "center",
-    alignItems: "center",
     borderColor: Color.mediumPurple,
     borderWidth: Border.defaultWidth,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
   iconContainer: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    width: "100%",
-    margin: Gap.navIcon,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    flex: 1,
+    alignItems: 'center',
+  },
+  touchable: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   plusIcon: {
-    marginLeft: 6, // hard coded cuz svg off center
+    marginLeft: 6, 
   },
   plusIconContainer: {
     position: "absolute",
     width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-    bottom: 45,
+    justifyContent: 'center',
+    alignItems: 'center',
+    bottom: 15, 
+  },
+  circleButton: { 
+    width: 50,
+    height: 50, 
+    borderRadius: 25,  
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  icon: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  pressedTouchable: {
+    backgroundColor: Color.lightPurple, // Use your desired lighter purple color
   },
 });
 

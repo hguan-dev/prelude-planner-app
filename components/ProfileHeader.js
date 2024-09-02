@@ -5,21 +5,17 @@ import BellIcon from "../assets/icons/BellIcon";
 import ChatIcon from "../assets/icons/ChatIcon";
 import { FontSize, FontFamily, Color, Padding, Border, Gap, IconSize } from "../GlobalStyles";
 
-const Header = () => {
-  const navigation = useNavigation();
-
+const ProfileHeader = () => {
   return (
     <View style={styles.headerContainer}>
       <Text style={styles.title}>Prelude Planner</Text>
       <View style={styles.iconsContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate("NotificationScreen")}>
-          <BellIcon size={IconSize.iconDefault} />
-        </TouchableOpacity>
         <ChatIcon size={IconSize.iconDefault} />
       </View>
     </View>
   );
 };
+  
 
 const styles = StyleSheet.create({
   headerContainer: {
@@ -41,4 +37,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Header;
+export default ProfileHeader;
