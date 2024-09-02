@@ -42,4 +42,6 @@ Thumbs.db
 # Turtle
 turtle-build/
 
+# Watchman
 .watchmanconfig
+.watchman-cookie-*
