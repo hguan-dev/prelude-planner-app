@@ -1,6 +1,5 @@
 import * as React from "react";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
-import { StyleSheet, View, TouchableOpacity } from "react-native";
 import HomeIcon from "../assets/icons/HomeIcon";
 import CalendarIcon from "../assets/icons/CalendarIcon";
 import SearchIcon from "../assets/icons/SearchIcon";
