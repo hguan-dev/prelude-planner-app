@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, ScrollView } from "react-native";
 import { Color, FontFamily, FontSize, Padding } from "../GlobalStyles";
 
 import Header from "../components/Header";
@@ -22,14 +22,17 @@ const CalendarScreen = () => {
       ) : (
         <View style={styles.calendarScreenContainer}>
           <Header />
-          <View style={styles.filterIconContainer}>
-            <Text style={styles.calendarHeader}>Schedule</Text>
-            {/* temp placeholder for the calendar filter */}
-            <Text style={styles.calendarHeader}>Filter</Text>
-          </View>
-          <View>
-            <CalendarMonthView />
-          </View>
+          <ScrollView>
+            <View style={styles.filterIconContainer}>
+              <Text style={styles.calendarHeader}>Schedule</Text>
+              {/* temp placeholder for the calendar filter */}
+              <Text style={styles.calendarHeader}>Filter</Text>
+            </View>
+            {/* need to add 4 day view later */}
+            <View>
+              <CalendarMonthView />
+            </View>
+          </ScrollView>
           <View style={styles.bottonNavContainer}>
             <BottomNav onPlusPress={() => setNewEventScreenVisible(true)} />
           </View>

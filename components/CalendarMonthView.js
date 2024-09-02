@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, FlatList, Image } from "react
 import { Color, FontFamily, FontSize, Padding, Border } from "../GlobalStyles";
 import moment from "moment";
 import eventsData from "../assets/data/events.json";
+import EventItem from "./EventItem";
 import RadialGradientCircle from "../assets/images/RadialGradientCircle";
 // prob should change to icons later since pngs are a bit blurry
 import leftArrow from '../assets/images/arrow-square-left.png'
@@ -23,9 +24,6 @@ const CalendarMonthView = () => {
             setSelectedMonth(newMonth.add(1, 'month'));
         }
     };
-    
-    // events for selected/current date, ADD LATER
-    const[events, setEvents] = useState([])
 
     // days for calendar
     const firstDayOfMonth = moment(selectedMonth).startOf("month").day(); // first day changes based on month so use selected month as the curr moment
@@ -43,10 +41,20 @@ const CalendarMonthView = () => {
     const handleDate = (day) => {
         setSelectedDate(selectedMonth.clone().date(day));
     }
+
     const handleNextDate = (day) => {
         setSelectedDate(selectedMonth.clone().add(1, 'month').date(day))
     }
 
+    // events for selected/current date, ADD LATER
+    const[events, setEvents] = useState([])
+
+    // filtered events based on selected date (default current date's events)
+    useEffect(() => {
+        const selectedDateEvents = eventsData.filter((event) => moment(event.date).isSame(selectedDate, 'day'))
+        setEvents(selectedDateEvents);
+      }, [selectedDate]);
+    
     return ( 
         <View style={styles.calendarContainer}>
             {/* MONTH AND ARROWS  */}
@@ -72,21 +80,27 @@ const CalendarMonthView = () => {
             
             <View style={styles.datesContainer}>
                 {/* render cells for days BEFORE first day of month */}
-                {inactivePrevDaysArray.map(day => (
+                {inactivePrevDaysArray.map(day => {
+                    const isSelectedDate = selectedDate.date() === day && selectedDate.isSame(selectedMonth.clone().subtract(1, 'month'), 'month');
+                    const hasEvents = eventsData.some(event => moment(event.date).isSame(selectedMonth.clone().subtract(1, 'month').date(day), 'day'));
+                    return (
                     <TouchableOpacity 
                         key={day} 
                         onPress={() => handlePrevDate(day)} 
                         style={[
                             styles.dateCell,
-                            selectedDate.date() === day && selectedDate.isSame(selectedMonth.clone().subtract(1, 'month'), 'month') ? styles.selectedDateCell : null]}
+                            isSelectedDate ? styles.selectedDateCell : null]}
                             >
                         <Text style={styles.inactiveDateText}>{day}</Text>
+                        {hasEvents && <View style={styles.eventDot} />}
                     </TouchableOpacity>
-                ))}
+                    );
+                })}
                 {/* render cells for days in the month */}
                 {daysArray.map(day => {
                     const isCurrentDate = currentDate.isSame(selectedMonth.clone().date(day), 'day');
                     const isSelectedDate = selectedDate.date() === day && selectedDate.isSame(selectedMonth, 'month');
+                    const hasEvents = eventsData.some(event => moment(event.date).isSame(selectedMonth.clone().date(day), 'day'));
                     return (
                     <TouchableOpacity 
                         key={day} 
@@ -98,23 +112,47 @@ const CalendarMonthView = () => {
                             isCurrentDate && !isSelectedDate ? styles.currentDateCell : null]}
                             >
                         <Text style={styles.dateText}>{day}</Text>
+                        {hasEvents && <View style={styles.eventDot} />}
                     </TouchableOpacity>
                     );
                 })}
                 {/* render cells for days AFTER first day of month */}
-                {inactiveNextDaysArray.map(day => (
+                {inactiveNextDaysArray.map(day => {
+                    const isSelectedDate = selectedDate.date() === day && selectedDate.isSame(selectedMonth.clone().add(1, 'month'), 'month');
+                    const hasEvents = eventsData.some(event => moment(event.date).isSame(selectedMonth.clone().add(1, 'month').date(day), 'day'));
+
+                    return (
                     <TouchableOpacity 
                         key={day} 
                         onPress={() => handleNextDate(day)} 
                         style={[
                             styles.dateCell,
-                            selectedDate.date() === day && selectedDate.isSame(selectedMonth.clone().add(1, 'month'), 'month') ? styles.selectedDateCell : null]}
+                            isSelectedDate ? styles.selectedDateCell : null]}
                             >
                         <Text style={styles.inactiveDateText}>{day}</Text>
+                        {hasEvents && <View style={styles.eventDot} />}
+
                     </TouchableOpacity>
-                ))}
+                    );
+                })}
             </View>
-            
+            <View style={styles.eventsContainer}>
+                <View style={styles.eventList}>
+                    <View style={styles.radialBackground}>
+                        <RadialGradientCircle
+                        stop1={Color.niceBlue}
+                        stop2={Color.purplyBlue}
+                        />
+                    </View>
+                    {events.map((event) => (
+                        <EventItem
+                        key={event.id}
+                        // onPress={() => setOpenedEventId(event.id)}
+                        event={event}
+                        />
+                    ))}
+                </View>
+            </View>
         </View>
         
     );
@@ -122,6 +160,7 @@ const CalendarMonthView = () => {
 
 const styles = StyleSheet.create({
     calendarContainer: {
+        paddingBottom: "25%",
     },
     monthSelectorContainer: {
         flexDirection: "row",
@@ -152,13 +191,14 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         flexWrap: "wrap",
         paddingHorizontal: 17,
+        marginBottom: 10,
     },
     dateCell: {
         width: "14.28%",
         height: 48,
         justifyContent: "center",
         alignItems: "center",
-        marginBottom: 5,
+        marginBottom: 4,
     },
     selectedDateCell: {
         backgroundColor: Color.lightPurple,
@@ -177,6 +217,27 @@ const styles = StyleSheet.create({
         color: "#8F9BB3",
         fontFamily: FontFamily.alataRegular,
         fontSize: FontSize.medium,
+    },
+    eventDot: {
+        position: "absolute",
+        top: 38,
+        width: 5,
+        height: 5,
+        borderRadius: 2.5,
+        backgroundColor: Color.lightSkyBlue,
+        
+    },
+    eventList: {
+        alignItems: "center",
+        borderRadius: Border.defaultRadius,
+        overflow: "hidden",
+        marginTop: 7.5,
+        marginHorizontal: Padding.larger,
+    },
+    radialBackground: {
+        position: "absolute",
+        width: "100%",
+        height: "100%",
     },
 });
 
