@@ -1,5 +1,6 @@
 import * as React from "react";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import HomeIcon from "../assets/icons/HomeIcon";
 import CalendarIcon from "../assets/icons/CalendarIcon";
 import SearchIcon from "../assets/icons/SearchIcon";
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
     marginLeft: 6, 
   },
   plusIconContainer: {
-    position: 'absolute',
+    position: "absolute",
     width: "100%",
     justifyContent: 'center',
     alignItems: 'center',

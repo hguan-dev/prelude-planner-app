@@ -47,12 +47,12 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   title: {
-    marginTop: "15%",
+    marginTop: "20%",
     marginLeft: "10%",
     fontSize: 37,
     textAlign: "left",
     width: 299,
-    color: Color.labelColorDarkPrimary,
+    color: Color.white,
     fontFamily: FontFamily.alataRegular,
   },
   floatingWindow: {
@@ -74,19 +74,20 @@ const styles = StyleSheet.create({
   miniTitle: {
     fontSize: 20,
     lineHeight: 25,
-    color: Color.labelColorDarkPrimary,
+    color: Color.white,
     textAlign: "center",
     fontFamily: FontFamily.alataRegular,
   },
   slogan: {
     fontSize: 12,
-    color: Color.labelColorDarkSecondary,
+    color: Color.white,
+    marginTop: 10,
     textAlign: "center",
     fontFamily: FontFamily.alataRegular,
   },
   loginText: {
     fontSize: 15,
-    color: Color.labelColorDarkPrimary,
+    color: Color.white,
     textAlign: "center",
     fontFamily: FontFamily.alataRegular,
   },
