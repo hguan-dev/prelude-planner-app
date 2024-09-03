@@ -158,6 +158,15 @@ const HomeScreen = () => {
   const [newEventScreenVisible, setNewEventScreenVisible] = useState(false);
 
   useEffect(() => {
+    (async () => {
+      try {
+        const res = await fetch("https://prelude-planner.loca.lt/");
+        const data = await res.json();
+        console.log(data);
+      } catch (e) {
+        console.log("error!");
+      }
+    })();
     // Use the imported JSON data instead of fetching it
     setEvents(eventsData);
   }, []);
