@@ -1,48 +1,71 @@
 import * as React from "react";
-import { StyleSheet, Text, View, FlatList, TouchableOpacity } from "react-native";
-import { useNavigation } from '@react-navigation/native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
+import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import NotificationItem from "../components/NotificationItem";
+import NewNotifPopUp from "../components/NewNotifPopUp";
 import AddIcon from "../assets/icons/AddIcon";
 import CrossIcon from "../assets/icons/CrossIcon";
-import { FontFamily, Color, IconSize, Padding, Gap, FontSize} from "../GlobalStyles";
+import {
+  FontFamily,
+  Color,
+  IconSize,
+  Padding,
+  Gap,
+  FontSize,
+} from "../GlobalStyles";
 
 // Create an array to hold notification data
 const notifications = [
-  { id: '1', desc: '<description>' },
-  { id: '2', desc: '<description>' },
-  { id: '3', desc: '<description>' },
-  { id: '4', desc: '<description>' },
-  { id: '5', desc: '<description>' },
-  { id: '6', desc: '<descriptionthatisverylongdescriptionthatisveryl...>' },
-  { id: '7', desc: '<descriptionthatisverylongdescriptionthatisveryl...>' }
+  { id: "1", desc: "<description>" },
+  { id: "2", desc: "<description>" },
+  { id: "3", desc: "<description>" },
+  { id: "4", desc: "<description>" },
+  { id: "5", desc: "<description>" },
+  { id: "6", desc: "<descriptionthatisverylongdescriptionthatisveryl...>" },
+  { id: "7", desc: "<descriptionthatisverylongdescriptionthatisveryl...>" },
 ];
 
-
 const NotificationScreen = () => {
+  const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
-  
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
   return (
     <View style={styles.notificationScreen}>
-      
       <View style={styles.headerContainer}>
         <Text style={styles.title}>Notifications</Text>
         <View style={styles.IconContainer}>
-          <AddIcon size = {IconSize.iconDefault} />
-          <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+          <TouchableOpacity onPress={openModal}>
+            <AddIcon size={IconSize.iconDefault} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
             <CrossIcon size={IconSize.iconSmall} />
           </TouchableOpacity>
+          <NewNotifPopUp modalVisible={modalVisible} closeModal={closeModal} />
         </View>
       </View>
-      <View style = {styles.listContainer}>
+      <View style={styles.listContainer}>
         <FlatList
           style={styles.list}
           data={notifications} // Pass the notifications array as data
           renderItem={({ item }) => (
-            <NotificationItem 
-                desc={item.desc} /> // Render each notification item
-               
+            <NotificationItem desc={item.desc} /> // Render each notification item
           )}
-          keyExtractor={item => item.id} // Unique key for each item
+          keyExtractor={(item) => item.id} // Unique key for each item
         />
       </View>
     </View>
