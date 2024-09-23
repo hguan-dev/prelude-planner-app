@@ -20,7 +20,7 @@ const NewNotifPopUp = ({ modalVisible, closeModal }) => {
     >
       <View style={styles.NewNotifPopUp}>
         <View style={styles.headerContainer}>
-          <Text style={styles.title}>Notifications</Text>
+          <Text style={styles.title}>Add Notification</Text>
           <View style={styles.IconContainer}>
             <CheckIcon size={IconSize.iconDefault} />
             <TouchableOpacity onPress={closeModal}>
@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: "center",
   },
-
   headerContainer: {
     paddingTop: Padding.pageHeaderTop,
     paddingHorizontal: Padding.headerText,
@@ -62,13 +61,9 @@ const styles = StyleSheet.create({
     gap: Gap.headerIcon,
   },
   NewNotifPopUp: {
-    flex: 1,
-    height: "40%",
+    height: "100%",
     width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
     backgroundColor: Color.darkPurple,
-    //backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent background
   },
 });
 
