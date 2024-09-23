@@ -7,6 +7,7 @@ import ProfileIcon from "../assets/icons/ProfileIcon";
 import PlusIcon from "../assets/icons/PlusIcon";
 import { useNavigation, useNavigationState } from "@react-navigation/native";
 import { Color, Border, Gap, IconSize } from "../GlobalStyles";
+import ChatIcon from "../assets/icons/ChatIcon";
 
 const BottomNav = () => {
   const navigation = useNavigation();
@@ -14,20 +15,35 @@ const BottomNav = () => {
   const currentRouteName = useNavigationState(state => state.routes[state.index].name);
 
   const isProfileScreen = currentRouteName === "ProfileScreen";
+  const isHomeScreen = currentRouteName === "HomeScreen";
+  const isCalendarScreen = currentRouteName === "CalendarScreen";
+  const isChatScreen = currentRouteName === "ChatScreen";
 
   return (
     <View style={styles.tabbar}>
       <View style={styles.iconContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")} style={styles.touchable}>
+        <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")} style={[
+          styles.touchable, 
+          styles.circleButton, 
+          isHomeScreen && styles.pressedTouchable
+        ]}>
           <HomeIcon size={IconSize.iconDefault} style={styles.icon} />
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.navigate("CalendarScreen")} style={styles.touchable}>
+        <TouchableOpacity onPress={() => navigation.navigate("CalendarScreen")} style={[
+          styles.touchable, 
+          styles.circleButton, 
+          isCalendarScreen && styles.pressedTouchable
+        ]}>
           <CalendarIcon size={IconSize.iconDefault} style={styles.icon} />
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.navigate("SearchScreen")} style={styles.touchable}>
-          <SearchIcon size={IconSize.iconDefault} style={styles.icon} />
+        <TouchableOpacity onPress={() => navigation.navigate("ChatScreen")} style={[
+            styles.touchable, 
+            styles.circleButton, 
+            isChatScreen && styles.pressedTouchable
+        ]}>
+          <ChatIcon size={IconSize.iconDefault} />
         </TouchableOpacity>
 
         <TouchableOpacity 
@@ -36,7 +52,7 @@ const BottomNav = () => {
             styles.touchable, 
             styles.circleButton, 
             isProfileScreen && styles.pressedTouchable
-          ]}
+        ]}
         >
           <ProfileIcon size = {IconSize.iconDefault} style = {styles.icon} />
         </TouchableOpacity>
