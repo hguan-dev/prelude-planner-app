@@ -10,6 +10,6 @@
 3. Open yet another terminal window, navigate to the app directory, and then run `npm start` to run the app
 
 ## Setup database
-1. Create a database using psql named "prelude_planner"
+1. Create a database by running `createdb prelude_planner`
 2. Run the sql scripts `setup.sql` and `data.sql` with `psql -d prelude_planner -a -f "absolute path to script here"`
-3. Make sure you have a .env file with the same fields as in `.env.example`, the values may be changed
+3. Make sure you have a .env file with the same keys as in `.env.example`
