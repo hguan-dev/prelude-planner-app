@@ -23,7 +23,7 @@ const getEventColor = (type) => {
 
 const EventItem = ({
   onPress,
-  event: { type, title, creator, time, confirmation },
+  event: { type, title, creator, start_time, end_time, confirmation },
   propWidth,
   propAlignSelf,
 }) => {
@@ -49,7 +49,23 @@ const EventItem = ({
             <Text style={[styles.creator, styles.textCommon]}>{creator}</Text>
           </View>
           <View style={styles.rightContent}>
-            <Text style={[styles.time, styles.textCommon]}>{time}</Text>
+            <Text style={[styles.time, styles.textCommon]}>
+              {new Date(start_time)
+                .toLocaleString(undefined, {
+                  hour: "numeric",
+                  minute: "numeric",
+                  hour12: true,
+                })
+                .toLowerCase() +
+                " - " +
+                new Date(end_time)
+                  .toLocaleString(undefined, {
+                    hour: "numeric",
+                    minute: "numeric",
+                    hour12: true,
+                  })
+                  .toLowerCase()}
+            </Text>
             <Text style={[confirmationStyle, styles.textCommon]}>
               {confirmation}
             </Text>

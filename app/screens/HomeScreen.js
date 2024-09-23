@@ -24,10 +24,10 @@ import NewEventPopup from "../components/NewEventPopup";
 // group events by date
 function groupByDate(events) {
   const sorted = [...events].sort(
-    (a, b) => new Date(a.date) - new Date(b.date)
+    (a, b) => new Date(a.start_time) - new Date(b.start_time)
   );
   const getEventDate = (event) => {
-    return new Date(event.date).toLocaleDateString(undefined, {
+    return new Date(event.start_time).toLocaleDateString(undefined, {
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -160,15 +160,13 @@ const HomeScreen = () => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch("https://prelude-planner.loca.lt/");
+        const res = await fetch("https://prelude-planner.loca.lt/event");
         const data = await res.json();
-        console.log(data);
+        setEvents(data);
       } catch (e) {
-        console.log("error!");
+        console.log(e);
       }
     })();
-    // Use the imported JSON data instead of fetching it
-    setEvents(eventsData);
   }, []);
 
   const filteredEvents = filter(events, filters);

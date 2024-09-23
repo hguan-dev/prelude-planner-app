@@ -8,3 +8,8 @@
 1. Run `npm start` in the server directory
 2. Open another terminal window, navigate to the server directory, and run `npm run tunnel` to get a public url for the server
 3. Open yet another terminal window, navigate to the app directory, and then run `npm start` to run the app
+
+## Setup database
+1. Create a database using psql named "prelude_planner"
+2. Run the sql scripts `setup.sql` and `data.sql` with `psql -d prelude_planner -a -f "absolute path to script here"`
+3. Make sure you have a .env file with the same fields as in `.env.example`, the values may be changed
