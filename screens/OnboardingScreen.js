@@ -56,16 +56,15 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.alataRegular,
   },
   floatingWindow: {
-    paddingTop: 30,
-    paddingBottom: 30,
+    padding: 30,
     borderRadius: 30,
     borderColor: "rgba(255, 255, 255, 0.3)",
     borderWidth: 1,
     top: "100%",
     width: "70%",
     marginHorizontal: "auto",
-    flexDirection: "row",
-    justifyContent: "center",
+    // flexDirection: "row",
+    // justifyContent: "center",
     overflow: "hidden",
   },
   floatingWindowBlur: {
@@ -105,8 +104,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   cardContent: {
-    justifyContent: "center",
-    alignItems: "center",
+    // justifyContent: "center",
+    // alignItems: "center",
+    // the justification is bogged on ipad. probably because
+    // the parent element is not 100% sized
+    // marginBottom: 100
   },
 });
 

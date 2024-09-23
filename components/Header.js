@@ -15,7 +15,9 @@ const Header = () => {
         <TouchableOpacity onPress={() => navigation.navigate("NotificationScreen")}>
           <BellIcon size={IconSize.iconDefault} />
         </TouchableOpacity>
-        <ChatIcon size={IconSize.iconDefault} />
+        <TouchableOpacity onPress={() => navigation.navigate("ChatScreen")}>
+          <ChatIcon size={IconSize.iconDefault} />
+        </TouchableOpacity>
       </View>
     </View>
   );

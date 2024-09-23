@@ -7,7 +7,7 @@ import ProfileScreen from "./screens/ProfileScreen";
 import NotificationScreen from "./screens/NotificationScreen"; 
 import Onboarding from "./screens/OnboardingScreen";
 import CalendarScreen from "./screens/CalendarScreen";
-
+import ChatScreen from "./screens/ChatScreen"; 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View, Text, Pressable, TouchableOpacity } from "react-native";
 
@@ -50,6 +50,11 @@ const App = () => {
             <Stack.Screen
             name="CalendarScreen"
             component={CalendarScreen}
+            options={{ headerShown: false }}
+            />
+            <Stack.Screen
+            name="ChatScreen"
+            component={ChatScreen}
             options={{ headerShown: false }}
             />
           </Stack.Navigator>
