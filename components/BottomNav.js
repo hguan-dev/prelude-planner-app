@@ -14,19 +14,43 @@ const BottomNav = () => {
   const currentRouteName = useNavigationState(state => state.routes[state.index].name);
 
   const isProfileScreen = currentRouteName === "ProfileScreen";
+  const isHomeScreen = currentRouteName === "HomeScreen";
+  const isCalendarScreen = currentRouteName === "CalendarScreen";
+  const isSearchScreen = currentRouteName === "SearchScreen";
 
   return (
     <View style={styles.tabbar}>
       <View style={styles.iconContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")} style={styles.touchable}>
+        <TouchableOpacity 
+          onPress={() => navigation.navigate("HomeScreen")}
+          style = {[
+            styles.touchable, 
+            styles.circleButton, 
+            isHomeScreen && styles.pressedTouchable
+          ]}
+          >
           <HomeIcon size={IconSize.iconDefault} style={styles.icon} />
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.navigate("CalendarScreen")} style={styles.touchable}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("CalendarScreen")}
+          style = {[
+            styles.touchable, 
+            styles.circleButton, 
+            isCalendarScreen && styles.pressedTouchable
+          ]}
+          >
           <CalendarIcon size={IconSize.iconDefault} style={styles.icon} />
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.navigate("SearchScreen")} style={styles.touchable}>
+        <TouchableOpacity 
+          onPress={() => navigation.navigate("SearchScreen")}
+          style = {[
+            styles.touchable, 
+            styles.circleButton, 
+            isSearchScreen && styles.pressedTouchable
+          ]}
+        >
           <SearchIcon size={IconSize.iconDefault} style={styles.icon} />
         </TouchableOpacity>
 
