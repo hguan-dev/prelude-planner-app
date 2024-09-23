@@ -6,11 +6,15 @@ import ChatIcon from "../assets/icons/ChatIcon";
 import { FontSize, FontFamily, Color, Padding, Border, Gap, IconSize } from "../GlobalStyles";
 
 const ProfileHeader = () => {
+  const navigation = useNavigation();
+  
   return (
     <View style={styles.headerContainer}>
       <Text style={styles.title}>Prelude Planner</Text>
       <View style={styles.iconsContainer}>
-        <ChatIcon size={IconSize.iconDefault} />
+      <TouchableOpacity onPress={() => navigation.navigate("NotificationScreen")}>
+          <BellIcon size={IconSize.iconDefault} />
+        </TouchableOpacity>
       </View>
     </View>
   );
