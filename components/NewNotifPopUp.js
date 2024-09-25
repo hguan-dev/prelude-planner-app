@@ -1,5 +1,14 @@
-import React from "react";
-import { View, Text, Modal, TouchableOpacity, StyleSheet } from "react-native";
+import * as React from "react";
+import {
+  View,
+  Text,
+  Modal,
+  TouchableOpacity,
+  StyleSheet,
+  SafeAreaView,
+  TextInput,
+} from "react-native";
+import { useState } from "react";
 import {
   FontFamily,
   Color,
@@ -12,6 +21,8 @@ import CrossIcon from "../assets/icons/CrossIcon";
 import CheckIcon from "../assets/icons/CheckIcon";
 
 const NewNotifPopUp = ({ modalVisible, closeModal }) => {
+  const [subject, setSubject] = useState("");
+  const [description, setDescription] = useState("");
   return (
     <Modal
       transparent={true}
@@ -22,25 +33,38 @@ const NewNotifPopUp = ({ modalVisible, closeModal }) => {
         <View style={styles.headerContainer}>
           <Text style={styles.title}>Add Notification</Text>
           <View style={styles.IconContainer}>
-            <CheckIcon size={IconSize.iconDefault} />
+            <TouchableOpacity onPress={closeModal}>
+              <CheckIcon size={IconSize.iconDefault} />
+            </TouchableOpacity>
             <TouchableOpacity onPress={closeModal}>
               <CrossIcon size={IconSize.iconSmall} />
             </TouchableOpacity>
-            <View style={styles.modalContent}></View>
           </View>
         </View>
+        <View style={styles.textBoxContainer}>
+          <TextInput
+            style={styles.SubTextBox} // Always apply editing style
+            value={subject} // Bound value to state
+            placeholder="Subject" // Placeholder text
+            onChangeText={(text) => setSubject(text)} // Update state with text input
+            placeholderTextColor="#bbb" // Placeholder color
+          />
+          <TextInput
+            style={styles.DescTextBox} // Always apply editing style
+            value={description} // Bound value to state
+            placeholder="Description" // Placeholder text
+            onChangeText={(text) => setDescription(text)} // Update state with text input
+            placeholderTextColor="#bbb" // Placeholder color
+            multiline={true}
+            textAlignVertical="top"
+          />
+        </View>
       </View>
-      {/* </View> */}
     </Modal>
   );
 };
 
 const styles = StyleSheet.create({
-  modalContent: {
-    padding: 20,
-    borderRadius: 10,
-    alignItems: "center",
-  },
   headerContainer: {
     paddingTop: Padding.pageHeaderTop,
     paddingHorizontal: Padding.headerText,
@@ -64,6 +88,24 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
     backgroundColor: Color.darkPurple,
+  },
+  SubTextBox: {
+    color: Color.white,
+    height: 40,
+    margin: 20,
+    borderWidth: 1.5,
+    padding: 5,
+    borderColor: Color.white,
+    borderRadius: 5,
+  },
+  DescTextBox: {
+    color: Color.white,
+    height: 100,
+    margin: 20,
+    borderWidth: 1.5,
+    borderColor: Color.white,
+    borderRadius: 5,
+    padding: 5,
   },
 });
 
