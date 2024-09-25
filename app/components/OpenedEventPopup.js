@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Text,
   StyleSheet,
@@ -13,6 +13,7 @@ import CheckIcon from "../assets/icons/CheckIcon";
 import CrossIcon from "../assets/icons/CrossIcon";
 import EventDetails from "./EventDetails";
 import Modal from "../components/Modal";
+import { editEvent } from "../api";
 
 const MenuButtons = ({ onPressEdit, onPressDelete }) => {
   return (
@@ -41,6 +42,27 @@ const OpenedEventPopup = ({ onClose, event }) => {
   const [isMenuVisible, setMenuVisible] = useState(false);
   const [editing, setEditing] = useState(false);
   const [editedEvent, setEditedEvent] = useState(event);
+
+  function didEventChange() {
+    const fields = [
+      "title",
+      "start_time",
+      "end_time",
+      "location",
+      "description",
+      "type",
+    ];
+    for (const field of fields) {
+      if ((event[field] || "") != (editedEvent[field] || "")) return true;
+    }
+    return false;
+  }
+
+  useEffect(() => {
+    if (!editing && didEventChange()) {
+      editEvent(editedEvent).then((data) => console.log(data));
+    }
+  }, [editing]);
 
   const options = editing ? (
     <>

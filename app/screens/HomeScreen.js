@@ -159,11 +159,13 @@ const HomeScreen = () => {
   const [newEventScreenVisible, setNewEventScreenVisible] = useState(false);
 
   useEffect(() => {
-    (async () => {
-      const events = await getEvents();
-      setEvents(events);
-    })();
-  }, []);
+    if (!openedEventId && !newEventScreenVisible) {
+      (async () => {
+        const events = await getEvents();
+        setEvents(events);
+      })();
+    }
+  }, [openedEventId, newEventScreenVisible]);
 
   const filteredEvents = filter(events, filters);
   const filteredAndGroupedEvents = groupByDate(filteredEvents);

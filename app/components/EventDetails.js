@@ -1,5 +1,6 @@
 import * as React from "react";
-import { TextInput, StyleSheet, View } from "react-native";
+import { Text, TextInput, StyleSheet, View } from "react-native";
+import DateTimePicker from "@react-native-community/datetimepicker";
 import { FontSize, Color, FontFamily, Padding, Gap } from "../GlobalStyles";
 import RadialGradientCircle from "../assets/images/RadialGradientCircle";
 import TimeIcon from "../assets/icons/TimeIcon";
@@ -9,7 +10,16 @@ import LocationIcon from "../assets/icons/LocationIcon";
 import UserIcon from "../assets/icons/UserIcon";
 
 const EventDetails = ({
-  event: { title, creator, participants, time, location, description },
+  event: {
+    title,
+    creator,
+    participants,
+    start_time,
+    end_time,
+    location,
+    description,
+    type,
+  },
   options,
   editing,
   onEdit,
@@ -33,14 +43,7 @@ const EventDetails = ({
         </View>
         <View style={styles.labelRow}>
           <UserIcon size={28} />
-          <TextInput
-            style={[styles.labelFont, editing ? styles.editing : {}]}
-            value={creator}
-            placeholder="Creator"
-            onChangeText={(text) => onEdit("creator", text)}
-            editable={editing}
-            placeholderTextColor={"#bbb"}
-          />
+          <Text style={styles.labelFont}>{creator}</Text>
         </View>
         <View style={styles.labelRow}>
           <GroupIcon size={28} />
@@ -55,14 +58,34 @@ const EventDetails = ({
         </View>
         <View style={styles.labelRow}>
           <TimeIcon size={28} />
-          <TextInput
+          {/* <TextInput
             style={[styles.labelFont, editing ? styles.editing : {}]}
             value={time}
             placeholder="Time"
             onChangeText={(text) => onEdit("time", text)}
             editable={editing}
             placeholderTextColor={"#bbb"}
-          />
+          /> */}
+          <View style={{ flexDirection: "column" }}>
+            <Text style={styles.dateFont}>Start:</Text>
+            <DateTimePicker
+              mode="datetime"
+              themeVariant="dark"
+              value={new Date(start_time)}
+              onChange={(event, date) =>
+                onEdit("start_time", date.toISOString())
+              }
+              disabled={!editing}
+            />
+            <Text style={styles.dateFont}>End:</Text>
+            <DateTimePicker
+              mode="datetime"
+              themeVariant="dark"
+              value={new Date(end_time)}
+              onChange={(event, date) => onEdit("end_time", date.toISOString())}
+              disabled={!editing}
+            />
+          </View>
         </View>
         <View style={styles.labelRow}>
           <LocationIcon size={28} />
@@ -129,6 +152,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: Padding.default,
     width: "75%",
+  },
+  dateFont: {
+    padding: Padding.smaller,
+    marginLeft: Padding.default,
+    fontSize: FontSize.medium,
+    fontFamily: FontFamily.alata,
+    color: Color.white,
   },
   optionButtons: {
     display: "flex",

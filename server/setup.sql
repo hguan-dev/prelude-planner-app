@@ -2,7 +2,8 @@ CREATE TABLE users (
     id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     email VARCHAR(255) NOT NULL,
     name VARCHAR(255) NOT NULL,
-    access_type VARCHAR(50) NOT NULL
+    access_type VARCHAR(50) NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE events (
@@ -13,8 +14,8 @@ CREATE TABLE events (
     event_description TEXT,
     confirmation VARCHAR(50),
     event_type VARCHAR(50),
-    start_time TIMESTAMP,
-    end_time TIMESTAMP,
+    start_time TIMESTAMPTZ,
+    end_time TIMESTAMPTZ,
     FOREIGN KEY (creator_id) REFERENCES users(id)
 );
 
