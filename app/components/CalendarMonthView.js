@@ -14,6 +14,7 @@ import RadialGradientCircle from "../assets/images/RadialGradientCircle";
 // prob should change to icons later since pngs are a bit blurry
 import leftArrow from "../assets/images/arrow-square-left.png";
 import rightArrow from "../assets/images/arrow-square-right.png";
+import { getEvents } from "../api";
 const CalendarMonthView = () => {
   const [currentDate, setCurrentDate] = useState(moment());
   // selected date (default current date)
@@ -69,14 +70,8 @@ const CalendarMonthView = () => {
   // get events
   useEffect(() => {
     (async () => {
-      try {
-        const res = await fetch("https://prelude-planner.loca.lt/event");
-        const data = await res.json();
-        setEvents(data);
-        const first = data.find((ev) => ev.id === 1);
-      } catch (e) {
-        console.log(e);
-      }
+      const events = await getEvents();
+      setEvents(events);
     })();
   }, []);
 

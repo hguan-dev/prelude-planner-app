@@ -20,6 +20,7 @@ import LessonAvailabilityItem from "../components/LessonAvailabilityItem";
 // I put the events in this file, use them from there
 import eventsData from "../assets/data/events.json";
 import NewEventPopup from "../components/NewEventPopup";
+import { getEvents } from "../api";
 
 // group events by date
 function groupByDate(events) {
@@ -159,13 +160,8 @@ const HomeScreen = () => {
 
   useEffect(() => {
     (async () => {
-      try {
-        const res = await fetch("https://prelude-planner.loca.lt/event");
-        const data = await res.json();
-        setEvents(data);
-      } catch (e) {
-        console.log(e);
-      }
+      const events = await getEvents();
+      setEvents(events);
     })();
   }, []);
 
