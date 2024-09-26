@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Text,
   StyleSheet,
@@ -58,15 +58,16 @@ const OpenedEventPopup = ({ onClose, event }) => {
     return false;
   }
 
-  useEffect(() => {
-    if (!editing && didEventChange()) {
-      editEvent(editedEvent).then((data) => console.log(data));
+  function save() {
+    if (didEventChange()) {
+      editEvent(editedEvent);
     }
-  }, [editing]);
+    setEditing(false);
+  }
 
   const options = editing ? (
     <>
-      <TouchableOpacity onPress={() => setEditing(false)}>
+      <TouchableOpacity onPress={() => save()}>
         <CheckIcon size={28} />
       </TouchableOpacity>
     </>

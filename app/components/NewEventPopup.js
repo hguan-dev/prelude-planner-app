@@ -4,6 +4,7 @@ import { TouchableOpacity } from "react-native";
 import CheckIcon from "../assets/icons/CheckIcon";
 import CrossIcon from "../assets/icons/CrossIcon";
 import EventDetails from "./EventDetails";
+import { createEvent } from "../api";
 
 const NewEventPopup = ({ onClose }) => {
   const [newEvent, setNewEvent] = useState({});
@@ -11,7 +12,7 @@ const NewEventPopup = ({ onClose }) => {
   // function that saves and then calls on close
   function saveAndClose() {
     // save
-
+    createEvent(newEvent);
     // close
     onClose();
   }
