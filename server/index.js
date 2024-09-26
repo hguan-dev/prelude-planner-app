@@ -46,7 +46,18 @@ app.post("/event/:id", async (req, res) => {
   }
 });
 
-// didn't test yet
+// didn't test
+app.delete("/event/:id", async (req, res) => {
+  try {
+    await pool.query("DELETE FROM events WHERE id = $1", [req.params.id]);
+    res.status(200);
+  } catch (e) {
+    console.log(e);
+    res.status(500);
+  }
+});
+
+// didn't test
 app.post("/event", async (req, res) => {
   const values = [
     req.body.title,

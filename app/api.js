@@ -29,6 +29,20 @@ async function editEvent(event) {
   }
 }
 
+// didn't test
+async function deleteEvent(eventId) {
+  try {
+    const res = await fetch(`${url}/event/${eventId}`, {
+      method: "DELETE",
+    });
+    return res.status === 200;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+}
+
+// didn't test
 async function createEvent(eventInfo) {
   try {
     const res = await fetch(`${url}/event`, {
@@ -47,4 +61,4 @@ async function createEvent(eventInfo) {
   }
 }
 
-export { getEvents, editEvent, createEvent };
+export { getEvents, editEvent, deleteEvent, createEvent };

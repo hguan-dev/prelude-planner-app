@@ -13,7 +13,7 @@ import CheckIcon from "../assets/icons/CheckIcon";
 import CrossIcon from "../assets/icons/CrossIcon";
 import EventDetails from "./EventDetails";
 import Modal from "../components/Modal";
-import { editEvent } from "../api";
+import { editEvent, deleteEvent } from "../api";
 
 const MenuButtons = ({ onPressEdit, onPressDelete }) => {
   return (
@@ -67,7 +67,7 @@ const OpenedEventPopup = ({ onClose, event }) => {
 
   const options = editing ? (
     <>
-      <TouchableOpacity onPress={() => save()}>
+      <TouchableOpacity onPress={save}>
         <CheckIcon size={28} />
       </TouchableOpacity>
     </>
@@ -95,7 +95,7 @@ const OpenedEventPopup = ({ onClose, event }) => {
             setMenuVisible(false);
           }}
           onPressDelete={() => {
-            console.log("delete pressed");
+            deleteEvent();
             onClose();
           }}
         />

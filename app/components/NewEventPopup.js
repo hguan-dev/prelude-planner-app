@@ -9,11 +9,8 @@ import { createEvent } from "../api";
 const NewEventPopup = ({ onClose }) => {
   const [newEvent, setNewEvent] = useState({});
 
-  // function that saves and then calls on close
   function saveAndClose() {
-    // save
     createEvent(newEvent);
-    // close
     onClose();
   }
   const options = (
