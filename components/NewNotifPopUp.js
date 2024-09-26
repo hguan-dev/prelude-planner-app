@@ -50,6 +50,13 @@ const NewNotifPopUp = ({ modalVisible, closeModal }) => {
             placeholderTextColor="#bbb" // Placeholder color
           />
           <TextInput
+            style={styles.RecTextBox} // Always apply editing style
+            value={subject} // Bound value to state
+            placeholder="Recipients" // Placeholder text
+            onChangeText={(text) => setSubject(text)} // Update state with text input
+            placeholderTextColor="#bbb" // Placeholder color
+          />
+          <TextInput
             style={styles.DescTextBox} // Always apply editing style
             value={description} // Bound value to state
             placeholder="Description" // Placeholder text
@@ -90,6 +97,15 @@ const styles = StyleSheet.create({
     backgroundColor: Color.darkPurple,
   },
   SubTextBox: {
+    color: Color.white,
+    height: 40,
+    margin: 20,
+    borderWidth: 1.5,
+    padding: 5,
+    borderColor: Color.white,
+    borderRadius: 5,
+  },
+  RecTextBox: {
     color: Color.white,
     height: 40,
     margin: 20,
