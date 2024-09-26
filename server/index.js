@@ -46,6 +46,7 @@ app.post("/event/:id", async (req, res) => {
   }
 });
 
+// didn't test yet
 app.post("/event", async (req, res) => {
   const values = [
     req.body.title,

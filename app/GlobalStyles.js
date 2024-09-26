@@ -45,9 +45,9 @@ export const Color = {
   lightPurple: "#a276ff",
   lightSkyBlue: "#72ccff",
   white: "#fff",
-  
+
   // calendar colors
-  grayPurple: "#3C2C50"
+  grayPurple: "#3C2C50",
 };
 /* Paddings (and margins ig) */
 export const Padding = {
@@ -83,9 +83,9 @@ export const Border = {
 };
 
 export const EventColor = Object.freeze({
-  lesson: Color.lightSkyBlue,
-  masterclass: Color.lightPurple,
-  recital: Color.lightGreen,
-  "studio class": Color.lightPink,
-  misc: Color.white,
+  Lesson: Color.lightSkyBlue,
+  Masterclass: Color.lightPurple,
+  Recital: Color.lightGreen,
+  "Studio Class": Color.lightPink,
+  Misc: Color.white,
 });

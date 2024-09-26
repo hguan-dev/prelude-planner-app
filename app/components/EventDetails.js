@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Text, TextInput, StyleSheet, View } from "react-native";
+import { Picker } from "@react-native-picker/picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { FontSize, Color, FontFamily, Padding, Gap } from "../GlobalStyles";
 import RadialGradientCircle from "../assets/images/RadialGradientCircle";
@@ -8,6 +9,9 @@ import FileIcon from "../assets/icons/FileIcon";
 import GroupIcon from "../assets/icons/GroupIcon";
 import LocationIcon from "../assets/icons/LocationIcon";
 import UserIcon from "../assets/icons/UserIcon";
+import CategoryIcon from "../assets/icons/CategoryIcon";
+
+const categories = ["Lesson", "Studio Class", "Recital", "Masterclass", "Misc"];
 
 const EventDetails = ({
   event: {
@@ -40,6 +44,23 @@ const EventDetails = ({
             placeholderTextColor={"#bbb"}
           />
           <View style={styles.optionButtons}>{options}</View>
+        </View>
+        <View style={styles.labelRow}>
+          <CategoryIcon size={28} />
+          {editing ? (
+            <Picker
+              selectedValue={type}
+              onValueChange={(value, index) => onEdit("type", value)}
+              style={styles.picker}
+              itemStyle={styles.pickerFont}
+            >
+              {categories.map((category) => (
+                <Picker.Item label={category} value={category} key={category} />
+              ))}
+            </Picker>
+          ) : (
+            <Text style={styles.labelFont}>{type}</Text>
+          )}
         </View>
         <View style={styles.labelRow}>
           <UserIcon size={28} />
@@ -153,6 +174,14 @@ const styles = StyleSheet.create({
     marginTop: Padding.default,
     width: "75%",
   },
+  picker: {
+    flex: 1,
+  },
+  pickerFont: {
+    color: Color.white,
+    fontSize: FontSize.medium,
+    fontFamily: FontFamily.alata,
+  },
   dateFont: {
     padding: Padding.smaller,
     marginLeft: Padding.default,
@@ -177,7 +206,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     marginBottom: -1,
     borderBottomColor: Color.white,
-    backgroundColor: "rgba(0, 0, 0, 0.2)",
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
   },
 });
 

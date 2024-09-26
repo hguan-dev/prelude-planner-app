@@ -3,14 +3,7 @@ import { Color, EventColor, FontFamily, FontSize } from "../GlobalStyles";
 import Checkmark from "../assets/icons/Checkmark";
 import Modal from "./Modal";
 
-const filters = ["lesson", "studio class", "recital", "masterclass", "misc"];
-
-const capitalize = (str) => {
-  return str
-    .split(" ")
-    .map((word) => word[0].toUpperCase() + word.slice(1))
-    .join(" ");
-};
+const filters = ["Lesson", "Studio Class", "Recital", "Masterclass", "Misc"];
 
 const Checkbox = ({
   checked,
@@ -62,7 +55,7 @@ const FilterModal = ({
               }
             }}
           />
-          <Text style={styles.filterText}>{capitalize(filter)}</Text>
+          <Text style={styles.filterText}>{filter}</Text>
         </View>
       ))}
     </Modal>
