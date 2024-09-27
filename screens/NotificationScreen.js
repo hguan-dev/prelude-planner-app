@@ -28,8 +28,14 @@ const notifications = [
   { id: "3", desc: "<description>" },
   { id: "4", desc: "<description>" },
   { id: "5", desc: "<description>" },
-  { id: "6", desc: "<descriptionthatisverylongdescriptionthatisveryl...>" },
-  { id: "7", desc: "<descriptionthatisverylongdescriptionthatisveryl...>" },
+  {
+    id: "6",
+    desc: "<descriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylong>",
+  },
+  {
+    id: "7",
+    desc: "<descriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylong>",
+  },
 ];
 
 const NotificationScreen = () => {

@@ -1,9 +1,29 @@
-import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { Color, FontFamily, FontSize, Border, Padding, IconSize } from "../GlobalStyles";
+import {
+  Color,
+  FontFamily,
+  FontSize,
+  Border,
+  Padding,
+  IconSize,
+} from "../GlobalStyles";
 
 const NotificationItem = ({ desc }) => {
+  const [expanded, setExpanded] = useState(false);
+  const [description, setDescription] = useState(desc);
+
+  const toggleExpand = () => {
+    setExpanded(!expanded);
+    console.log("Hello World!");
+  };
   return (
     <LinearGradient
       style={styles.notificationItem}
@@ -18,7 +38,21 @@ const NotificationItem = ({ desc }) => {
           </View>
           <Text style={styles.senderXmAgo}>Sender, Xm ago</Text>
         </View>
-        <Text style={styles.description}>{desc}</Text>
+        <TouchableOpacity onPress={toggleExpand}>
+          {expanded ? (
+            <TextInput
+              style={styles.expandedDescription}
+              multiline
+              value={description}
+              onChangeText={setDescription}
+              autoFocus
+            />
+          ) : (
+            <Text style={styles.description} numberOfLines={2}>
+              {description}
+            </Text>
+          )}
+        </TouchableOpacity>
       </View>
     </LinearGradient>
   );
@@ -57,6 +91,13 @@ const styles = StyleSheet.create({
     color: Color.white,
     fontFamily: FontFamily.alataRegular,
     fontSize: FontSize.small,
+  },
+  expandedDescription: {
+    color: Color.white,
+    fontFamily: FontFamily.alataRegular,
+    fontSize: FontSize.small,
+    textAlignVertical: "top",
+    minHeight: 100,
   },
   contentContainer: {
     display: "flex",
