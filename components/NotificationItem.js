@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import {
   Color,
@@ -40,7 +34,8 @@ const NotificationItem = ({ desc }) => {
         <TouchableOpacity onPress={toggleExpand} activeOpacity={1}>
           <Text
             style={expanded ? styles.expandedDescription : styles.description}
-            numberOfLines={expanded ? undefined : 2}
+            numberOfLines={expanded ? undefined : 1}
+            ellipsizeMode="tail"
           >
             {desc}
           </Text>
