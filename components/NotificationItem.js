@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { Swipeable } from "react-native-gesture-handler";
 import {
   Color,
   FontFamily,
@@ -10,40 +11,59 @@ import {
   IconSize,
 } from "../GlobalStyles";
 
-const NotificationItem = ({ subject, sender, time, desc }) => {
+const NotificationItem = ({
+  subject,
+  sender,
+  time,
+  desc,
+  deleteNotification,
+}) => {
   const [expanded, setExpanded] = useState(false);
-  // const [description, setDescription] = useState(desc);
 
   const toggleExpand = () => {
     setExpanded(!expanded);
   };
-  return (
-    <LinearGradient
-      style={styles.notificationItem}
-      locations={[0, 1]}
-      colors={["#2a1d52", "#2f2b80"]}
-    >
-      <View style={styles.contentContainer}>
-        <View style={styles.headerContainer}>
-          <View style={styles.leftHeaderContainer}>
-            <View style={styles.greenBox} />
-            <Text style={styles.subject}>{subject}</Text>
-          </View>
-          <Text style={styles.senderXmAgo}>
-            {sender}, {time} ago
-          </Text>
-        </View>
-        <TouchableOpacity onPress={toggleExpand} activeOpacity={1}>
-          <Text
-            style={styles.description}
-            numberOfLines={expanded ? undefined : 1}
-            ellipsizeMode="tail"
-          >
-            {desc}
-          </Text>
-        </TouchableOpacity>
+
+  const renderRightActions = () => {
+    return (
+      <View style={styles.deleteContainer}>
+        <Text style={styles.deleteText}>Delete</Text>
       </View>
-    </LinearGradient>
+    );
+  };
+
+  return (
+    <Swipeable
+      renderRightActions={renderRightActions}
+      onSwipeableRightOpen={deleteNotification}
+    >
+      <LinearGradient
+        style={styles.notificationItem}
+        locations={[0, 1]}
+        colors={["#2a1d52", "#2f2b80"]}
+      >
+        <View style={styles.contentContainer}>
+          <View style={styles.headerContainer}>
+            <View style={styles.leftHeaderContainer}>
+              <View style={styles.greenBox} />
+              <Text style={styles.subject}>{subject}</Text>
+            </View>
+            <Text style={styles.senderXmAgo}>
+              {sender}, {time} ago
+            </Text>
+          </View>
+          <TouchableOpacity onPress={toggleExpand} activeOpacity={1}>
+            <Text
+              style={styles.description}
+              numberOfLines={expanded ? undefined : 1}
+              ellipsizeMode="tail"
+            >
+              {desc}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </LinearGradient>
+    </Swipeable>
   );
 };
 
@@ -88,6 +108,18 @@ const styles = StyleSheet.create({
     borderRadius: Border.defaultRadius,
     paddingVertical: Padding.default,
     width: "100%",
+  },
+  deleteContainer: {
+    justifyContent: "center",
+    alignItems: "flex-end",
+    backgroundColor: "red",
+    width: 100, // Adjust width for your design
+    borderRadius: Border.defaultRadius,
+  },
+  deleteText: {
+    color: "white",
+    fontWeight: "bold",
+    padding: Padding.default,
   },
 });
 

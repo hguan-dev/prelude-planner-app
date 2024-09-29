@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import NotificationItem from "../components/NotificationItem";
 import NewNotifPopUp from "../components/NewNotifPopUp";
 import AddIcon from "../assets/icons/AddIcon";
@@ -102,40 +103,51 @@ const NotificationScreen = () => {
     closeModal();
   };
 
+  const deleteNotification = (id) => {
+    setNotifications((prevNotifications) =>
+      prevNotifications.filter((notification) => notification.id !== id)
+    );
+  };
+
+  const renderItem = ({ item }) => (
+    <NotificationItem
+      subject={item.subject}
+      sender={item.sender}
+      time={item.time}
+      desc={item.desc}
+      deleteNotification={() => deleteNotification(item.id)} // Pass delete function
+    />
+  );
+
   return (
-    <View style={styles.notificationScreen}>
-      <View style={styles.headerContainer}>
-        <Text style={styles.title}>Notifications</Text>
-        <View style={styles.IconContainer}>
-          <TouchableOpacity onPress={openModal}>
-            <AddIcon size={IconSize.iconDefault} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
-            <CrossIcon size={IconSize.iconSmall} />
-          </TouchableOpacity>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <View style={styles.notificationScreen}>
+        <View style={styles.headerContainer}>
+          <Text style={styles.title}>Notifications</Text>
+          <View style={styles.IconContainer}>
+            <TouchableOpacity onPress={openModal}>
+              <AddIcon size={IconSize.iconDefault} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
+              <CrossIcon size={IconSize.iconSmall} />
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-      <View style={styles.listContainer}>
-        <FlatList
-          style={styles.list}
-          data={notifications}
-          renderItem={({ item }) => (
-            <NotificationItem
-              subject={item.subject}
-              sender={item.sender}
-              time={item.time}
-              desc={item.desc}
-            />
-          )}
-          keyExtractor={(item) => item.id}
+        <View style={styles.listContainer}>
+          <FlatList
+            style={styles.list}
+            data={notifications}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+          />
+        </View>
+        <NewNotifPopUp
+          modalVisible={modalVisible}
+          closeModal={closeModal}
+          addNotification={addNotification} // Pass addNotification function
         />
       </View>
-      <NewNotifPopUp
-        modalVisible={modalVisible}
-        closeModal={closeModal}
-        addNotification={addNotification} // Pass addNotification function here
-      />
-    </View>
+    </GestureHandlerRootView>
   );
 };
 
