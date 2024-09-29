@@ -23,17 +23,53 @@ import {
 
 // Create an array to hold notification data
 const notifications = [
-  { id: "1", desc: "<description>" },
-  { id: "2", desc: "<description>" },
-  { id: "3", desc: "<description>" },
-  { id: "4", desc: "<description>" },
-  { id: "5", desc: "<description>" },
+  {
+    id: "1",
+    subject: "Subject",
+    sender: "Sender",
+    time: "Xm ago",
+    desc: "<description>",
+  },
+  {
+    id: "2",
+    subject: "Subject",
+    sender: "Sender",
+    time: "Xm ago",
+    desc: "<description>",
+  },
+  {
+    id: "3",
+    subject: "Subject",
+    sender: "Sender",
+    time: "Xm ago",
+    desc: "<description>",
+  },
+  {
+    id: "4",
+    subject: "Subject",
+    sender: "Sender",
+    time: "Xm ago",
+    desc: "<description>",
+  },
+  {
+    id: "5",
+    subject: "Subject",
+    sender: "Sender",
+    time: "Xm ago",
+    desc: "<description>",
+  },
   {
     id: "6",
+    subject: "Subject",
+    sender: "Sender",
+    time: "Xm ago",
     desc: "<descriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylong>",
   },
   {
     id: "7",
+    subject: "Subject",
+    sender: "Sender",
+    time: "Xm ago",
     desc: "<descriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylong>",
   },
 ];
@@ -69,7 +105,12 @@ const NotificationScreen = () => {
           style={styles.list}
           data={notifications} // Pass the notifications array as data
           renderItem={({ item }) => (
-            <NotificationItem desc={item.desc} /> // Render each notification item
+            <NotificationItem
+              subject={item.subject}
+              sender={item.sender}
+              time={item.time}
+              desc={item.desc}
+            /> // Render each notification item
           )}
           keyExtractor={(item) => item.id} // Unique key for each item
         />

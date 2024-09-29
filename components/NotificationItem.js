@@ -10,7 +10,7 @@ import {
   IconSize,
 } from "../GlobalStyles";
 
-const NotificationItem = ({ desc }) => {
+const NotificationItem = ({ subject, sender, time, desc }) => {
   const [expanded, setExpanded] = useState(false);
   // const [description, setDescription] = useState(desc);
 
@@ -27,9 +27,11 @@ const NotificationItem = ({ desc }) => {
         <View style={styles.headerContainer}>
           <View style={styles.leftHeaderContainer}>
             <View style={styles.greenBox} />
-            <Text style={styles.subject}>Subject</Text>
+            <Text style={styles.subject}>{subject}</Text>
           </View>
-          <Text style={styles.senderXmAgo}>Sender, Xm ago</Text>
+          <Text style={styles.senderXmAgo}>
+            {sender}, {time}
+          </Text>
         </View>
         <TouchableOpacity onPress={toggleExpand} activeOpacity={1}>
           <Text
