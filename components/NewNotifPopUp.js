@@ -19,9 +19,17 @@ import {
 import CrossIcon from "../assets/icons/CrossIcon";
 import CheckIcon from "../assets/icons/CheckIcon";
 
-const NewNotifPopUp = ({ modalVisible, closeModal }) => {
+const NewNotifPopUp = ({ modalVisible, closeModal, addNotification }) => {
+  const [recipients, setRecipients] = useState("");
   const [subject, setSubject] = useState("");
   const [description, setDescription] = useState("");
+
+  const handleAddNotification = () => {
+    if (subject && description) {
+      addNotification(subject, "Sender", "Xm", description); // Add new notification
+    }
+  };
+
   return (
     <Modal
       transparent={true}
@@ -32,7 +40,7 @@ const NewNotifPopUp = ({ modalVisible, closeModal }) => {
         <View style={styles.headerContainer}>
           <Text style={styles.title}>Add Notification</Text>
           <View style={styles.IconContainer}>
-            <TouchableOpacity onPress={closeModal}>
+            <TouchableOpacity onPress={handleAddNotification}>
               <CheckIcon size={IconSize.iconDefault} />
             </TouchableOpacity>
             <TouchableOpacity onPress={closeModal}>
@@ -42,25 +50,25 @@ const NewNotifPopUp = ({ modalVisible, closeModal }) => {
         </View>
         <View style={styles.textBoxContainer}>
           <TextInput
-            style={styles.SubTextBox} // Always apply editing style
-            value={subject} // Bound value to state
-            placeholder="Subject" // Placeholder text
-            onChangeText={(text) => setSubject(text)} // Update state with text input
-            placeholderTextColor="#bbb" // Placeholder color
+            style={styles.RecTextBox}
+            value={recipients}
+            placeholder="Recipients"
+            onChangeText={(text) => setRecipients(text)}
+            placeholderTextColor="#bbb"
           />
           <TextInput
-            style={styles.RecTextBox} // Always apply editing style
-            value={subject} // Bound value to state
-            placeholder="Recipients" // Placeholder text
-            onChangeText={(text) => setSubject(text)} // Update state with text input
-            placeholderTextColor="#bbb" // Placeholder color
+            style={styles.SubTextBox}
+            value={subject}
+            placeholder="Subject"
+            onChangeText={(text) => setSubject(text)}
+            placeholderTextColor="#bbb"
           />
           <TextInput
-            style={styles.DescTextBox} // Always apply editing style
-            value={description} // Bound value to state
-            placeholder="Description" // Placeholder text
-            onChangeText={(text) => setDescription(text)} // Update state with text input
-            placeholderTextColor="#bbb" // Placeholder color
+            style={styles.DescTextBox}
+            value={description}
+            placeholder="Description"
+            onChangeText={(text) => setDescription(text)}
+            placeholderTextColor="#bbb"
             multiline={true}
             textAlignVertical="top"
           />

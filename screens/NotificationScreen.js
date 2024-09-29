@@ -22,60 +22,61 @@ import {
 } from "../GlobalStyles";
 
 // Create an array to hold notification data
-const notifications = [
-  {
-    id: "1",
-    subject: "Subject",
-    sender: "Sender",
-    time: "Xm",
-    desc: "<description>",
-  },
-  {
-    id: "2",
-    subject: "Subject",
-    sender: "Sender",
-    time: "Xm",
-    desc: "<description>",
-  },
-  {
-    id: "3",
-    subject: "Subject",
-    sender: "Sender",
-    time: "Xm",
-    desc: "<description>",
-  },
-  {
-    id: "4",
-    subject: "Subject",
-    sender: "Sender",
-    time: "Xm",
-    desc: "<description>",
-  },
-  {
-    id: "5",
-    subject: "Subject",
-    sender: "Sender",
-    time: "Xm",
-    desc: "<description>",
-  },
-  {
-    id: "6",
-    subject: "Subject",
-    sender: "Sender",
-    time: "Xm",
-    desc: "<descriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylong>",
-  },
-  {
-    id: "7",
-    subject: "Subject",
-    sender: "Sender",
-    time: "Xm",
-    desc: "<descriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylong>",
-  },
-];
 
 const NotificationScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [notifications, setNotifications] = useState([
+    {
+      id: "1",
+      subject: "Subject",
+      sender: "Sender",
+      time: "Xm",
+      desc: "<description>",
+    },
+    {
+      id: "2",
+      subject: "Subject",
+      sender: "Sender",
+      time: "Xm",
+      desc: "<description>",
+    },
+    {
+      id: "3",
+      subject: "Subject",
+      sender: "Sender",
+      time: "Xm",
+      desc: "<description>",
+    },
+    {
+      id: "4",
+      subject: "Subject",
+      sender: "Sender",
+      time: "Xm",
+      desc: "<description>",
+    },
+    {
+      id: "5",
+      subject: "Subject",
+      sender: "Sender",
+      time: "Xm",
+      desc: "<description>",
+    },
+    {
+      id: "6",
+      subject: "Subject",
+      sender: "Sender",
+      time: "Xm",
+      desc: "<descriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylong>",
+    },
+    {
+      id: "7",
+      subject: "Subject",
+      sender: "Sender",
+      time: "Xm",
+      desc: "<descriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylongdescriptionthatisverylong>",
+    },
+  ]);
+
   const navigation = useNavigation();
 
   const openModal = () => {
@@ -84,6 +85,21 @@ const NotificationScreen = () => {
 
   const closeModal = () => {
     setModalVisible(false);
+  };
+
+  const addNotification = (subject, sender, time, desc) => {
+    const newNotification = {
+      id: (notifications.length + 1).toString(),
+      subject,
+      sender,
+      time,
+      desc,
+    };
+    setNotifications((prevNotifications) => [
+      ...prevNotifications,
+      newNotification,
+    ]);
+    closeModal();
   };
 
   return (
@@ -97,24 +113,28 @@ const NotificationScreen = () => {
           <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
             <CrossIcon size={IconSize.iconSmall} />
           </TouchableOpacity>
-          <NewNotifPopUp modalVisible={modalVisible} closeModal={closeModal} />
         </View>
       </View>
       <View style={styles.listContainer}>
         <FlatList
           style={styles.list}
-          data={notifications} // Pass the notifications array as data
+          data={notifications}
           renderItem={({ item }) => (
             <NotificationItem
               subject={item.subject}
               sender={item.sender}
               time={item.time}
               desc={item.desc}
-            /> // Render each notification item
+            />
           )}
-          keyExtractor={(item) => item.id} // Unique key for each item
+          keyExtractor={(item) => item.id}
         />
       </View>
+      <NewNotifPopUp
+        modalVisible={modalVisible}
+        closeModal={closeModal}
+        addNotification={addNotification} // Pass addNotification function here
+      />
     </View>
   );
 };
