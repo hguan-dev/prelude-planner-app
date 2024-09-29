@@ -18,11 +18,10 @@ import {
 
 const NotificationItem = ({ desc }) => {
   const [expanded, setExpanded] = useState(false);
-  const [description, setDescription] = useState(desc);
+  // const [description, setDescription] = useState(desc);
 
   const toggleExpand = () => {
     setExpanded(!expanded);
-    console.log("Hello World!");
   };
   return (
     <LinearGradient
@@ -38,20 +37,13 @@ const NotificationItem = ({ desc }) => {
           </View>
           <Text style={styles.senderXmAgo}>Sender, Xm ago</Text>
         </View>
-        <TouchableOpacity onPress={toggleExpand}>
-          {expanded ? (
-            <TextInput
-              style={styles.expandedDescription}
-              multiline
-              value={description}
-              onChangeText={setDescription}
-              autoFocus
-            />
-          ) : (
-            <Text style={styles.description} numberOfLines={2}>
-              {description}
-            </Text>
-          )}
+        <TouchableOpacity onPress={toggleExpand} activeOpacity={1}>
+          <Text
+            style={expanded ? styles.expandedDescription : styles.description}
+            numberOfLines={expanded ? undefined : 2}
+          >
+            {desc}
+          </Text>
         </TouchableOpacity>
       </View>
     </LinearGradient>
