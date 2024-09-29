@@ -33,7 +33,7 @@ const NotificationItem = ({ desc }) => {
         </View>
         <TouchableOpacity onPress={toggleExpand} activeOpacity={1}>
           <Text
-            style={expanded ? styles.expandedDescription : styles.description}
+            style={styles.description}
             numberOfLines={expanded ? undefined : 1}
             ellipsizeMode="tail"
           >
@@ -47,15 +47,14 @@ const NotificationItem = ({ desc }) => {
 
 const styles = StyleSheet.create({
   headerContainer: {
-    width: "90%",
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: Padding.default,
   },
   leftHeaderContainer: {
-    display: "flex",
     flexDirection: "row",
+    alignItems: "center",
   },
   greenBox: {
     borderRadius: Border.tinyRadius,
@@ -79,25 +78,13 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.alataRegular,
     fontSize: FontSize.small,
   },
-  expandedDescription: {
-    color: Color.white,
-    fontFamily: FontFamily.alataRegular,
-    fontSize: FontSize.small,
-    textAlignVertical: "top",
-    minHeight: 100,
-  },
   contentContainer: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    marginTop: Padding.default,
-    marginBottom: Padding.default,
+    padding: Padding.default,
   },
   notificationItem: {
     marginBottom: Padding.larger,
     borderRadius: Border.defaultRadius,
     paddingVertical: Padding.default,
-    alignItems: "center",
     width: "100%",
   },
 });
