@@ -30,7 +30,7 @@ const NotificationItem = ({ subject, sender, time, desc }) => {
             <Text style={styles.subject}>{subject}</Text>
           </View>
           <Text style={styles.senderXmAgo}>
-            {sender}, {time}
+            {sender}, {time} ago
           </Text>
         </View>
         <TouchableOpacity onPress={toggleExpand} activeOpacity={1}>
