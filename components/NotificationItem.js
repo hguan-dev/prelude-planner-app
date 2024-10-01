@@ -25,17 +25,17 @@ const NotificationItem = ({
   };
 
   const renderRightActions = () => {
-    return (
-      <View style={styles.deleteContainer}>
-        <Text style={styles.deleteText}>Delete</Text>
-      </View>
-    );
+    return <Text> </Text>;
   };
 
   return (
     <Swipeable
       renderRightActions={renderRightActions}
-      onSwipeableRightOpen={deleteNotification}
+      onSwipeableWillOpen={(direction) => {
+        if (direction === "right") {
+          deleteNotification();
+        }
+      }}
     >
       <LinearGradient
         style={styles.notificationItem}
@@ -108,18 +108,6 @@ const styles = StyleSheet.create({
     borderRadius: Border.defaultRadius,
     paddingVertical: Padding.default,
     width: "100%",
-  },
-  deleteContainer: {
-    justifyContent: "center",
-    alignItems: "flex-end",
-    backgroundColor: "red",
-    width: 100, // Adjust width for your design
-    borderRadius: Border.defaultRadius,
-  },
-  deleteText: {
-    color: "white",
-    fontWeight: "bold",
-    padding: Padding.default,
   },
 });
 
